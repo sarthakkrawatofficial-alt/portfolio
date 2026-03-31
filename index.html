@@ -251,6 +251,69 @@
     background: var(--border);
   }
 
+  /* BRAND LOGO STRIP */
+  .brand-strip {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 0;
+    background: var(--bg2);
+    position: relative;
+  }
+  .brand-strip::before,
+  .brand-strip::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 120px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .brand-strip::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg2), transparent);
+  }
+  .brand-strip::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg2), transparent);
+  }
+  .brand-track {
+    display: flex;
+    gap: 0;
+    animation: brandScroll 18s linear infinite;
+    width: max-content;
+  }
+  .brand-track:hover { animation-play-state: paused; }
+  @keyframes brandScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .brand-logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 52px;
+    white-space: nowrap;
+    gap: 52px;
+  }
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    color: rgba(240,236,228,0.18);
+    text-transform: uppercase;
+    transition: color 0.3s;
+    user-select: none;
+  }
+  .brand-track:hover .brand-name { color: rgba(240,236,228,0.35); }
+  .brand-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.4;
+    flex-shrink: 0;
+  }
+
   /* SHOWREEL */
   .showreel-section {
     background: var(--bg);
@@ -307,7 +370,38 @@
     margin-left: 4px;
   }
 
-  /* WORK GRID */
+  /* STATS BAR */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-item {
+    background: var(--bg2);
+    padding: 48px 24px;
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .stat-item:hover { background: var(--bg3); }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 72px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+    /* WORK GRID */
   .work-section { background: var(--bg2); }
 
   .work-category {
@@ -513,6 +607,35 @@
   }
 
   .about-highlight span { color: var(--accent); }
+
+  .about-photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5;
+    max-height: 420px;
+    margin-bottom: 40px;
+    overflow: visible;
+  }
+  .about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    border: 1px solid var(--border);
+    filter: grayscale(15%);
+    transition: filter 0.4s ease;
+  }
+  .about-photo:hover img { filter: grayscale(0%); }
+  .about-photo-accent {
+    position: absolute;
+    bottom: -12px;
+    right: -12px;
+    width: 80px;
+    height: 80px;
+    background: var(--accent);
+    z-index: -1;
+  }
 
   /* SKILLS */
   .skills-grid {
@@ -723,7 +846,7 @@
   .testi-section { background: var(--bg2); }
   .testi-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 2px;
     background: var(--border);
     border: 1px solid var(--border);
@@ -805,6 +928,7 @@
     .exp-item { grid-template-columns: 1fr; gap: 12px; }
     .hero-bottom { flex-direction: column; gap: 40px; align-items: flex-start; }
     footer { flex-direction: column; gap: 12px; text-align: center; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
     .work-grid { grid-template-columns: 1fr; }
     .testi-grid { grid-template-columns: 1fr; }
   }
@@ -846,7 +970,7 @@
   <div class="hero-bottom">
     <p class="hero-desc">
       I don't just edit footage.<br>
-      I build <strong>purposeful visual narratives</strong> — from concept to final frame, driven by emotion, rhythm, and intent.
+      I build <strong>visual narratives with purpose</strong> — where every cut, every frame, every sound decision moves the audience exactly where it needs to go.
     </p>
     <div class="scroll-hint">
       <div class="scroll-line"></div>
@@ -856,6 +980,56 @@
 </section>
 
 <div class="divider"></div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">50+</div>
+    <div class="stat-label">Projects Delivered</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">10+</div>
+    <div class="stat-label">Brands Served</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3+</div>
+    <div class="stat-label">Years Experience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Frames Per Story</div>
+  </div>
+</div>
+
+<!-- BRAND LOGO STRIP -->
+<div class="brand-strip">
+  <div class="brand-track">
+    <div class="brand-logo-item">
+      <span class="brand-name">Workstatus</span><span class="brand-dot"></span>
+      <span class="brand-name">PixelCrayons</span><span class="brand-dot"></span>
+      <span class="brand-name">ValueCoders</span><span class="brand-dot"></span>
+      <span class="brand-name">Aromasphere</span><span class="brand-dot"></span>
+      <span class="brand-name">Satinder Sartaaj</span><span class="brand-dot"></span>
+      <span class="brand-name">Apex University</span><span class="brand-dot"></span>
+      <span class="brand-name">Hillwoods Academy</span><span class="brand-dot"></span>
+      <span class="brand-name">Unbeaten</span><span class="brand-dot"></span>
+      <span class="brand-name">Manaaki Healthcare</span><span class="brand-dot"></span>
+      <span class="brand-name">Vrinda Fertility</span><span class="brand-dot"></span>
+    </div>
+    <div class="brand-logo-item">
+      <span class="brand-name">Workstatus</span><span class="brand-dot"></span>
+      <span class="brand-name">PixelCrayons</span><span class="brand-dot"></span>
+      <span class="brand-name">ValueCoders</span><span class="brand-dot"></span>
+      <span class="brand-name">Aromasphere</span><span class="brand-dot"></span>
+      <span class="brand-name">Satinder Sartaaj</span><span class="brand-dot"></span>
+      <span class="brand-name">Apex University</span><span class="brand-dot"></span>
+      <span class="brand-name">Hillwoods Academy</span><span class="brand-dot"></span>
+      <span class="brand-name">Unbeaten</span><span class="brand-dot"></span>
+      <span class="brand-name">Manaaki Healthcare</span><span class="brand-dot"></span>
+      <span class="brand-name">Vrinda Fertility</span><span class="brand-dot"></span>
+    </div>
+  </div>
+</div>
 
 <!-- SHOWREEL -->
 <section class="showreel-section" id="showreel">
@@ -885,29 +1059,36 @@
     </div>
     <div class="work-grid">
 
-      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/u-P677zVe9Y_ID?autoplay=1&rel=0')">
+      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/u-P677zVe9Y?autoplay=1&rel=0')">
         <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/2Hw4PhhkNH4_ID?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
-          <div class="work-card-video-overlay">
-            <div class="work-card-play"></div>
-          </div>
+          <iframe src="https://www.youtube.com/embed/u-P677zVe9Y?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
         </div>
         <div class="work-card-info">
-          <div class="work-card-title">Project Title Here</div>
-          <div class="work-card-meta">Brand / Category · 2024</div>
+          <div class="work-card-title">Brand Film</div>
+          <div class="work-card-meta">Long Form · 2024</div>
         </div>
       </div>
 
-      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/YOUR_LONGFORM_2_ID?autoplay=1&rel=0')">
+      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/CvlO4_XVo0s?autoplay=1&rel=0')">
         <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/YOUR_LONGFORM_2_ID?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
-          <div class="work-card-video-overlay">
-            <div class="work-card-play"></div>
-          </div>
+          <iframe src="https://www.youtube.com/embed/CvlO4_XVo0s?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
         </div>
         <div class="work-card-info">
-          <div class="work-card-title">Project Title Here</div>
-          <div class="work-card-meta">Brand / Category · 2024</div>
+          <div class="work-card-title">Documentary Edit</div>
+          <div class="work-card-meta">Long Form · 2024</div>
+        </div>
+      </div>
+
+      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/41OTJvjOMtw?autoplay=1&rel=0')">
+        <div class="work-card-video">
+          <iframe src="https://www.youtube.com/embed/41OTJvjOMtw?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
+        </div>
+        <div class="work-card-info">
+          <div class="work-card-title">Campaign Video</div>
+          <div class="work-card-meta">Long Form · 2024</div>
         </div>
       </div>
 
@@ -922,42 +1103,112 @@
     </div>
     <div class="work-grid">
 
-      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/YOUR_SHORTFORM_1_ID?autoplay=1&rel=0')">
+      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/zHxI_-M1sOo?autoplay=1&rel=0')">
         <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/YOUR_SHORTFORM_1_ID?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
-          <div class="work-card-video-overlay">
-            <div class="work-card-play"></div>
-          </div>
+          <iframe src="https://www.youtube.com/embed/zHxI_-M1sOo?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
         </div>
         <div class="work-card-info">
-          <div class="work-card-title">Project Title Here</div>
-          <div class="work-card-meta">Reels / Social · 2025</div>
+          <div class="work-card-title">Social Reel</div>
+          <div class="work-card-meta">Short Form · 2025</div>
         </div>
       </div>
 
-      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/YOUR_SHORTFORM_2_ID?autoplay=1&rel=0')">
+      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/ULn82D31b24?autoplay=1&rel=0')">
         <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/YOUR_SHORTFORM_2_ID?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
-          <div class="work-card-video-overlay">
-            <div class="work-card-play"></div>
-          </div>
+          <iframe src="https://www.youtube.com/embed/ULn82D31b24?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
         </div>
         <div class="work-card-info">
-          <div class="work-card-title">Project Title Here</div>
-          <div class="work-card-meta">Reels / Social · 2025</div>
+          <div class="work-card-title">Social Reel</div>
+          <div class="work-card-meta">Short Form · 2025</div>
         </div>
       </div>
 
-      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/YOUR_SHORTFORM_3_ID?autoplay=1&rel=0')">
+      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/PXAiUNwJIpE?autoplay=1&rel=0')">
         <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/YOUR_SHORTFORM_3_ID?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
+          <iframe src="https://www.youtube.com/embed/PXAiUNwJIpE?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
+        </div>
+        <div class="work-card-info">
+          <div class="work-card-title">Social Reel</div>
+          <div class="work-card-meta">Short Form · 2025</div>
+        </div>
+      </div>
+
+      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/Cpt7PXJ-Y8I?autoplay=1&rel=0')">
+        <div class="work-card-video">
+          <iframe src="https://www.youtube.com/embed/Cpt7PXJ-Y8I?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
+        </div>
+        <div class="work-card-info">
+          <div class="work-card-title">Social Reel</div>
+          <div class="work-card-meta">Short Form · 2025</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+  <div class="section-label">002 — Selected Work</div>
+  <div class="section-title fade-in">THE WORK</div>
+
+  <!-- LONG FORM -->
+  <div class="work-category fade-in">
+    <div class="work-category-label">
+      Long-Form Content
+      <span>YouTube / Documentary / Brand</span>
+    </div>
+    <div class="work-grid">
+
+      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/u-P677zVe9Y?autoplay=1&rel=0')">
+        <div class="work-card-video">
+          <iframe src="https://www.youtube.com/embed/u-P677zVe9Y?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay">
             <div class="work-card-play"></div>
           </div>
         </div>
         <div class="work-card-info">
-          <div class="work-card-title">Project Title Here</div>
-          <div class="work-card-meta">Reels / Social · 2025</div>
+          <div class="work-card-title">Brand Film</div>
+          <div class="work-card-meta">Long Form · 2024</div>
+        </div>
+      </div>
+
+      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/CvlO4_XVo0s?autoplay=1&rel=0')">
+        <div class="work-card-video">
+          <iframe src="https://www.youtube.com/embed/CvlO4_XVo0s?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="work-card-video-overlay">
+            <div class="work-card-play"></div>
+          </div>
+        </div>
+        <div class="work-card-info">
+          <div class="work-card-title">Documentary Edit</div>
+          <div class="work-card-meta">Long Form · 2024</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SHORT FORM -->
+  <div class="work-category fade-in">
+    <div class="work-category-label">
+      Short-Form Content
+      <span>Reels / Shorts / Social</span>
+    </div>
+    <div class="work-grid">
+
+      <div class="work-card" onclick="openModal('https://www.youtube.com/embed/2Hw4PhhkNH4?autoplay=1&rel=0')">
+        <div class="work-card-video">
+          <iframe src="https://www.youtube.com/embed/2Hw4PhhkNH4?rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="work-card-video-overlay">
+            <div class="work-card-play"></div>
+          </div>
+        </div>
+        <div class="work-card-info">
+          <div class="work-card-title">Social Reel</div>
+          <div class="work-card-meta">Short Form · 2025</div>
         </div>
       </div>
 
@@ -973,6 +1224,10 @@
   <div class="section-label">003 — About</div>
   <div class="about-grid">
     <div class="about-left">
+      <div class="about-photo fade-in">
+        <img src="photo.webp" alt="Sarthak Rawat">
+        <div class="about-photo-accent"></div>
+      </div>
       <div class="about-highlight fade-in">
         I think in<br><span>stories</span>,<br>not effects.
       </div>
@@ -1010,10 +1265,10 @@
       </div>
     </div>
     <div class="about-text fade-in">
-      <p>My journey started in <strong>graphic design</strong> — composition, typography, visual balance. Those principles now drive everything I do in motion.</p>
-      <p>Over the years I've worked across the full pipeline — from scripting and shoot setup to post-production and final delivery. That <strong>end-to-end understanding</strong> means I approach every project strategically, not just technically.</p>
-      <p>Currently at <strong>Vinove Software & Services</strong>, building explainer videos and product demos that make complex software feel human and desirable.</p>
-      <p>I believe great motion design is <strong>invisible</strong> — the audience feels it before they see it.</p>
+      <p>My journey started in <strong>graphic design</strong> — composition, typography, visual systems. Those principles didn't stay in design. They became the foundation of everything I do in motion.</p>
+      <p>Most editors work with footage. I work with <strong>intent</strong>. I've been across the full pipeline — scripting, shoot setup, lighting, post-production, final delivery — which means I catch problems before they become problems, and I push ideas before the client knows to ask for more.</p>
+      <p>Currently at <strong>Vinove Software & Services</strong>, turning complex software into motion that actually connects with people. Before that, I ran creative for 7 brands simultaneously at Digiron — building visual identities from scratch, not just executing briefs.</p>
+      <p>I believe the best motion design is <strong>invisible</strong>. The audience feels the emotion before they notice the craft. That's the standard I work to.</p>
     </div>
   </div>
 </section>
@@ -1034,7 +1289,7 @@
       <div>
         <div class="exp-role">Motion Graphic Designer</div>
         <div class="exp-company">Vinove Software & Services</div>
-        <div class="exp-desc">Building explainer videos for software products, UI/UX walkthroughs, and marketing visuals. Collaborating directly with product and design teams to translate complex ideas into clear, compelling motion.</div>
+        <div class="exp-desc">Vinove is the parent company behind three product brands — <strong style="color:var(--white)">Workstatus, PixelCrayons, and ValueCoders</strong>. Embedded across all three, I own the motion and visual communication pipeline: explainer videos, UI/UX walkthroughs, product demos, and marketing visuals. Every piece is built to make complex software feel intuitive and desirable — delivered consistently, on brief, on time.</div>
       </div>
     </div>
 
@@ -1043,7 +1298,7 @@
       <div>
         <div class="exp-role">Creative Designer</div>
         <div class="exp-company">Digiron Marketing Agency</div>
-        <div class="exp-desc">Designed motion graphics and branded content for 4 brands — Celestique, Nivve, APU, Manaaki. Produced social media and marketing campaigns end-to-end.</div>
+        <div class="exp-desc">Managed end-to-end motion and branded content across 7 brands spanning healthcare, education, lifestyle, and entertainment — <strong style="color:var(--white)">Aromasphere, Satinder Sartaaj India Tour, Apex Professional University, Hillwoods Academy, Unbeaten Sportswear, Manaaki Healthcare, and Vrinda Fertility</strong>. Each brand had a distinct voice and audience. I built the visual language for all of them — from social campaigns to event coverage — consistently meeting deadlines across every vertical simultaneously.</div>
       </div>
     </div>
 
@@ -1052,7 +1307,7 @@
       <div>
         <div class="exp-role">Creative Junior</div>
         <div class="exp-company">Digilok Media House</div>
-        <div class="exp-desc">Assisted in indoor and outdoor shoots, lighting setups, and studio operations. Edited documentaries, short videos, and social media ads. Built the production foundation that drives everything today.</div>
+        <div class="exp-desc">Started from the ground up — handling shoots, lighting, studio setup, and post-production across documentaries, ads, and social content. This is where I learned that great editing starts before the camera rolls. The production instinct I built here shapes every project I take on today.</div>
       </div>
     </div>
 
@@ -1061,7 +1316,7 @@
       <div>
         <div class="exp-role">Graphic Designer</div>
         <div class="exp-company">Selection Adda</div>
-        <div class="exp-desc">Designed website graphics and digital assets, ensuring brand consistency across all touchpoints.</div>
+        <div class="exp-desc">Where it started. Designed digital assets and web graphics with a focus on brand consistency — this is where I developed my eye for composition, typography, and visual systems that now drive my motion work.</div>
       </div>
     </div>
 
@@ -1077,34 +1332,45 @@
   <div class="testi-grid">
 
     <div class="testi-card fade-in">
-      <p class="testi-quote">Working with Sarthak was effortless. He understood the brief immediately and came back with something <strong>better than what we imagined</strong>. The final edit had exactly the energy our brand needed.</p>
+      <p class="testi-quote">Sarthak brought our university campaigns to life with a clarity we hadn't seen before. The motion work he delivered for APU was <strong>sharp, on-brand, and exactly what our audience responded to</strong>. Genuinely one of the most reliable creatives we've worked with.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">D</div>
+        <div>
+          <div class="testi-name">Dharmpreet Singh</div>
+          <div class="testi-role">Apex Professional University</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card fade-in">
+      <p class="testi-quote">Healthcare content is difficult — it needs to be <strong>accurate, warm, and trustworthy</strong> all at once. Sarthak understood that without us having to over-explain. The reels he created for Vrinda Fertility consistently drove engagement and patient inquiries.</p>
       <div class="testi-author">
         <div class="testi-avatar">A</div>
         <div>
-          <div class="testi-name">Client Name</div>
-          <div class="testi-role">Founder · Brand Name</div>
+          <div class="testi-name">Anushka Madaan</div>
+          <div class="testi-role">Vrinda Fertility</div>
         </div>
       </div>
     </div>
 
     <div class="testi-card fade-in">
-      <p class="testi-quote">The motion graphics he made for our product launch were <strong>cinematic, clean, and on-brand</strong>. He doesn't just execute — he thinks. That's rare in a designer at this level.</p>
+      <p class="testi-quote">Working with Sarthak for Hillwoods was seamless. He picked up our tone quickly and <strong>delivered content that felt premium without losing relatability</strong>. Fast turnaround, zero compromises on quality.</p>
       <div class="testi-author">
-        <div class="testi-avatar">R</div>
+        <div class="testi-avatar">A</div>
         <div>
-          <div class="testi-name">Client Name</div>
-          <div class="testi-role">Marketing Head · Company</div>
+          <div class="testi-name">Ayushi Saxena</div>
+          <div class="testi-role">Hillwoods Academy Noida</div>
         </div>
       </div>
     </div>
 
     <div class="testi-card fade-in">
-      <p class="testi-quote">Fast turnaround, sharp eye for detail, and he <strong>always delivers more than expected</strong>. Our social content performance improved noticeably after he started editing our reels.</p>
+      <p class="testi-quote">Sarthak designed our digital assets with a <strong>level of consistency and attention to detail</strong> that made a real difference to how our brand was perceived online. He doesn't just execute — he thinks about the bigger picture.</p>
       <div class="testi-author">
-        <div class="testi-avatar">M</div>
+        <div class="testi-avatar">H</div>
         <div>
-          <div class="testi-name">Client Name</div>
-          <div class="testi-role">Content Director · Agency</div>
+          <div class="testi-name">Hemant Gupta</div>
+          <div class="testi-role">Selection Adda</div>
         </div>
       </div>
     </div>
@@ -1119,7 +1385,7 @@
   <div class="contact-bg-text">CONTACT</div>
   <div class="section-label">006 — Let's Talk</div>
   <div class="section-title fade-in">GOT A PROJECT?</div>
-  <p class="contact-sub fade-in">Whether it's a brand film, a product explainer, or something you haven't figured out yet — let's build it.</p>
+  <p class="contact-sub fade-in">Brand film, product explainer, social campaign — bring me the brief and I'll bring back something better than you imagined.</p>
   <div class="contact-links fade-in">
     <a href="mailto:Sarthakkrawat.official@gmail.com" class="contact-link primary">Send an Email</a>
     <a href="tel:09598723609" class="contact-link">Call / WhatsApp</a>
@@ -1192,12 +1458,4 @@
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  faders.forEach(el => observer.observe(el));
-</script></body>
-</html>
+        setTimeout(() => entry.target.classList.add('visible'), i 
