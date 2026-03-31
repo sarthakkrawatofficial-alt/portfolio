@@ -612,7 +612,7 @@
     position: relative;
     width: 100%;
     aspect-ratio: 4/5;
-    max-height: 420px;
+    max-height: 560px;
     margin-bottom: 40px;
     overflow: visible;
   }
@@ -620,7 +620,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center center;
     display: block;
     border: 1px solid var(--border);
     filter: grayscale(15%);
@@ -917,10 +917,46 @@
     transform: translateY(0);
   }
 
+  /* HAMBURGER BUTTON */
+  .nav-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 200;
+  }
+  .nav-menu-btn span {
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: var(--white);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
   /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 20px 24px; }
-    .nav-links { display: none; }
+    .nav-menu-btn { display: flex; }
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0; right: 0;
+      width: 260px;
+      height: 100vh;
+      background: var(--bg2);
+      border-left: 1px solid var(--border);
+      padding: 80px 32px 48px;
+      gap: 28px;
+      transform: translateX(100%);
+      transition: transform 0.35s ease;
+      z-index: 150;
+    }
+    .nav-links.open { transform: translateX(0); }
+    .nav-links a { font-size: 13px; color: var(--white); }
     section { padding: 80px 24px; }
     .hero { padding: 0 24px 60px; }
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -957,6 +993,9 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="nav-menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -1150,6 +1189,7 @@
     </div>
   </div>
 
+</section>
 
 <!-- ABOUT -->
 <section class="about-section" id="about">
@@ -1260,7 +1300,7 @@
 <!-- TESTIMONIALS -->
 <section class="testi-section" id="testimonials">
   <div class="section-label">005 — Kind Words</div>
-  <div class="section-title fade-in">WHAT THEY SAY/div>
+  <div class="section-title fade-in">WHAT THEY SAY</div>
   <div class="testi-grid">
 
     <div class="testi-card fade-in">
@@ -1319,7 +1359,7 @@
   <div class="section-title fade-in">GOT A PROJECT?</div>
   <p class="contact-sub fade-in">Brand film, product explainer, social campaign — bring me the brief and I'll bring back something better than you imagined.</p>
   <div class="contact-links fade-in">
-    <a href="mailto:Sarthakkrawat.official@gmail.com" class="contact-link primary">Send an Email</a>
+    <a href="/cdn-cgi/l/email-protection#184b796a6c707973736a796f796c36777e7e717b717974587f75797174367b7775" class="contact-link primary">Send an Email</a>
     <a href="tel:09598723609" class="contact-link">Call / WhatsApp</a>
     <a href="https://instagram.com/sarthakk_rawat_" target="_blank" class="contact-link">Instagram</a>
   </div>
@@ -1327,11 +1367,11 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 Sarthak Rawat — All rights reserved</p>
+  <p>© 2026 Sarthak Rawat — All rights reserved</p>
   <p>Built with intention <span>·</span> Noida, India</p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Cursor — smooth GPU-based tracking
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -1392,10 +1432,27 @@
       if (entry.isIntersecting) {
         setTimeout(() => {
           entry.target.classList.add('visible');
-        }, i * 100);
+        }, i * 80);
+        observer.unobserve(entry.target);
       }
     });
-  });
+  }, { threshold: 0.12 });
 
   faders.forEach(el => observer.observe(el));
-</script>
+
+  // Mobile nav toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.querySelector('.nav-links');
+  if (menuBtn) {
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', navLinks.classList.contains('open'));
+    });
+    // Close menu on link click
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+  }
+-e </script>
+</body>
+</html>
