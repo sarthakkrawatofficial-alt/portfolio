@@ -888,12 +888,21 @@
 
   /* TESTIMONIALS */
   .testi-section { background: var(--bg2); }
-  .testi-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+  .testi-slider {
+    position: relative;
+  }
+  .testi-viewport {
+    overflow: hidden;
+  }
+  .testi-track {
+    display: flex;
     gap: 16px;
-    background: transparent;
-    border: none;
+    transition: transform 0.45s ease;
+    will-change: transform;
+  }
+  .testi-slide {
+    flex: 0 0 calc(50% - 8px);
+    min-width: 0;
   }
   .testi-card {
     background: var(--bg2);
@@ -944,18 +953,82 @@
   .testi-quote strong { color: var(--white); font-style: normal; font-weight: 400; }
   .testi-author { display: flex; align-items: center; gap: 14px; }
   .testi-avatar {
-    width: 40px; height: 40px;
+    width: 56px; height: 56px;
     border-radius: 50%;
     background: var(--bg3);
     border: 1px solid var(--border);
+    overflow: hidden;
     display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-display);
-    font-size: 15px;
-    color: var(--accent);
     flex-shrink: 0;
+  }
+  .testi-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .testi-avatar.logo {
+    padding: 10px;
+    background: #000;
+  }
+  .testi-avatar.logo img {
+    object-fit: contain;
   }
   .testi-name { font-family: var(--font-display); font-size: 16px; letter-spacing: 0.05em; margin-bottom: 2px; color: var(--white); }
   .testi-role { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+  .testi-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .testi-nav {
+    display: flex;
+    gap: 12px;
+  }
+  .testi-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+    color: var(--white);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+    cursor: pointer;
+  }
+  .testi-btn:hover {
+    border-color: rgba(200,240,60,0.35);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .testi-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+    transform: none;
+  }
+  .testi-dots {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .testi-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    border: none;
+    background: rgba(255,255,255,0.18);
+    transition: width 0.25s ease, background 0.25s ease;
+    cursor: pointer;
+  }
+  .testi-dot.active {
+    width: 34px;
+    background: var(--accent);
+  }
 
   /* FADE IN */
   .fade-in {
@@ -1049,7 +1122,8 @@
     footer { flex-direction: column; gap: 12px; text-align: center; }
     .stats-bar { grid-template-columns: repeat(2, 1fr); }
     .work-grid { grid-template-columns: 1fr; }
-    .testi-grid { grid-template-columns: 1fr; }
+    .testi-slide { flex-basis: 100%; }
+    .testi-controls { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
@@ -1387,52 +1461,109 @@
 <section class="testi-section" id="testimonials">
   <div class="section-label">005 &mdash; Kind Words</div>
   <div class="section-title fade-in">WHAT THEY SAY</div>
-  <div class="testi-grid">
+  <div class="testi-slider fade-in" id="testiSlider">
+    <div class="testi-viewport">
+      <div class="testi-track" id="testiTrack">
 
-    <div class="testi-card fade-in">
-      <p class="testi-quote">Sarthak brought our university campaigns to life with a clarity we hadn't seen before. The motion work he delivered for APU was <strong>sharp, on-brand, and exactly what our audience responded to</strong>. Genuinely one of the most reliable creatives we've worked with.</p>
-      <div class="testi-author">
-        <div class="testi-avatar">D</div>
-        <div>
-          <div class="testi-name">Dharmpreet Singh</div>
-          <div class="testi-role">Apex Professional University</div>
-        </div>
+        <article class="testi-slide">
+          <div class="testi-card">
+            <p class="testi-quote">Sarthak designed our digital assets with a <strong>level of consistency and attention to detail</strong> that made a real difference to how our brand was perceived online. He doesn't just execute &mdash; he thinks about the bigger picture.</p>
+            <div class="testi-author">
+              <div class="testi-avatar">
+                <img src="hemant-gupta.png" alt="Hemant Gupta">
+              </div>
+              <div>
+                <div class="testi-name">Hemant Gupta</div>
+                <div class="testi-role">Selection Adda</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testi-slide">
+          <div class="testi-card">
+            <p class="testi-quote">Working with Sarthak at Digilok was seamless. He adapted quickly across shoots and editing, delivering content that maintained both quality and consistency. Fast, dependable, and focused, he handled every project with strong ownership.</p>
+            <div class="testi-author">
+              <div class="testi-avatar">
+                <img src="akash-mishra.png" alt="Akash Mishra">
+              </div>
+              <div>
+                <div class="testi-name">Akash Mishra</div>
+                <div class="testi-role">Digilok Media House</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testi-slide">
+          <div class="testi-card">
+            <p class="testi-quote">Healthcare content is difficult &mdash; it needs to be <strong>accurate, warm, and trustworthy</strong> all at once. Sarthak understood that without us having to over-explain. The reels he created for Vrinda Fertility consistently drove engagement and patient inquiries.</p>
+            <div class="testi-author">
+              <div class="testi-avatar">
+                <img src="anushka-madaan.png" alt="Anushka Madaan">
+              </div>
+              <div>
+                <div class="testi-name">Anushka Madaan</div>
+                <div class="testi-role">Vrinda Fertility</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testi-slide">
+          <div class="testi-card">
+            <p class="testi-quote">Working with Sarthak for Hillwoods was seamless. He picked up our tone quickly and <strong>delivered content that felt premium without losing relatability</strong>. Fast turnaround, zero compromises on quality.</p>
+            <div class="testi-author">
+              <div class="testi-avatar">
+                <img src="harshita-gupta.png" alt="Harshita Gupta">
+              </div>
+              <div>
+                <div class="testi-name">Harshita Gupta</div>
+                <div class="testi-role">Hillwoods Academy Noida</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testi-slide">
+          <div class="testi-card">
+            <p class="testi-quote">Sarthak brought clarity and structure to our motion projects that improved how our content was perceived. His work was sharp, on-brand, and aligned with our communication goals. Consistently reliable and detail-oriented, he was someone we could trust for end-to-end delivery.</p>
+            <div class="testi-author">
+              <div class="testi-avatar logo">
+                <img src="vinove-logo.png" alt="Vinove Software & Services">
+              </div>
+              <div>
+                <div class="testi-name">Vinove Software &amp; Services</div>
+                <div class="testi-role">Current Employer</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testi-slide">
+          <div class="testi-card">
+            <p class="testi-quote">Sarthak brought our university campaigns to life with a clarity we hadn't seen before. The motion work he delivered for APU was <strong>sharp, on-brand, and exactly what our audience responded to</strong>. Genuinely one of the most reliable creatives we've worked with.</p>
+            <div class="testi-author">
+              <div class="testi-avatar">
+                <img src="dharmpreet-singh.png" alt="Dharmpreet Singh">
+              </div>
+              <div>
+                <div class="testi-name">Dharmpreet Singh</div>
+                <div class="testi-role">Apex Professional University</div>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
 
-    <div class="testi-card fade-in">
-      <p class="testi-quote">Healthcare content is difficult &mdash; it needs to be <strong>accurate, warm, and trustworthy</strong> all at once. Sarthak understood that without us having to over-explain. The reels he created for Vrinda Fertility consistently drove engagement and patient inquiries.</p>
-      <div class="testi-author">
-        <div class="testi-avatar">A</div>
-        <div>
-          <div class="testi-name">Anushka Madaan</div>
-          <div class="testi-role">Vrinda Fertility</div>
-        </div>
+    <div class="testi-controls">
+      <div class="testi-nav">
+        <button class="testi-btn" id="testiPrev" type="button" aria-label="Previous testimonials">&larr;</button>
+        <button class="testi-btn" id="testiNext" type="button" aria-label="Next testimonials">&rarr;</button>
       </div>
+      <div class="testi-dots" id="testiDots" aria-label="Testimonial slider pagination"></div>
     </div>
-
-    <div class="testi-card fade-in">
-      <p class="testi-quote">Working with Sarthak for Hillwoods was seamless. He picked up our tone quickly and <strong>delivered content that felt premium without losing relatability</strong>. Fast turnaround, zero compromises on quality.</p>
-      <div class="testi-author">
-        <div class="testi-avatar">A</div>
-        <div>
-          <div class="testi-name">Ayushi Saxena</div>
-          <div class="testi-role">Hillwoods Academy Noida</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="testi-card fade-in">
-      <p class="testi-quote">Sarthak designed our digital assets with a <strong>level of consistency and attention to detail</strong> that made a real difference to how our brand was perceived online. He doesn't just execute &mdash; he thinks about the bigger picture.</p>
-      <div class="testi-author">
-        <div class="testi-avatar">H</div>
-        <div>
-          <div class="testi-name">Hemant Gupta</div>
-          <div class="testi-role">Selection Adda</div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -1557,6 +1688,68 @@
         menuBtn.setAttribute('aria-expanded', 'false');
       });
     });
+  }
+
+  // Testimonial slider
+  const testiTrack = document.getElementById('testiTrack');
+  const testiSlides = testiTrack ? Array.from(testiTrack.querySelectorAll('.testi-slide')) : [];
+  const testiPrev = document.getElementById('testiPrev');
+  const testiNext = document.getElementById('testiNext');
+  const testiDots = document.getElementById('testiDots');
+
+  if (testiTrack && testiSlides.length) {
+    let testiIndex = 0;
+    let perView = window.innerWidth <= 768 ? 1 : 2;
+    let maxIndex = Math.max(0, testiSlides.length - perView);
+
+    function buildTestiDots() {
+      testiDots.innerHTML = '';
+      for (let i = 0; i <= maxIndex; i += 1) {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'testi-dot';
+        dot.setAttribute('aria-label', `Go to testimonial set ${i + 1}`);
+        dot.addEventListener('click', () => {
+          testiIndex = i;
+          updateTestiSlider();
+        });
+        testiDots.appendChild(dot);
+      }
+    }
+
+    function updateTestiSlider() {
+      const slideWidth = testiSlides[0].getBoundingClientRect().width;
+      const gap = 16;
+      testiTrack.style.transform = `translateX(-${testiIndex * (slideWidth + gap)}px)`;
+
+      Array.from(testiDots.children).forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === testiIndex);
+      });
+
+      testiPrev.disabled = testiIndex === 0;
+      testiNext.disabled = testiIndex === maxIndex;
+    }
+
+    function syncTestiLayout() {
+      perView = window.innerWidth <= 768 ? 1 : 2;
+      maxIndex = Math.max(0, testiSlides.length - perView);
+      testiIndex = Math.min(testiIndex, maxIndex);
+      buildTestiDots();
+      updateTestiSlider();
+    }
+
+    testiPrev.addEventListener('click', () => {
+      testiIndex = Math.max(0, testiIndex - 1);
+      updateTestiSlider();
+    });
+
+    testiNext.addEventListener('click', () => {
+      testiIndex = Math.min(maxIndex, testiIndex + 1);
+      updateTestiSlider();
+    });
+
+    window.addEventListener('resize', syncTestiLayout);
+    syncTestiLayout();
   }
 </script>
 </body>
