@@ -14,8 +14,8 @@
     --bg3: #161616;
     --white: #f0ece4;
     --muted: #b0b0b0;
-    --accent: #c8f03c;
-    --accent2: #ff4d1c;
+    --accent: #1fa2ff;
+    --accent2: #0095ff;
     --border: rgba(255,255,255,0.06);
     --font-display: 'DM Sans', sans-serif;
     --font-body: 'DM Sans', sans-serif;
@@ -72,7 +72,7 @@
   }
   .cursor-ring {
     width: 36px; height: 36px;
-    border: 1px solid rgba(200,240,60,0.4);
+    border: 1px solid rgba(255,90,31,0.4);
     border-radius: 50%;
     position: fixed;
     top: 0; left: 0;
@@ -84,7 +84,7 @@
   }
   .cursor-ring.hovered {
     width: 60px; height: 60px;
-    border-color: rgba(200,240,60,0.7);
+    border-color: rgba(255,90,31,0.7);
   }
 
   /* Noise overlay */
@@ -252,7 +252,7 @@
 
   .section-label {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--accent);
@@ -378,7 +378,7 @@
 
   .play-btn {
     width: 72px; height: 72px;
-    border: 1px solid rgba(200,240,60,0.3);
+    border: 1px solid rgba(255,90,31,0.3);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -472,7 +472,7 @@
   }
 
   .work-card:hover {
-    border-color: rgba(200,240,60,0.2);
+    border-color: rgba(255,90,31,0.2);
     transform: translateY(-4px);
   }
 
@@ -527,7 +527,7 @@
 
   .work-card:hover .work-card-play {
     border-color: var(--accent);
-    background: rgba(200,240,60,0.1);
+    background: rgba(255,90,31,0.1);
   }
 
   .work-card:hover .work-card-play::after {
@@ -620,7 +620,7 @@
   }
 
   .about-text p {
-    font-size: 16px;
+    font-size: 18px;
     color: var(--muted);
     line-height: 1.8;
     margin-bottom: 20px;
@@ -695,7 +695,7 @@
     min-height: 230px;
   }
 
-  .skill-block:hover { border-color: rgba(200,240,60,0.15); }
+  .skill-block:hover { border-color: rgba(255,90,31,0.15); }
 
   .skill-block-label {
     font-family: var(--font-mono);
@@ -853,7 +853,7 @@
   .contact-link:hover {
     border-color: var(--accent);
     color: var(--accent);
-    background: rgba(200,240,60,0.04);
+    background: rgba(255,90,31,0.04);
   }
 
   .contact-link.primary {
@@ -917,7 +917,7 @@
   .testi-card:hover {
     background: var(--bg3);
     transform: translateY(-4px);
-    border-color: rgba(200,240,60,0.14);
+    border-color: rgba(255,90,31,0.14);
     box-shadow: 0 22px 48px rgba(0,0,0,0.3);
   }
   .testi-card::before {
@@ -926,7 +926,7 @@
     top: 8px; left: 24px;
     font-family: var(--font-display);
     font-size: 110px;
-    color: rgba(200,240,60,0.06);
+    color: rgba(255,90,31,0.06);
     line-height: 1;
     pointer-events: none;
   }
@@ -967,6 +967,13 @@
     object-fit: cover;
     display: block;
   }
+  .testi-avatar span {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
   .testi-avatar.logo {
     padding: 10px;
     background: #000;
@@ -1001,7 +1008,7 @@
     cursor: pointer;
   }
   .testi-btn:hover {
-    border-color: rgba(200,240,60,0.35);
+    border-color: rgba(255,90,31,0.35);
     color: var(--accent);
     transform: translateY(-2px);
   }
@@ -1490,6 +1497,21 @@
               <div>
                 <div class="testi-name">Akash Mishra</div>
                 <div class="testi-role">Digilok Media House</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testi-slide">
+          <div class="testi-card">
+            <p class="testi-quote">During our Mahakumbh 2026 coverage, Sarthak supported me with the kind of reliability every newsroom needs in high-pressure reporting. He helped keep the content pipeline moving, coordinated quickly on urgent requirements, and made sure our on-ground storytelling stayed sharp and timely.</p>
+            <div class="testi-author">
+              <div class="testi-avatar">
+                <img src="Abhinav Pandey.webp" alt="Abhinav Pandey">
+              </div>
+              <div>
+                <div class="testi-name">Abhinav Pandey</div>
+                <div class="testi-role">Lallantop</div>
               </div>
             </div>
           </div>
