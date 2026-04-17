@@ -436,7 +436,7 @@
 
   .showreel-wrap {
     position: relative;
-    width: 100%;
+    width: min(100%, 1080px);
     aspect-ratio: 16/9;
     background: var(--bg3);
     border: 1px solid var(--border);
@@ -445,6 +445,7 @@
     background: var(--surface);
     backdrop-filter: blur(10px);
     box-shadow: var(--shadow-card);
+    margin: 0 auto;
   }
 
   .showreel-wrap iframe {
@@ -552,12 +553,13 @@
   .work-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 24px;
+    gap: 20px;
   }
 
   .work-grid-portrait {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     align-items: start;
+    gap: 12px;
   }
 
   .work-card {
@@ -590,12 +592,40 @@
   }
 
   .work-card-portrait {
-    max-width: 320px;
+    max-width: 300px;
     justify-self: center;
   }
 
   .work-card-portrait .work-card-video {
     aspect-ratio: 9/16;
+  }
+
+  .work-card-portrait .work-card-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 28px 16px 16px;
+    background: linear-gradient(180deg, rgba(11,15,25,0), rgba(11,15,25,0.78) 44%, rgba(11,15,25,0.94));
+    pointer-events: none;
+  }
+
+  .work-card-portrait .work-card-title {
+    font-size: 17px;
+    line-height: 1.14;
+    margin-bottom: 5px;
+    max-width: 92%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .work-card-portrait .work-card-meta {
+    font-size: 10px;
+    letter-spacing: 0.13em;
+    color: rgba(230,234,242,0.78);
   }
 
   .work-card-video iframe {
@@ -650,6 +680,34 @@
 
   .work-card-info {
     padding: 20px 24px 24px;
+  }
+
+  .work-card:not(.work-card-portrait) .work-card-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 34px 18px 18px;
+    background: linear-gradient(180deg, rgba(11,15,25,0), rgba(11,15,25,0.72) 48%, rgba(11,15,25,0.96));
+    pointer-events: none;
+  }
+
+  .work-card:not(.work-card-portrait) .work-card-title {
+    font-size: 20px;
+    line-height: 1.12;
+    margin-bottom: 5px;
+    max-width: 92%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .work-card:not(.work-card-portrait) .work-card-meta {
+    font-size: 10px;
+    letter-spacing: 0.13em;
+    color: rgba(230,234,242,0.8);
   }
 
   .work-card-title {
@@ -1275,7 +1333,7 @@
     footer { flex-direction: column; gap: 12px; text-align: center; }
     .stats-bar { grid-template-columns: repeat(2, 1fr); }
     .work-grid { grid-template-columns: 1fr; }
-    .work-grid-portrait { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .work-grid-portrait { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .work-category { margin-bottom: 56px; }
     .work-card-info { padding: 18px 18px 20px; }
     .work-card-title { font-size: 20px; }
@@ -1320,9 +1378,9 @@
     .work-card,
     .about-photo,
     .testi-card { border-radius: 14px; }
-    .work-grid { gap: 18px; }
-    .work-grid-portrait { grid-template-columns: 1fr; }
-    .work-card-portrait { max-width: 100%; }
+    .work-grid { gap: 16px; }
+    .work-grid-portrait { grid-template-columns: 1fr; gap: 12px; }
+    .work-card-portrait { max-width: min(100%, 320px); }
     .work-category-label {
       gap: 10px;
       align-items: flex-start;
@@ -1491,10 +1549,10 @@
         <div class="work-card-video">
           <iframe src="https://www.youtube.com/embed/gO1hzr2F0hM?rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
-        </div>
-        <div class="work-card-info">
-          <div class="work-card-title">Product Explainer Video</div>
-          <div class="work-card-meta">WORKSTATUS</div>
+          <div class="work-card-info">
+            <div class="work-card-title">Product Explainer Video</div>
+            <div class="work-card-meta">WORKSTATUS</div>
+          </div>
         </div>
       </button>
 
@@ -1504,10 +1562,10 @@
     <div class="work-card-video-overlay">
       <div class="work-card-play"></div>
     </div>
-  </div>
-  <div class="work-card-info">
-    <div class="work-card-title">Podcast Film</div>
-    <div class="work-card-meta">ReadersBooksClub</div>
+    <div class="work-card-info">
+      <div class="work-card-title">Podcast Film</div>
+      <div class="work-card-meta">ReadersBooksClub</div>
+    </div>
   </div>
 </button>
 
@@ -1515,10 +1573,10 @@
         <div class="work-card-video">
           <iframe src="https://www.youtube.com/embed/CvlO4_XVo0s?rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
-        </div>
-        <div class="work-card-info">
-          <div class="work-card-title">Documentary-Style Video</div>
-          <div class="work-card-meta">CRICCULT</div>
+          <div class="work-card-info">
+            <div class="work-card-title">Documentary-Style Video</div>
+            <div class="work-card-meta">CRICCULT</div>
+          </div>
         </div>
       </button>
 
