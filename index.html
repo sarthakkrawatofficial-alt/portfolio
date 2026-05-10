@@ -1913,8 +1913,8 @@
     </div>
     <div class="showreel-video">
       <div class="showreel-wrap gsap-scale-in">
-        <iframe id="showreelFrame" src="https://www.youtube.com/embed/jxLzLvvID4c?rel=0&modestbranding=1" title="Sarthak Rawat showreel" loading="lazy" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-        <button class="showreel-placeholder" id="showreelCover" type="button" aria-label="Play showreel 2025">
+        <iframe id="showreelFrame" src="https://www.youtube.com/embed/jxLzLvvID4c?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1" title="Sarthak Rawat showreel" loading="lazy" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+        <button class="showreel-placeholder hidden" id="showreelCover" type="button" aria-label="Play showreel 2025">
           <div class="play-btn"></div>
           <p style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(232,236,245,0.6)">Play Showreel 2025</p>
         </button>
@@ -2682,11 +2682,13 @@
 
   /* ─── SHOWREEL ─── */
   const showreelCover = document.getElementById('showreelCover');
-  showreelCover.addEventListener('click', () => {
-    showreelCover.classList.add('hidden');
-    document.getElementById('showreelFrame').src =
-      'https://www.youtube.com/embed/jxLzLvvID4c?autoplay=1&rel=0&modestbranding=1';
-  });
+  if (showreelCover) {
+    showreelCover.addEventListener('click', () => {
+      showreelCover.classList.add('hidden');
+      document.getElementById('showreelFrame').src =
+        'https://www.youtube.com/embed/jxLzLvvID4c?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1';
+    });
+  }
 
   /* ─── MODAL ─── */
   const modal = document.getElementById('modal');
