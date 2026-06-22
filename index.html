@@ -947,6 +947,22 @@
     gap: 20px;
   }
 
+  #workGridLong {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  #workGridLong > .work-card {
+    grid-column: span 2;
+  }
+
+  #workGridLong > .work-card:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  #workGridLong > .work-card:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+
   .work-grid-portrait {
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     align-items: start;
@@ -1858,6 +1874,10 @@
     .stat-num { font-size: 60px; }
     footer { flex-direction: column; gap: 12px; text-align: center; padding: 28px 24px; }
     .work-grid { grid-template-columns: 1fr; }
+    #workGridLong { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #workGridLong > .work-card,
+    #workGridLong > .work-card:nth-child(4),
+    #workGridLong > .work-card:nth-child(5) { grid-column: auto; }
     .work-grid-portrait { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .contact-section { padding: 120px 24px 96px; }
     .contact-links { width: 100%; }
@@ -1872,6 +1892,7 @@
     .hero-bg-text, .contact-bg-text { display: none; }
     .hero h1 { font-size: clamp(44px, 15vw, 68px); }
     .stats-bar { grid-template-columns: 1fr; gap: 0; }
+    #workGridLong { grid-template-columns: 1fr; }
     .work-grid-portrait { grid-template-columns: 1fr; }
     .work-card-portrait { max-width: min(100%, 300px); }
     .brand-logo-item { padding: 0 28px; gap: 28px; }
@@ -2125,7 +2146,31 @@
       <span>Selected projects across motion design, product storytelling, social content, and documentary-style editing.</span>
     </div>
     <div class="work-grid" id="workGridLong">
-      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/gO1hzr2F0hM?autoplay=1&rel=0" aria-label="Open SaaS Awareness Film for Workstatus">
+      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/tK0afJ0TOBw?rel=0" aria-label="Open Claude Cowork for Anthropic">
+        <div class="work-card-video">
+          <iframe src="https://www.youtube.com/embed/tK0afJ0TOBw?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
+          <div class="work-card-info">
+            <div class="work-card-title">Claude Cowork</div>
+            <div class="work-card-meta">ANTHROPIC (CLAUDE)</div>
+          </div>
+        </div>
+        <div class="work-card-description">SaaS product showcase created to demonstrate Claude's collaborative AI workspace, highlighting key features, workflows, and product value through modern UI animation and motion graphics.</div>
+      </button>
+
+      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/UwIWbbE8la4?rel=0" aria-label="Open AI Product Readiness for ValueCoders">
+          <div class="work-card-video">
+            <iframe src="https://www.youtube.com/embed/UwIWbbE8la4?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true" loading="lazy"></iframe>
+            <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
+            <div class="work-card-info">
+              <div class="work-card-title">AI Product Readiness</div>
+              <div class="work-card-meta">VALUECODERS</div>
+            </div>
+          </div>
+        <div class="work-card-description">B2B SaaS explainer designed to simplify AI product readiness, scalability challenges, and operational maturity through clear storytelling and engaging motion design.</div>
+      </button>
+
+      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/gO1hzr2F0hM?rel=0" aria-label="Open SaaS Awareness Film for Workstatus">
         <div class="work-card-video">
           <iframe src="https://www.youtube.com/embed/gO1hzr2F0hM?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
@@ -2137,7 +2182,7 @@
         <div class="work-card-description">SaaS explainer structured to improve feature clarity, support onboarding, and help viewers understand product value faster.</div>
       </button>
 
-      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/6sahrh9Rfx0?autoplay=1&rel=0" aria-label="Open Cinematic Podcast Trailer Edit for Foundr">
+      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/6sahrh9Rfx0?rel=0" aria-label="Open Cinematic Podcast Trailer Edit for Foundr">
         <div class="work-card-video">
           <iframe src="https://www.youtube.com/embed/6sahrh9Rfx0?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true" loading="lazy"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
@@ -2149,7 +2194,7 @@
         <div class="work-card-description">Trailer edit paced to strengthen audience retention, sharpen episode positioning, and communicate the hook within the first few seconds.</div>
       </button>
 
-      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/CvlO4_XVo0s?autoplay=1&rel=0" aria-label="Open Campaign Video for PixelCrayons">
+      <button class="work-card" type="button" data-video="https://www.youtube.com/embed/CvlO4_XVo0s?rel=0" aria-label="Open Campaign Video for PixelCrayons">
         <div class="work-card-video">
           <iframe src="https://www.youtube.com/embed/CvlO4_XVo0s?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
@@ -2170,7 +2215,7 @@
       <span>Short-form promos, reels, and ads designed for retention, fast communication, and scalable distribution across social platforms.</span>
     </div>
     <div class="work-grid work-grid-portrait" id="workGridShort">
-      <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/zHxI_-M1sOo?autoplay=1&rel=0" aria-label="Open India Tour Promo for Satinder Sartaaj">
+      <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/zHxI_-M1sOo?rel=0" aria-label="Open India Tour Promo for Satinder Sartaaj">
         <div class="work-card-video">
           <iframe src="https://www.youtube.com/embed/zHxI_-M1sOo?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
@@ -2182,7 +2227,7 @@
         </div>
       </button>
 
-      <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/ULn82D31b24?autoplay=1&rel=0" aria-label="Open Creative Showcase personal project">
+      <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/ULn82D31b24?rel=0" aria-label="Open Creative Showcase personal project">
         <div class="work-card-video">
           <iframe src="https://www.youtube.com/embed/ULn82D31b24?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
@@ -2194,7 +2239,19 @@
         </div>
       </button>
 
-      <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/aMbeF0Lm67w?autoplay=1&rel=0" aria-label="Open Brand Awareness Ad for PixelCrayons">
+      <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/Cpt7PXJ-Y8I?rel=0" aria-label="Open AI Motion Promo personal project">
+        <div class="work-card-video">
+          <iframe src="https://www.youtube.com/embed/Cpt7PXJ-Y8I?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+          <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
+        </div>
+        <div class="work-card-info">
+          <div class="work-card-title">Workflow Visibility</div>
+          <div class="work-card-meta">VALUECODERS</div>
+          <div class="work-card-desc">B2B SaaS social reel focused on workflow challenges, real-time visibility, and smoother team collaboration through an AI-powered workspace.</div>
+        </div>
+      </button>
+
+      <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/aMbeF0Lm67w?rel=0" aria-label="Open Brand Awareness Ad for PixelCrayons">
         <div class="work-card-video">
           <iframe src="https://www.youtube.com/embed/aMbeF0Lm67w?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
@@ -2206,7 +2263,7 @@
         </div>
       </button>
 
-      <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/mYh6MqWLQuQ?autoplay=1&rel=0" aria-label="Open Social Media Reel for ValueCoders">
+      <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/mYh6MqWLQuQ?rel=0" aria-label="Open Social Media Reel for ValueCoders">
         <div class="work-card-video">
           <iframe src="https://www.youtube.com/embed/mYh6MqWLQuQ?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
@@ -2895,36 +2952,10 @@
     workIframes.forEach(iframe => setWorkPreviewState(iframe, false));
   }
 
-  function activateWorkPreview(card) {
-    workCards.forEach(otherCard => {
-      const iframe = otherCard.querySelector('iframe');
-      if (!iframe) return;
-      setWorkPreviewState(iframe, otherCard === card);
-    });
-  }
-
   workIframes.forEach(iframe => {
     iframe.dataset.baseSrc = iframe.src;
   });
   pauseAllWorkPreviews();
-
-  if ('IntersectionObserver' in window && workCards.length) {
-    const workObserver = new IntersectionObserver(entries => {
-      const visible = entries
-        .filter(entry => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-      if (visible[0]) {
-        activateWorkPreview(visible[0].target);
-      }
-    }, {
-      threshold: [0.45, 0.6, 0.75]
-    });
-
-    workCards.forEach(card => workObserver.observe(card));
-  } else if (workCards[0]) {
-    activateWorkPreview(workCards[0]);
-  }
 
   const modal = document.getElementById('modal');
   const modalFrame = document.getElementById('modalFrame');
