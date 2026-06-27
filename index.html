@@ -924,6 +924,9 @@
   .work-section {
     background: var(--bg2);
     overflow: hidden;
+    position: relative;
+    z-index: 2;
+    isolation: isolate;
   }
 
   .work-shell {
@@ -932,6 +935,8 @@
     gap: clamp(32px, 4vw, 72px);
     align-items: start;
     min-height: 100vh;
+    position: relative;
+    z-index: 1;
   }
 
   .work-intro {
@@ -2937,7 +2942,10 @@
         track.style.paddingLeft = `${leftPad}px`;
         track.style.paddingRight = `${rightPad}px`;
 
-        scrollDistance = Math.max(1, track.scrollWidth - railWidth);
+        const lastCardCentered = lastCard
+          ? lastCard.offsetLeft + (lastCard.offsetWidth / 2) - (railWidth / 2)
+          : track.scrollWidth - railWidth;
+        scrollDistance = Math.max(1, Math.min(track.scrollWidth - railWidth, lastCardCentered));
         return scrollDistance;
       };
 
