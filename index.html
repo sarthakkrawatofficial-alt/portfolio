@@ -921,52 +921,60 @@
   /* =====================
      WORK SECTION
   ===================== */
-  .work-section { background: var(--bg2); }
-
-  .work-category { margin-bottom: 88px; }
-
-  .work-category-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+  .work-section {
+    background: var(--bg2);
+    overflow: hidden;
   }
 
-  .work-category-label span { color: var(--text-muted); opacity: 0.6; max-width: 480px; text-align: right; }
-
-  .work-grid {
+  .work-shell {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 20px;
-  }
-
-  #workGridLong {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-
-  #workGridLong > .work-card {
-    grid-column: span 2;
-  }
-
-  #workGridLong > .work-card:nth-child(4) {
-    grid-column: 2 / span 2;
-  }
-
-  #workGridLong > .work-card:nth-child(5) {
-    grid-column: 4 / span 2;
-  }
-
-  .work-grid-portrait {
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+    gap: clamp(32px, 4vw, 72px);
     align-items: start;
-    gap: 16px;
+    min-height: 100vh;
+  }
+
+  .work-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding-block: 32px;
+  }
+
+  .work-intro .section-title {
+    margin-bottom: 28px;
+  }
+
+  .work-intro-copy {
+    max-width: 320px;
+    font-size: 15px;
+    line-height: 1.78;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+
+  .work-intro-cta {
+    width: fit-content;
+    flex-shrink: 0;
+  }
+
+  .work-rail {
+    min-width: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .work-horizontal-track {
+    display: flex;
+    align-items: stretch;
+    gap: 24px;
+    width: max-content;
+    min-width: 100%;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
   }
 
   .work-card {
@@ -982,6 +990,23 @@
     appearance: none;
     box-shadow: var(--shadow-soft);
     will-change: transform;
+  }
+
+  .work-horizontal-track .work-card {
+    will-change: transform, opacity;
+    transform: translate3d(0, 0, 0);
+    transform-origin: center center;
+  }
+
+  .work-horizontal-track > .work-card {
+    flex: 0 0 min(52vw, 580px);
+    max-width: 580px;
+  }
+
+  .work-horizontal-track > .work-card.work-card-portrait {
+    flex-basis: clamp(240px, 24vw, 300px);
+    max-width: 300px;
+    justify-self: auto;
   }
 
   .work-card:hover {
@@ -1827,7 +1852,13 @@
     .hero h1 { font-size: clamp(52px, 11vw, 110px); }
     .about-grid { gap: 50px; }
     .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-    .work-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+    .work-shell {
+      grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+      gap: 28px;
+    }
+    .work-horizontal-track { gap: 20px; }
+    .work-horizontal-track > .work-card { flex-basis: min(60vw, 500px); }
+    .work-horizontal-track > .work-card.work-card-portrait { flex-basis: clamp(220px, 28vw, 260px); }
     .stats-bar { grid-template-columns: repeat(2, 1fr); }
     .testi-slide { flex-basis: calc((100% - 16px) / 2); }
     .contact-section { padding: 140px 32px; }
@@ -1873,12 +1904,18 @@
     .stat-item { padding: 36px 20px; }
     .stat-num { font-size: 60px; }
     footer { flex-direction: column; gap: 12px; text-align: center; padding: 28px 24px; }
-    .work-grid { grid-template-columns: 1fr; }
-    #workGridLong { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    #workGridLong > .work-card,
-    #workGridLong > .work-card:nth-child(4),
-    #workGridLong > .work-card:nth-child(5) { grid-column: auto; }
-    .work-grid-portrait { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .work-shell {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      min-height: auto;
+    }
+    .work-intro,
+    .work-rail {
+      min-height: auto;
+    }
+    .work-intro {
+      padding-block: 0;
+    }
     .contact-section { padding: 120px 24px 96px; }
     .contact-links { width: 100%; }
     .contact-link { width: 100%; justify-content: center; }
@@ -1892,15 +1929,36 @@
     .hero-bg-text, .contact-bg-text { display: none; }
     .hero h1 { font-size: clamp(44px, 15vw, 68px); }
     .stats-bar { grid-template-columns: 1fr; gap: 0; }
-    #workGridLong { grid-template-columns: 1fr; }
-    .work-grid-portrait { grid-template-columns: 1fr; }
-    .work-card-portrait { max-width: min(100%, 300px); }
     .brand-logo-item { padding: 0 28px; gap: 28px; }
     .brand-name { font-size: 17px; }
     footer { padding: 24px 18px; }
     .contact-section { padding: 96px 18px 80px; }
     .hero-actions { flex-direction: column; }
     .button-link { width: 100%; }
+  }
+
+  @media (max-width: 768px) {
+    .work-section { overflow: visible; }
+    .work-intro-copy { max-width: 100%; }
+    .work-intro-cta { width: 100%; }
+    .work-rail { overflow: visible; }
+    .work-horizontal-track {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      width: 100%;
+      min-width: 0;
+      padding: 0 !important;
+      transform: none !important;
+      will-change: auto;
+    }
+    .work-horizontal-track > .work-card,
+    .work-horizontal-track > .work-card.work-card-portrait {
+      flex: none;
+      width: 100%;
+      max-width: min(100%, 520px);
+      justify-self: center;
+    }
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -2134,18 +2192,19 @@
 
 <!-- WORK -->
 <section class="work-section" id="work">
-  <div class="section-label gsap-fade-up">002 &mdash; FEATURED WORK</div>
-  <div class="section-title">
-    <span class="split-line"><span class="split-line-inner">FEATURED PROJECTS</span></span>
-  </div>
-
-  <!-- LONG FORM -->
-  <div class="work-category">
-    <div class="work-category-label gsap-fade-up">
-      Long-Form Content
-      <span>Selected projects across motion design, product storytelling, social content, and documentary-style editing.</span>
+  <div class="work-shell" id="workShell">
+    <div class="work-intro">
+      <div class="section-label gsap-fade-up">002 &mdash; SELECTED WORK</div>
+      <div class="section-title">
+        <span class="split-line"><span class="split-line-inner">FEATURED</span></span>
+        <span class="split-line"><span class="split-line-inner">PROJECTS</span></span>
+      </div>
+      <p class="work-intro-copy gsap-fade-up">Selected projects across motion design, product storytelling, social content, and documentary-style editing. Scroll through the showcase to move from project to project.</p>
+      <a class="button-link secondary work-intro-cta gsap-fade-up" href="#about">View All Projects</a>
     </div>
-    <div class="work-grid" id="workGridLong">
+
+    <div class="work-rail" id="workRail">
+      <div class="work-horizontal-track" id="workTrack">
       <button class="work-card" type="button" data-video="https://www.youtube.com/embed/tK0afJ0TOBw?rel=0" aria-label="Open Claude Cowork for Anthropic">
         <div class="work-card-video">
           <iframe src="https://www.youtube.com/embed/tK0afJ0TOBw?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
@@ -2205,16 +2264,7 @@
         </div>
         <div class="work-card-description">Documentary-led edit built to strengthen brand storytelling, improve message clarity, and turn real moments into stronger audience recall.</div>
       </button>
-    </div>
-  </div>
 
-  <!-- SHORT FORM -->
-  <div class="work-category">
-    <div class="work-category-label gsap-fade-up">
-      Short-Form Content
-      <span>Short-form promos, reels, and ads designed for retention, fast communication, and scalable distribution across social platforms.</span>
-    </div>
-    <div class="work-grid work-grid-portrait" id="workGridShort">
       <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/zHxI_-M1sOo?rel=0" aria-label="Open India Tour Promo for Satinder Sartaaj">
         <div class="work-card-video">
           <iframe src="https://www.youtube.com/embed/zHxI_-M1sOo?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
@@ -2274,6 +2324,8 @@
           <div class="work-card-desc">Short-form B2B video built to communicate service value quickly, support conversion-focused messaging, and scale across paid and organic distribution.</div>
         </div>
       </button>
+
+      </div>
     </div>
   </div>
 </section>
@@ -2575,6 +2627,7 @@
     initExpTimeline();
     initSkillBlocks();
     initAboutText();
+    initWorkScroller();
   }
 
   /* ─── HERO ENTRANCE ─── */
@@ -2711,29 +2764,6 @@
             scale: 1,
             y: 0,
             duration: 0.85,
-            ease: ease
-          });
-        },
-        once: true
-      });
-    });
-
-    // Work cards — staggered entrance
-    ['#workGridLong', '#workGridShort'].forEach(selector => {
-      const grid = document.querySelector(selector);
-      if (!grid) return;
-      const cards = grid.querySelectorAll('.work-card');
-      gsap.set(cards, { y: 48, opacity: 0, scale: 0.96 });
-      ScrollTrigger.create({
-        trigger: grid,
-        start: 'top 85%',
-        onEnter: () => {
-          gsap.to(cards, {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            stagger: 0.1,
             ease: ease
           });
         },
@@ -2879,6 +2909,132 @@
         },
         once: true
       });
+    });
+  }
+
+  /* --- WORK HORIZONTAL SCROLLER --- */
+  function initWorkScroller() {
+    const section = document.getElementById('work');
+    const rail = document.getElementById('workRail');
+    const track = document.getElementById('workTrack');
+    if (!section || !rail || !track) return;
+
+    const cards = Array.from(track.querySelectorAll('.work-card'));
+    if (!cards.length) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add('(min-width: 769px)', () => {
+      let scrollDistance = 1;
+
+      const setTrackEdges = () => {
+        const railWidth = rail.clientWidth;
+        const firstCard = cards[0];
+        const lastCard = cards[cards.length - 1];
+        const leftPad = firstCard ? Math.max(0, (railWidth - firstCard.offsetWidth) / 2) : 0;
+        const rightPad = lastCard ? Math.max(0, (railWidth - lastCard.offsetWidth) / 2) : 0;
+
+        track.style.paddingLeft = `${leftPad}px`;
+        track.style.paddingRight = `${rightPad}px`;
+
+        scrollDistance = Math.max(1, track.scrollWidth - railWidth);
+        return scrollDistance;
+      };
+
+      const getCardCenters = () => {
+        const railWidth = rail.clientWidth;
+        return cards.map(card => {
+          const centeredAt = card.offsetLeft + (card.offsetWidth / 2) - (railWidth / 2);
+          return Math.min(scrollDistance, Math.max(0, centeredAt));
+        });
+      };
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: () => `+=${setTrackEdges()}`,
+          pin: true,
+          scrub: true,
+          invalidateOnRefresh: true,
+          anticipatePin: 1
+        }
+      });
+
+      const buildCardTransitions = () => {
+        timeline.clear();
+        setTrackEdges();
+
+        timeline.to(track, {
+          x: () => -scrollDistance,
+          ease: 'none',
+          force3D: true,
+          overwrite: true,
+          duration: 1
+        }, 0);
+
+        timeline.set(cards, {
+          opacity: (index) => index === 0 ? 1 : 0,
+          x: (index) => index === 0 ? 0 : 56,
+          y: (index) => index === 0 ? 0 : 52
+        }, 0);
+
+        const centers = getCardCenters();
+        const total = Math.max(scrollDistance, 1);
+
+        cards.forEach((card, index) => {
+          const centerProgress = centers[index] / total;
+          const prevProgress = index === 0 ? 0 : centers[index - 1] / total;
+          const nextProgress = index === cards.length - 1 ? 1 : centers[index + 1] / total;
+          const enterDuration = Math.max(0.001, centerProgress - prevProgress);
+          const exitDuration = Math.max(0.001, nextProgress - centerProgress);
+
+          if (index > 0) {
+            timeline.fromTo(card,
+              { opacity: 0, x: 56, y: 52 },
+              {
+                opacity: 1,
+                x: 0,
+                y: 0,
+                ease: 'none',
+                duration: enterDuration,
+                immediateRender: false
+              },
+              prevProgress
+            );
+          }
+
+          if (index < cards.length - 1) {
+            timeline.to(card, {
+              opacity: 0.46,
+              y: -14,
+              ease: 'none',
+              duration: exitDuration,
+              immediateRender: false
+            }, centerProgress);
+          }
+        });
+      };
+
+      buildCardTransitions();
+
+      ScrollTrigger.addEventListener('refreshInit', buildCardTransitions);
+
+      return () => {
+        ScrollTrigger.removeEventListener('refreshInit', buildCardTransitions);
+        if (timeline.scrollTrigger) timeline.scrollTrigger.kill();
+        timeline.kill();
+        track.style.paddingLeft = '';
+        track.style.paddingRight = '';
+        gsap.set(track, { clearProps: 'transform' });
+        gsap.set(cards, { clearProps: 'opacity,transform' });
+      };
+    });
+
+    mm.add('(max-width: 768px)', () => {
+      track.style.paddingLeft = '0px';
+      track.style.paddingRight = '0px';
+      gsap.set(track, { clearProps: 'transform' });
     });
   }
 
