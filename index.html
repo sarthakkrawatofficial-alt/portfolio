@@ -1044,16 +1044,30 @@
     pointer-events: none;
   }
 
-  .work-card-video iframe {
+  .work-card-thumb,
+  .work-card-preview {
     width: 100%;
     height: 100%;
-    border: none;
-    pointer-events: none;
+    display: block;
+    object-fit: cover;
     transform: scale(1.04);
     transition: transform 0.6s var(--ease-smooth);
   }
 
-  .work-card:hover .work-card-video iframe { transform: scale(1.0); }
+  .work-card-preview {
+    position: absolute;
+    inset: 0;
+    border: none;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .work-card-video.preview-active .work-card-thumb { opacity: 0; }
+
+  .work-card-thumb { transition: opacity 0.35s ease, transform 0.6s var(--ease-smooth); }
+
+  .work-card:hover .work-card-thumb,
+  .work-card:hover .work-card-preview { transform: scale(1.0); }
 
   .work-card-video-overlay {
     position: absolute;
@@ -1063,30 +1077,13 @@
     justify-content: center;
     background: linear-gradient(180deg, rgba(8,12,20,0.1), rgba(8,12,20,0.55));
     transition: background 0.35s ease;
+    z-index: 2;
   }
 
   .work-card:hover .work-card-video-overlay { background: rgba(8,12,20,0.08); }
 
   .work-card-video-overlay::after {
-    content: '\25B6 Click / Tap to Play';
-    position: absolute;
-    left: 50%;
-    top: calc(50% + 36px);
-    transform: translateX(-50%);
-    padding: 6px 12px;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.12);
-    background: rgba(8,12,20,0.5);
-    color: rgba(232,236,245,0.82);
-    font-family: var(--font-mono);
-    font-size: 9px;
-    line-height: 1;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    white-space: nowrap;
-    pointer-events: none;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    content: none;
   }
 
   .work-card:hover .work-card-video-overlay::after {
@@ -1095,8 +1092,8 @@
   }
 
   .work-card-play {
-    width: 52px; height: 52px;
-    border: 1px solid rgba(255,255,255,0.25);
+    width: 38px; height: 38px;
+    border: 1px solid rgba(255,255,255,0.32);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1110,9 +1107,9 @@
     content: '';
     width: 0; height: 0;
     border-style: solid;
-    border-width: 8px 0 8px 14px;
+    border-width: 6px 0 6px 10px;
     border-color: transparent transparent transparent #fff;
-    margin-left: 3px;
+    margin-left: 2px;
   }
 
   .work-card:hover .work-card-play {
@@ -2172,7 +2169,7 @@
     </div>
     <div class="showreel-video">
       <div class="showreel-wrap gsap-scale-in">
-        <iframe id="showreelFrame" src="https://www.youtube.com/embed/jxLzLvvID4c?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&loop=1&playlist=jxLzLvvID4c" title="Sarthak Rawat showreel" loading="lazy" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+        <iframe id="showreelFrame" src="" data-src="https://www.youtube.com/embed/jxLzLvvID4c?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&loop=1&playlist=jxLzLvvID4c&enablejsapi=1" title="Sarthak Rawat showreel" loading="lazy" allowfullscreen allow="autoplay; encrypted-media"></iframe>
         <button class="showreel-placeholder hidden" id="showreelCover" type="button" aria-label="Play showreel 2025">
           <div class="play-btn"></div>
           <p style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(232,236,245,0.6)">Play Showreel 2025</p>
@@ -2211,8 +2208,8 @@
     <div class="work-rail" id="workRail">
       <div class="work-horizontal-track" id="workTrack">
       <button class="work-card" type="button" data-video="https://www.youtube.com/embed/tK0afJ0TOBw?rel=0" aria-label="Open Claude Cowork for Anthropic">
-        <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/tK0afJ0TOBw?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="work-card-video" data-preview="https://www.youtube.com/embed/tK0afJ0TOBw?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1">
+          <img class="work-card-thumb" src="https://img.youtube.com/vi/tK0afJ0TOBw/hqdefault.jpg" alt="" loading="lazy" aria-hidden="true">
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
           <div class="work-card-info">
             <div class="work-card-title">Claude Cowork</div>
@@ -2223,8 +2220,8 @@
       </button>
 
       <button class="work-card" type="button" data-video="https://www.youtube.com/embed/UwIWbbE8la4?rel=0" aria-label="Open AI Product Readiness for ValueCoders">
-          <div class="work-card-video">
-            <iframe src="https://www.youtube.com/embed/UwIWbbE8la4?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true" loading="lazy"></iframe>
+          <div class="work-card-video" data-preview="https://www.youtube.com/embed/UwIWbbE8la4?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1">
+            <img class="work-card-thumb" src="https://img.youtube.com/vi/UwIWbbE8la4/hqdefault.jpg" alt="" loading="lazy" aria-hidden="true">
             <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
             <div class="work-card-info">
               <div class="work-card-title">AI Product Readiness</div>
@@ -2235,8 +2232,8 @@
       </button>
 
       <button class="work-card" type="button" data-video="https://www.youtube.com/embed/gO1hzr2F0hM?rel=0" aria-label="Open SaaS Awareness Film for Workstatus">
-        <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/gO1hzr2F0hM?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="work-card-video" data-preview="https://www.youtube.com/embed/gO1hzr2F0hM?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1">
+          <img class="work-card-thumb" src="https://img.youtube.com/vi/gO1hzr2F0hM/hqdefault.jpg" alt="" loading="lazy" aria-hidden="true">
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
           <div class="work-card-info">
             <div class="work-card-title">Product Explainer Video</div>
@@ -2247,8 +2244,8 @@
       </button>
 
       <button class="work-card" type="button" data-video="https://www.youtube.com/embed/6sahrh9Rfx0?rel=0" aria-label="Open Cinematic Podcast Trailer Edit for Foundr">
-        <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/6sahrh9Rfx0?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" tabindex="-1" aria-hidden="true" loading="lazy"></iframe>
+        <div class="work-card-video" data-preview="https://www.youtube.com/embed/6sahrh9Rfx0?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1">
+          <img class="work-card-thumb" src="https://img.youtube.com/vi/6sahrh9Rfx0/hqdefault.jpg" alt="" loading="lazy" aria-hidden="true">
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
           <div class="work-card-info">
             <div class="work-card-title">Cinematic Podcast Trailer Edit</div>
@@ -2259,8 +2256,8 @@
       </button>
 
       <button class="work-card" type="button" data-video="https://www.youtube.com/embed/CvlO4_XVo0s?rel=0" aria-label="Open Campaign Video for PixelCrayons">
-        <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/CvlO4_XVo0s?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="work-card-video" data-preview="https://www.youtube.com/embed/CvlO4_XVo0s?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1">
+          <img class="work-card-thumb" src="https://img.youtube.com/vi/CvlO4_XVo0s/hqdefault.jpg" alt="" loading="lazy" aria-hidden="true">
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
           <div class="work-card-info">
             <div class="work-card-title">Documentary-Style Video</div>
@@ -2271,8 +2268,8 @@
       </button>
 
       <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/zHxI_-M1sOo?rel=0" aria-label="Open India Tour Promo for Satinder Sartaaj">
-        <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/zHxI_-M1sOo?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="work-card-video" data-preview="https://www.youtube.com/embed/zHxI_-M1sOo?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1">
+          <img class="work-card-thumb" src="https://img.youtube.com/vi/zHxI_-M1sOo/hqdefault.jpg" alt="" loading="lazy" aria-hidden="true">
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
         </div>
         <div class="work-card-info">
@@ -2283,8 +2280,8 @@
       </button>
 
       <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/ULn82D31b24?rel=0" aria-label="Open Creative Showcase personal project">
-        <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/ULn82D31b24?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="work-card-video" data-preview="https://www.youtube.com/embed/ULn82D31b24?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1">
+          <img class="work-card-thumb" src="https://img.youtube.com/vi/ULn82D31b24/hqdefault.jpg" alt="" loading="lazy" aria-hidden="true">
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
         </div>
         <div class="work-card-info">
@@ -2295,8 +2292,8 @@
       </button>
 
       <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/Cpt7PXJ-Y8I?rel=0" aria-label="Open AI Motion Promo personal project">
-        <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/Cpt7PXJ-Y8I?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="work-card-video" data-preview="https://www.youtube.com/embed/Cpt7PXJ-Y8I?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1">
+          <img class="work-card-thumb" src="https://img.youtube.com/vi/Cpt7PXJ-Y8I/hqdefault.jpg" alt="" loading="lazy" aria-hidden="true">
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
         </div>
         <div class="work-card-info">
@@ -2307,8 +2304,8 @@
       </button>
 
       <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/aMbeF0Lm67w?rel=0" aria-label="Open Brand Awareness Ad for PixelCrayons">
-        <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/aMbeF0Lm67w?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="work-card-video" data-preview="https://www.youtube.com/embed/aMbeF0Lm67w?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1">
+          <img class="work-card-thumb" src="https://img.youtube.com/vi/aMbeF0Lm67w/hqdefault.jpg" alt="" loading="lazy" aria-hidden="true">
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
         </div>
         <div class="work-card-info">
@@ -2319,8 +2316,8 @@
       </button>
 
       <button class="work-card work-card-portrait" type="button" data-video="https://www.youtube.com/embed/mYh6MqWLQuQ?rel=0" aria-label="Open Social Media Reel for ValueCoders">
-        <div class="work-card-video">
-          <iframe src="https://www.youtube.com/embed/mYh6MqWLQuQ?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="work-card-video" data-preview="https://www.youtube.com/embed/mYh6MqWLQuQ?mute=1&playsinline=1&rel=0&controls=0&modestbranding=1">
+          <img class="work-card-thumb" src="https://img.youtube.com/vi/mYh6MqWLQuQ/hqdefault.jpg" alt="" loading="lazy" aria-hidden="true">
           <div class="work-card-video-overlay"><div class="work-card-play"></div></div>
         </div>
         <div class="work-card-info">
@@ -2965,7 +2962,9 @@
           pin: true,
           scrub: true,
           invalidateOnRefresh: true,
-          anticipatePin: 1
+          anticipatePin: 1,
+          onUpdate: updateVisibleWorkPreviews,
+          onRefresh: updateVisibleWorkPreviews
         }
       });
 
@@ -3032,6 +3031,7 @@
         ScrollTrigger.removeEventListener('refreshInit', buildCardTransitions);
         if (timeline.scrollTrigger) timeline.scrollTrigger.kill();
         timeline.kill();
+        pauseAllWorkPreviews();
         track.style.paddingLeft = '';
         track.style.paddingRight = '';
         gsap.set(track, { clearProps: 'transform' });
@@ -3078,48 +3078,157 @@
   });
 
   /* ─── SHOWREEL ─── */
+  const showreelFrame = document.getElementById('showreelFrame');
   const showreelCover = document.getElementById('showreelCover');
+
+  function loadShowreel() {
+    if (!showreelFrame || showreelFrame.getAttribute('src')) return;
+    showreelFrame.setAttribute('src', showreelFrame.dataset.src);
+  }
+
+  function pauseShowreel() {
+    if (!showreelFrame || !showreelFrame.getAttribute('src')) return;
+    showreelFrame.removeAttribute('src');
+  }
+
+  function updateShowreelPlayback() {
+    if (!showreelFrame) return;
+    const rect = showreelFrame.getBoundingClientRect();
+    const visibleWidth = Math.max(0, Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0));
+    const visibleHeight = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
+    const visibleRatio = (visibleWidth * visibleHeight) / Math.max(1, rect.width * rect.height);
+
+    if (visibleRatio >= 0.35) {
+      loadShowreel();
+    } else {
+      pauseShowreel();
+    }
+  }
+
+  if (showreelFrame) {
+    ScrollTrigger.create({
+      trigger: showreelFrame,
+      start: 'top bottom',
+      end: 'bottom top',
+      onEnter: updateShowreelPlayback,
+      onEnterBack: updateShowreelPlayback,
+      onUpdate: updateShowreelPlayback,
+      onLeave: pauseShowreel,
+      onLeaveBack: pauseShowreel
+    });
+
+    window.addEventListener('resize', updateShowreelPlayback);
+    setTimeout(updateShowreelPlayback, 100);
+  }
+
   if (showreelCover) {
     showreelCover.addEventListener('click', () => {
       showreelCover.classList.add('hidden');
-      document.getElementById('showreelFrame').src =
-          'https://www.youtube.com/embed/jxLzLvvID4c?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&loop=1&playlist=jxLzLvvID4c';
+      loadShowreel();
     });
   }
 
   /* ─── MODAL ─── */
   /* â”€â”€â”€ WORK PREVIEW PLAYBACK â”€â”€â”€ */
   const workCards = Array.from(document.querySelectorAll('.work-card'));
-  const workIframes = workCards
-    .map(card => card.querySelector('iframe'))
-    .filter(Boolean);
 
-  function setWorkPreviewState(iframe, shouldPlay) {
-    if (!iframe) return;
-    const current = new URL(iframe.dataset.baseSrc || iframe.src, window.location.href);
-    current.searchParams.set('rel', '0');
-    current.searchParams.set('controls', '0');
-    current.searchParams.set('modestbranding', '1');
-    current.searchParams.set('playsinline', '1');
-    current.searchParams.set('mute', '1');
+  function buildPreviewSrc(url) {
+    const preview = new URL(url, window.location.href);
+    preview.searchParams.set('autoplay', '1');
+    preview.searchParams.set('mute', '1');
+    preview.searchParams.set('controls', '0');
+    preview.searchParams.set('modestbranding', '1');
+    preview.searchParams.set('playsinline', '1');
+    preview.searchParams.set('rel', '0');
+    return preview.toString();
+  }
 
-    if (shouldPlay) {
-      current.searchParams.set('autoplay', '1');
-    } else {
-      current.searchParams.delete('autoplay');
-    }
+  function playWorkPreview(card) {
+    const video = card.querySelector('.work-card-video[data-preview]');
+    if (!video || video.querySelector('.work-card-preview')) return;
 
-    iframe.src = current.toString();
+    const iframe = document.createElement('iframe');
+    iframe.className = 'work-card-preview';
+    iframe.src = buildPreviewSrc(video.dataset.preview);
+    iframe.loading = 'lazy';
+    iframe.tabIndex = -1;
+    iframe.setAttribute('aria-hidden', 'true');
+    iframe.setAttribute('allow', 'autoplay; encrypted-media');
+    video.insertBefore(iframe, video.firstElementChild);
+    video.classList.add('preview-active');
+  }
+
+  function pauseWorkPreview(card) {
+    const video = card.querySelector('.work-card-video');
+    const iframe = video ? video.querySelector('.work-card-preview') : null;
+    if (iframe) iframe.remove();
+    if (video) video.classList.remove('preview-active');
   }
 
   function pauseAllWorkPreviews() {
-    workIframes.forEach(iframe => setWorkPreviewState(iframe, false));
+    workCards.forEach(pauseWorkPreview);
   }
 
-  workIframes.forEach(iframe => {
-    iframe.dataset.baseSrc = iframe.src;
-  });
-  pauseAllWorkPreviews();
+  const workSection = document.getElementById('work');
+  const workRail = document.getElementById('workRail');
+
+  function isWorkSectionVisible() {
+    if (!workSection) return false;
+    const rect = workSection.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom > 0;
+  }
+
+  function getVisibleRatio(card, frame) {
+    const rect = card.getBoundingClientRect();
+    const left = Math.max(rect.left, frame.left);
+    const right = Math.min(rect.right, frame.right);
+    const top = Math.max(rect.top, frame.top);
+    const bottom = Math.min(rect.bottom, frame.bottom);
+    const visibleWidth = Math.max(0, right - left);
+    const visibleHeight = Math.max(0, bottom - top);
+    const visibleArea = visibleWidth * visibleHeight;
+    const totalArea = Math.max(1, rect.width * rect.height);
+    return visibleArea / totalArea;
+  }
+
+  function updateVisibleWorkPreviews() {
+    const activeModal = document.getElementById('modal');
+    if (activeModal && activeModal.classList.contains('active')) {
+      pauseAllWorkPreviews();
+      return;
+    }
+
+    if (!isWorkSectionVisible()) {
+      pauseAllWorkPreviews();
+      return;
+    }
+
+    const frame = workRail && window.innerWidth > 768
+      ? workRail.getBoundingClientRect()
+      : { left: 0, right: window.innerWidth, top: 0, bottom: window.innerHeight };
+
+    workCards.forEach(card => {
+      if (getVisibleRatio(card, frame) >= 0.18) {
+        playWorkPreview(card);
+      } else {
+        pauseWorkPreview(card);
+      }
+    });
+  }
+
+  if (workSection) {
+    ScrollTrigger.create({
+      trigger: workSection,
+      start: 'top bottom',
+      end: 'bottom top',
+      onEnter: updateVisibleWorkPreviews,
+      onEnterBack: updateVisibleWorkPreviews,
+      onUpdate: updateVisibleWorkPreviews,
+      onLeave: pauseAllWorkPreviews,
+      onLeaveBack: pauseAllWorkPreviews
+    });
+    window.addEventListener('resize', updateVisibleWorkPreviews);
+  }
 
   const modal = document.getElementById('modal');
   const modalFrame = document.getElementById('modalFrame');
@@ -3137,6 +3246,7 @@
     modal.classList.remove('active');
     setTimeout(() => { modalFrame.src = ''; }, 400);
     document.body.style.overflow = '';
+    updateVisibleWorkPreviews();
   }
 
   modalCloseBtn.addEventListener('click', closeModal);
