@@ -9,7 +9,7 @@ export default function StatsBand({ stats, clients }: { stats: Stat[]; clients: 
       <div className="wrap grid grid-cols-2 md:grid-cols-4">
         {stats.map((s, i) => (
           <div key={i} className={`py-8 md:py-12 ${i % 2 ? "pl-5 md:pl-8" : "md:pl-8"} ${i ? "md:border-l md:border-line" : "md:pl-0"} ${i % 2 ? "border-l border-line md:border-l" : ""} ${i > 1 ? "border-t border-line md:border-t-0" : ""}`}>
-            <Counter value={s.value} suffix={s.suffix} className="block text-6xl font-extrabold tracking-[-0.06em] md:text-7xl" />
+            <Counter value={s.value} suffix={s.suffix} className="block text-6xl font-extrabold tracking-[-0.035em] md:text-7xl" />
             <div className="label mt-2 text-muted">{s.label}</div>
           </div>
         ))}

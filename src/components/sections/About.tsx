@@ -22,7 +22,7 @@ export default function About({ settings, journey }: { settings: Settings; journ
         <div className="md:col-span-5">
           <div className="about-photo relative aspect-[4/5] overflow-hidden rounded-[28px] border border-line">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={asset("/img/photo.webp")} alt={settings.name} className="about-img absolute inset-0 h-full w-full object-cover object-[50%_30%] [filter:grayscale(1)_contrast(1.2)]" />
+            <img src={asset("/img/photo.webp")} alt={settings.name} className="about-img absolute inset-0 h-full w-full object-cover object-[50%_30%]" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
             <div className="absolute inset-x-5 bottom-5 flex items-end justify-between">
               <div>

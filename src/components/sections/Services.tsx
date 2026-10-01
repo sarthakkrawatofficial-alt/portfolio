@@ -105,7 +105,7 @@ function Bars() {
 
 function Waveform() {
   return (
-    <div className="mt-auto rounded-2xl border border-line bg-black/50 p-3">
+    <div className="flex h-full flex-col justify-between rounded-2xl border border-line bg-black/50 p-3">
       <div className="label mb-3 flex items-center justify-between text-[9px] text-muted">
         <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-lime" style={{ animation: "blink 1s steps(2) infinite" }} /> HOST · CAM A</span>
         <span>−14 LUFS</span>
@@ -127,7 +127,7 @@ function Waveform() {
 function Captions() {
   const words = ["stop", "scrolling", "— this", "part", "matters."];
   return (
-    <div className="mt-auto flex justify-center">
+    <div className="flex h-full items-center justify-center">
       <div className="relative h-44 w-28 overflow-hidden rounded-[18px] border border-fg/15 bg-gradient-to-b from-[#1a1a1a] to-[#0b0b0b] p-2">
         <div className="mx-auto mb-2 h-1 w-8 rounded-full bg-fg/20" />
         <div className="absolute inset-x-2 bottom-8 flex flex-wrap justify-center gap-1">
@@ -148,7 +148,7 @@ function Captions() {
 
 function StoryArc() {
   return (
-    <div className="mt-auto rounded-2xl border border-line bg-black/50 p-3">
+    <div className="flex h-full flex-col justify-between rounded-2xl border border-line bg-black/50 p-3">
       <svg viewBox="0 0 200 60" className="h-16 w-full" aria-hidden>
         <path d="M5 52 C 50 50, 60 40, 90 30 S 140 2, 160 8 S 185 40, 195 46" fill="none" stroke="rgba(242,242,242,0.15)" strokeWidth="1.5" />
         <path d="M5 52 C 50 50, 60 40, 90 30 S 140 2, 160 8 S 185 40, 195 46" fill="none" stroke="#C8FF2E" strokeWidth="2" strokeDasharray="260" strokeDashoffset="260" style={{ animation: "dash 3.5s ease-in-out infinite alternate" }} />
@@ -192,7 +192,7 @@ function Flow() {
 }
 
 /* ---------------- card with hover tilt ---------------- */
-function Card({ className = "", shape, title, body, tag, children }: { className?: string; shape: keyof typeof SHAPES; title: string; body: string; tag: string; children: React.ReactNode }) {
+function Card({ className = "", shape, title, body, tag, children, fixed = false }: { className?: string; shape: keyof typeof SHAPES; title: string; body: string; tag: string; children: React.ReactNode; fixed?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const move = (e: React.PointerEvent) => {
     const r = ref.current!.getBoundingClientRect();
@@ -217,8 +217,8 @@ function Card({ className = "", shape, title, body, tag, children }: { className
         <span className="label text-muted">{tag}</span>
       </div>
       <h3 className="relative mt-6 text-2xl font-bold tracking-tight md:text-[28px]">{title}</h3>
-      <p className="relative mb-6 mt-2 max-w-md text-[15px] leading-relaxed text-fg/60">{body}</p>
-      <div className="relative mt-auto flex flex-col">{children}</div>
+      <p className="relative mb-6 mt-2 max-w-md text-[15px] leading-relaxed text-fg/60 md:min-h-[3.3em]">{body}</p>
+      <div className={`relative mt-auto flex flex-col ${fixed ? "h-[210px]" : ""}`}>{children}</div>
     </div>
   );
 }
@@ -236,13 +236,13 @@ export default function Services() {
           <Card className="md:col-span-2" shape="motion" tag="MOTION" title="Motion & UI animation" body="SaaS walkthroughs and product stories brought to life with clean, purposeful movement.">
             <Bars />
           </Card>
-          <Card className="md:col-span-2" shape="wave" tag="TALK" title="Podcasts & talking heads" body="Tight cuts, clean audio and B-roll that keeps a single voice watchable.">
+          <Card fixed className="md:col-span-2" shape="wave" tag="TALK" title="Podcasts & talking heads" body="Tight cuts, clean audio and B-roll that keeps a single voice watchable.">
             <Waveform />
           </Card>
-          <Card className="md:col-span-2" shape="reel" tag="SHORTS" title="Reels & short-form" body="Hooks in the first second, kinetic captions, built natively for each feed.">
+          <Card fixed className="md:col-span-2" shape="reel" tag="SHORTS" title="Reels & short-form" body="Hooks in the first second, kinetic captions, built natively for each feed.">
             <Captions />
           </Card>
-          <Card className="md:col-span-2" shape="doc" tag="STORY" title="Documentary storytelling" body="Real moments shaped into an arc with a beginning, a turn and a payoff.">
+          <Card fixed className="md:col-span-2" shape="doc" tag="STORY" title="Documentary storytelling" body="Real moments shaped into an arc with a beginning, a turn and a payoff.">
             <StoryArc />
           </Card>
           <Card className="md:col-span-6 md:min-h-[300px]" shape="spark" tag="DIRECTION" title="Creative direction & AI-assisted workflows" body="From brief to final export — I plan the story, lead the look, and use AI tools where they save time without flattening the craft.">

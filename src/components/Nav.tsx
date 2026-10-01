@@ -13,17 +13,10 @@ const LINKS = [
 
 export default function Nav({ available }: { available: boolean }) {
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   useEffect(() => {
-    let last = 0;
-    const on = () => {
-      const y = window.scrollY;
-      setScrolled(y > 40);
-      setHidden(y > 600 && y > last + 2);
-      if (y < last - 2) setHidden(false);
-      last = y;
-    };
+    const on = () => setScrolled(window.scrollY > 24);
+    on();
     window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
   }, []);
@@ -31,15 +24,19 @@ export default function Nav({ available }: { available: boolean }) {
 
   return (
     <>
-      <header className={`fixed inset-x-0 top-0 z-[120] transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] ${hidden && !open ? "-translate-y-full" : ""}`}>
-        <div className="wrap flex items-center justify-between py-4 md:py-5">
+      <header
+        className={`fixed inset-x-0 top-0 z-[120] border-b transition-[background-color,border-color,backdrop-filter] duration-300 ${
+          scrolled || open ? "border-line bg-[#070707]/70 backdrop-blur-xl backdrop-saturate-150" : "border-transparent bg-transparent"
+        }`}
+      >
+        <div className="wrap flex h-16 items-center justify-between md:h-[72px]">
           <a href="#top" className="flex items-center gap-2 text-[17px] font-extrabold tracking-tight" aria-label="Sarthak Rawat — home">
             <span className="grid h-9 w-9 place-items-center rounded-xl bg-lime text-bg">
               <svg width="12" height="12" viewBox="0 0 10 10"><path d="M1 0l9 5-9 5z" fill="currentColor" /></svg>
             </span>
             <span>Sarthak<span className="text-lime">.</span></span>
           </a>
-          <nav className={`hidden items-center gap-1 rounded-full border border-line p-1.5 backdrop-blur-xl transition-colors md:flex ${scrolled ? "bg-[#0d0d0d]/80" : "bg-white/[0.03]"}`}>
+          <nav className={`hidden items-center gap-1 rounded-full border border-line p-1.5 transition-colors md:flex ${scrolled ? "bg-white/[0.04]" : "bg-[#0d0d0d]/60"}`}>
             {LINKS.map(([l, h]) => (
               <a key={h} href={h} className="rounded-full px-4 py-2 text-sm text-fg/75 transition-colors hover:bg-white/[0.06] hover:text-fg">
                 {l}
@@ -58,7 +55,7 @@ export default function Nav({ available }: { available: boolean }) {
                 Work With Me <span aria-hidden>↗</span>
               </a>
             </Magnetic>
-            <button className="grid h-11 w-11 place-items-center rounded-full border border-line bg-[#0d0d0d]/80 backdrop-blur md:hidden" onClick={() => setOpen((o) => !o)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
+            <button className="grid h-11 w-11 place-items-center rounded-full border border-line bg-[#0d0d0d]/80 md:hidden" onClick={() => setOpen((o) => !o)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
               <span className="relative block h-3 w-5">
                 <span className={`absolute left-0 h-[2px] w-5 bg-fg transition-all duration-300 ${open ? "top-1.5 rotate-45" : "top-0"}`} />
                 <span className={`absolute left-0 h-[2px] w-5 bg-fg transition-all duration-300 ${open ? "top-1.5 -rotate-45" : "top-3"}`} />

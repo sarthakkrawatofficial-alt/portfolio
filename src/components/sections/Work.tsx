@@ -12,6 +12,8 @@ export default function Work({ projects }: { projects: Project[] }) {
   const open = useVideoModal();
   const cats = useMemo(() => ["All", ...CATEGORIES.filter((c) => projects.some((p) => p.category === c)), ...Array.from(new Set(projects.map((p) => p.category))).filter((c) => !(CATEGORIES as readonly string[]).includes(c))], [projects]);
   const list = filter === "All" ? projects : projects.filter((p) => p.category === filter);
+  const longs = list.filter((p) => p.orientation !== "portrait");
+  const shorts = list.filter((p) => p.orientation === "portrait");
   const first = useRef(true);
 
   useEffect(() => {
@@ -55,37 +57,74 @@ export default function Work({ projects }: { projects: Project[] }) {
           })}
         </div>
 
-        <div ref={grid} className="mt-8 flex flex-wrap gap-x-4 gap-y-8 md:gap-x-5 md:gap-y-12">
-          {list.map((p) => {
-            const ar = p.orientation === "portrait" ? 9 / 16 : 16 / 9;
-            const idx = projects.indexOf(p) + 1;
-            return (
-              <article key={p.id} className="work-item group min-w-0" style={{ flexGrow: ar, flexBasis: `${ar * 230}px` }}>
-                <button type="button" data-cursor="play" onClick={() => open({ id: p.youtubeId, title: p.title, orientation: p.orientation })} className="relative block w-full overflow-hidden rounded-[22px] border border-line bg-card text-left transition-[border-color,box-shadow] duration-500 group-hover:border-lime/60 group-hover:shadow-[0_30px_80px_-30px_rgba(200,255,46,0.45)]" style={{ paddingBottom: `${100 / ar}%` }} aria-label={`Play ${p.title}`}>
-                  <VideoThumb id={p.youtubeId} title={p.title} />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
-                  <span className="label pointer-events-none absolute left-4 top-4 rounded-full bg-black/70 px-2.5 py-1 text-[10px] text-fg/85">{p.category}</span>
-                  <span className="label pointer-events-none absolute right-4 top-4 text-[10px] text-fg/60">{String(idx).padStart(2, "0")}</span>
-                  {p.orientation === "landscape" && <p className="pointer-events-none absolute inset-x-4 bottom-4 max-w-md translate-y-3 text-sm leading-snug text-fg/85 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">{p.description}</p>}
-                </button>
-                <div className="mt-4 flex items-start justify-between gap-3 px-1">
-                  <div className="min-w-0">
-                    <h3 className="text-xl font-bold leading-tight tracking-tight md:text-2xl">{p.title}</h3>
-                    <div className="label mt-2 text-lime">{p.client}</div>
-                  </div>
-                  <span className="mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-full border border-line text-sm transition-all duration-500 group-hover:rotate-45 group-hover:border-lime group-hover:bg-lime group-hover:text-bg" aria-hidden>↗</span>
-                </div>
-                <dl className="mt-3 flex flex-wrap gap-1.5 px-1">
-                  <div className="label rounded-full border border-line px-2.5 py-1 !text-[10px] text-fg/60"><dt className="sr-only">Platform</dt><dd>{p.platform}</dd></div>
-                  <div className="label rounded-full border border-line px-2.5 py-1 !text-[10px] text-fg/60"><dt className="sr-only">Role</dt><dd>{p.role}</dd></div>
-                </dl>
-              </article>
-            );
-          })}
-          {/* filler keeps the last row from over-stretching */}
-          <div aria-hidden style={{ flexGrow: 10, flexBasis: 0 }} />
+        <div ref={grid} className="mt-10 space-y-14 md:space-y-20">
+          {longs.length > 0 && (
+            <div>
+              <GroupLabel label="Long-form" sub="16:9 · YouTube & web" count={longs.length} />
+              <div className="grid grid-cols-1 gap-x-5 gap-y-10 md:grid-cols-2">
+                {longs.map((p, i) => (
+                  <Card key={p.id} p={p} idx={projects.indexOf(p) + 1} feature={longs.length % 2 === 1 && i === 0} onOpen={open} />
+                ))}
+              </div>
+            </div>
+          )}
+          {shorts.length > 0 && (
+            <div>
+              <GroupLabel label="Shorts & Reels" sub="9:16 · Reels / Shorts" count={shorts.length} />
+              <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:grid-cols-5 md:gap-x-5">
+                {shorts.map((p) => (
+                  <Card key={p.id} p={p} idx={projects.indexOf(p) + 1} onOpen={open} />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
+  );
+}
+
+function GroupLabel({ label, sub, count }: { label: string; sub: string; count: number }) {
+  return (
+    <div className="mb-6 flex items-end justify-between gap-4 border-b border-line pb-4">
+      <h3 className="text-2xl font-semibold tracking-tight md:text-3xl">
+        {label} <span className="label align-middle text-muted">{String(count).padStart(2, "0")}</span>
+      </h3>
+      <span className="label hidden text-muted sm:block">{sub}</span>
+    </div>
+  );
+}
+
+function Card({ p, idx, feature = false, onOpen }: { p: Project; idx: number; feature?: boolean; onOpen: ReturnType<typeof useVideoModal> }) {
+  const portrait = p.orientation === "portrait";
+  return (
+    <article className={`work-item group min-w-0 ${feature ? "md:col-span-2" : ""}`}>
+      <button
+        type="button"
+        data-cursor="play"
+        onClick={() => onOpen({ id: p.youtubeId, title: p.title, orientation: p.orientation })}
+        className={`relative block w-full overflow-hidden rounded-[20px] border border-line bg-card text-left transition-[border-color,box-shadow] duration-500 group-hover:border-lime/60 group-hover:shadow-[0_30px_80px_-30px_rgba(200,255,46,0.45)] ${portrait ? "aspect-[9/16]" : feature ? "aspect-video md:aspect-[21/9]" : "aspect-video"}`}
+        aria-label={`Play ${p.title}`}
+      >
+        <VideoThumb id={p.youtubeId} title={p.title} quality={feature ? "maxres" : "hq"} />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
+        <span className="label pointer-events-none absolute left-3 top-3 rounded-full bg-black/70 px-2.5 py-1 text-[10px] text-fg/85 md:left-4 md:top-4">{p.category}</span>
+        <span className="label pointer-events-none absolute right-3 top-3 text-[10px] text-fg/60 md:right-4 md:top-4">{String(idx).padStart(2, "0")}</span>
+        {!portrait && <p className="pointer-events-none absolute inset-x-4 bottom-4 max-w-md translate-y-3 text-sm leading-relaxed text-fg/85 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">{p.description}</p>}
+      </button>
+      <div className="mt-4 flex items-start justify-between gap-3 px-1">
+        <div className="min-w-0">
+          <h4 className={`font-semibold leading-snug tracking-tight ${portrait ? "text-base md:text-lg" : "text-xl md:text-2xl"}`}>{p.title}</h4>
+          <div className="label mt-1.5 text-lime">{p.client}</div>
+        </div>
+        {!portrait && (
+          <span className="mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-full border border-line text-sm transition-all duration-500 group-hover:rotate-45 group-hover:border-lime group-hover:bg-lime group-hover:text-bg" aria-hidden>↗</span>
+        )}
+      </div>
+      <dl className="mt-3 flex flex-wrap gap-1.5 px-1">
+        {!portrait && <div className="label rounded-full border border-line px-2.5 py-1 !text-[10px] text-fg/60"><dt className="sr-only">Platform</dt><dd>{p.platform}</dd></div>}
+        <div className="label rounded-full border border-line px-2.5 py-1 !text-[10px] text-fg/60"><dt className="sr-only">Role</dt><dd>{p.role}</dd></div>
+      </dl>
+    </article>
   );
 }
