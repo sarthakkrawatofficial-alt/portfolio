@@ -26,19 +26,19 @@ function Icon3D({ shape }: { shape: keyof typeof SHAPES }) {
                 {front && (
                   <defs>
                     <linearGradient id={`g-${shape}`} x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0" stopColor="#efffbf" />
-                      <stop offset="0.45" stopColor="#C8FF2E" />
-                      <stop offset="1" stopColor="#8fc400" />
+                      <stop offset="0" stopColor="#b9c47e" />
+                      <stop offset="0.45" stopColor="#7d8a45" />
+                      <stop offset="1" stopColor="#4f5a26" />
                     </linearGradient>
                   </defs>
                 )}
-                <path d={SHAPES[shape]} fillRule="evenodd" fill={front ? `url(#g-${shape})` : `rgb(${40 + i * 9}, ${58 + i * 12}, ${10 + i * 2})`} />
+                <path d={SHAPES[shape]} fillRule="evenodd" fill={front ? `url(#g-${shape})` : `rgb(${46 + i * 4}, ${50 + i * 5}, ${24 + i * 2})`} />
               </svg>
             </div>
           );
         })}
       </div>
-      <div className="absolute -bottom-3 left-1/2 h-3 w-14 -translate-x-1/2 rounded-full bg-lime/25 blur-md" />
+      <div className="absolute -bottom-3 left-1/2 h-3 w-14 -translate-x-1/2 rounded-full bg-[#4a3f2c]/20 blur-md" />
     </div>
   );
 }
@@ -53,7 +53,7 @@ function Timeline() {
   ] as const;
   const col = { w: "bg-fg/80", l: "bg-lime", g: "bg-fg/15", m: "bg-fg/25" };
   return (
-    <div className="relative mt-auto rounded-2xl border border-line bg-black/50 p-3">
+    <div className="relative mt-auto rounded-2xl border border-line bg-paper p-3">
       <div className="label mb-2 flex justify-between text-[9px] text-muted">
         <span>SEQ_01 · 23.976</span>
         <span className="text-lime">00:00:42:17</span>
@@ -65,7 +65,7 @@ function Timeline() {
         {tracks.map((t) => (
           <div key={t.n} className="flex items-center gap-2">
             <span className="label w-6 text-[9px] text-muted">{t.n}</span>
-            <div className="relative h-6 flex-1 rounded-md bg-white/[0.03]">
+            <div className="relative h-6 flex-1 rounded-md bg-fg/[0.03]">
               {t.clips.map(([l, w, c], i) => (
                 <span key={i} className={`absolute inset-y-0.5 rounded-[5px] ${col[c]} ${c === "g" || c === "m" ? "overflow-hidden" : ""}`} style={{ left: `${l}%`, width: `${w}%` }}>
                   {(c === "g" || c === "m") && (
@@ -79,7 +79,7 @@ function Timeline() {
           </div>
         ))}
       </div>
-      <span className="absolute bottom-2 top-8 w-px bg-lime shadow-[0_0_12px_2px_rgba(200,255,46,0.7)]" style={{ animation: "playhead 6s linear infinite" }}>
+      <span className="absolute bottom-2 top-8 w-px bg-lime shadow-[0_0_12px_2px_rgba(91,102,48,0.7)]" style={{ animation: "playhead 6s linear infinite" }}>
         <span className="absolute -left-[5px] -top-1 h-2.5 w-[11px] rounded-sm bg-lime" />
       </span>
     </div>
@@ -89,7 +89,7 @@ function Timeline() {
 function Bars() {
   const h = [0.35, 0.55, 0.4, 0.7, 0.5, 0.85, 0.6, 0.95, 0.75, 1];
   return (
-    <div className="relative mt-auto h-36 rounded-2xl border border-line bg-black/50 p-3">
+    <div className="relative mt-auto h-36 rounded-2xl border border-line bg-paper p-3">
       <div className="label flex justify-between text-[9px] text-muted"><span>ease · expo.out</span><span className="text-lime">● keyframes</span></div>
       <div className="absolute inset-x-3 bottom-3 top-9 flex items-end gap-1.5">
         {h.map((v, i) => (
@@ -97,7 +97,7 @@ function Bars() {
         ))}
       </div>
       <svg className="absolute inset-x-3 bottom-3 top-9 h-[calc(100%-48px)] w-[calc(100%-24px)]" viewBox="0 0 100 50" preserveAspectRatio="none" aria-hidden>
-        <path d="M0 45 C 30 44, 45 40, 60 22 S 85 4, 100 3" fill="none" stroke="#C8FF2E" strokeWidth="1.2" strokeDasharray="160" strokeDashoffset="160" style={{ animation: "dash 3s ease-out infinite alternate" }} vectorEffect="non-scaling-stroke" />
+        <path d="M0 45 C 30 44, 45 40, 60 22 S 85 4, 100 3" fill="none" stroke="#5B6630" strokeWidth="1.2" strokeDasharray="160" strokeDashoffset="160" style={{ animation: "dash 3s ease-out infinite alternate" }} vectorEffect="non-scaling-stroke" />
       </svg>
     </div>
   );
@@ -105,7 +105,7 @@ function Bars() {
 
 function Waveform() {
   return (
-    <div className="flex h-full flex-col justify-between rounded-2xl border border-line bg-black/50 p-3">
+    <div className="flex h-full flex-col justify-between rounded-2xl border border-line bg-paper p-3">
       <div className="label mb-3 flex items-center justify-between text-[9px] text-muted">
         <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-lime" style={{ animation: "blink 1s steps(2) infinite" }} /> HOST · CAM A</span>
         <span>−14 LUFS</span>
@@ -128,16 +128,16 @@ function Captions() {
   const words = ["stop", "scrolling", "— this", "part", "matters."];
   return (
     <div className="flex h-full items-center justify-center">
-      <div className="relative h-44 w-28 overflow-hidden rounded-[18px] border border-fg/15 bg-gradient-to-b from-[#1a1a1a] to-[#0b0b0b] p-2">
-        <div className="mx-auto mb-2 h-1 w-8 rounded-full bg-fg/20" />
+      <div className="relative h-44 w-28 overflow-hidden rounded-[18px] border border-fg/20 bg-gradient-to-b from-[#2a2621] to-[#171512] shadow-[0_20px_40px_-20px_rgba(40,30,20,0.5)] p-2">
+        <div className="mx-auto mb-2 h-1 w-8 rounded-full bg-white/25" />
         <div className="absolute inset-x-2 bottom-8 flex flex-wrap justify-center gap-1">
           {words.map((w, i) => (
-            <span key={i} className={`rounded-md px-1.5 py-0.5 text-[11px] font-extrabold uppercase tracking-tight ${i === 4 ? "bg-lime text-bg" : "bg-black/70 text-fg"}`} style={{ animation: `chip 4s ${i * 0.35}s ease-out infinite both` }}>
+            <span key={i} className={`rounded-md px-1.5 py-0.5 text-[11px] font-extrabold uppercase tracking-tight ${i === 4 ? "bg-accentsoft text-fg" : "bg-white/15 text-white"}`} style={{ animation: `chip 4s ${i * 0.35}s ease-out infinite both` }}>
               {w}
             </span>
           ))}
         </div>
-        <div className="absolute inset-x-2 bottom-2 h-0.5 rounded bg-fg/10"><span className="block h-full w-2/3 rounded bg-lime" /></div>
+        <div className="absolute inset-x-2 bottom-2 h-0.5 rounded bg-white/15"><span className="block h-full w-2/3 rounded bg-accentsoft" /></div>
       </div>
       <div className="ml-3 flex flex-col justify-center gap-1.5">
         {["9:16", "1:1", "4:5"].map((r, i) => <span key={r} className={`label rounded-md border px-2 py-1 text-[9px] ${i === 0 ? "border-lime text-lime" : "border-line text-fg/50"}`}>{r}</span>)}
@@ -148,15 +148,15 @@ function Captions() {
 
 function StoryArc() {
   return (
-    <div className="flex h-full flex-col justify-between rounded-2xl border border-line bg-black/50 p-3">
+    <div className="flex h-full flex-col justify-between rounded-2xl border border-line bg-paper p-3">
       <svg viewBox="0 0 200 60" className="h-16 w-full" aria-hidden>
-        <path d="M5 52 C 50 50, 60 40, 90 30 S 140 2, 160 8 S 185 40, 195 46" fill="none" stroke="rgba(242,242,242,0.15)" strokeWidth="1.5" />
-        <path d="M5 52 C 50 50, 60 40, 90 30 S 140 2, 160 8 S 185 40, 195 46" fill="none" stroke="#C8FF2E" strokeWidth="2" strokeDasharray="260" strokeDashoffset="260" style={{ animation: "dash 3.5s ease-in-out infinite alternate" }} />
-        <circle cx="160" cy="8" r="3.5" fill="#C8FF2E" />
+        <path d="M5 52 C 50 50, 60 40, 90 30 S 140 2, 160 8 S 185 40, 195 46" fill="none" stroke="rgba(31,28,24,0.15)" strokeWidth="1.5" />
+        <path d="M5 52 C 50 50, 60 40, 90 30 S 140 2, 160 8 S 185 40, 195 46" fill="none" stroke="#5B6630" strokeWidth="2" strokeDasharray="260" strokeDashoffset="260" style={{ animation: "dash 3.5s ease-in-out infinite alternate" }} />
+        <circle cx="160" cy="8" r="3.5" fill="#5B6630" />
       </svg>
       <div className="mt-2 grid grid-cols-3 gap-1.5">
         {["ACT I · hook", "ACT II · tension", "ACT III · payoff"].map((a, i) => (
-          <div key={a} className={`rounded-lg border p-2 ${i === 2 ? "border-lime/50 bg-lime/10" : "border-line bg-white/[0.02]"}`}>
+          <div key={a} className={`rounded-lg border p-2 ${i === 2 ? "border-lime/50 bg-lime/10" : "border-line bg-fg/[0.02]"}`}>
             <div className="mb-1.5 aspect-video rounded bg-gradient-to-br from-fg/15 to-transparent" />
             <div className="label text-[8px] text-fg/60">{a}</div>
           </div>
@@ -169,14 +169,14 @@ function StoryArc() {
 function Flow() {
   const nodes = ["Brief", "Script", "Storyboard", "Edit", "Motion", "Deliver"];
   return (
-    <div className="mt-auto overflow-hidden rounded-2xl border border-line bg-black/50 p-4">
+    <div className="mt-auto overflow-hidden rounded-2xl border border-line bg-paper p-4">
       <div className="flex items-center">
         {nodes.map((n, i) => (
           <div key={n} className="flex flex-1 items-center last:flex-none">
             <span className={`label shrink-0 rounded-full border px-2.5 py-1.5 text-[9px] md:px-3 md:text-[10px] ${i === 3 ? "border-lime bg-lime text-bg" : "border-line text-fg/70"}`}>{n}</span>
             {i < nodes.length - 1 && (
               <svg className="mx-1 h-2 flex-1" viewBox="0 0 40 2" preserveAspectRatio="none" aria-hidden>
-                <line x1="0" y1="1" x2="40" y2="1" stroke="#C8FF2E" strokeOpacity="0.6" strokeWidth="2" strokeDasharray="3 3" style={{ animation: "dash 1s linear infinite", strokeDashoffset: 6 }} />
+                <line x1="0" y1="1" x2="40" y2="1" stroke="#5B6630" strokeOpacity="0.6" strokeWidth="2" strokeDasharray="3 3" style={{ animation: "dash 1s linear infinite", strokeDashoffset: 6 }} />
               </svg>
             )}
           </div>
@@ -214,7 +214,7 @@ function Card({ className = "", shape, title, body, tag, children, fixed = false
     // so the two transforms never fight over the same element.
     <div className={`flex ${className}`}>
     <div ref={ref} onPointerMove={move} onPointerLeave={leave} className="card group relative flex min-h-[380px] w-full flex-col overflow-hidden p-6 transition-transform duration-300 ease-out md:p-7 [&:hover_.icon3d]:[animation-play-state:paused]">
-      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: "radial-gradient(500px circle at var(--mx,50%) var(--my,50%), rgba(200,255,46,0.08), transparent 45%)" }} />
+      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: "radial-gradient(500px circle at var(--mx,50%) var(--my,50%), rgba(91,102,48,0.08), transparent 45%)" }} />
       <div className="relative flex items-start justify-between">
         <Icon3D shape={shape} />
         <span className="label text-muted">{tag}</span>

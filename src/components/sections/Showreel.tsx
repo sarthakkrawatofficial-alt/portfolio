@@ -44,12 +44,12 @@ export default function Showreel({ id }: { id: string }) {
               {/* letterbox + HUD */}
               <div className="absolute inset-x-0 top-0 h-[9%] bg-black/90" />
               <div className="absolute inset-x-0 bottom-0 h-[9%] bg-black/90" />
-              <div className="label absolute left-4 top-[calc(9%+14px)] flex items-center gap-2 text-fg/80 md:left-8">
+              <div className="label absolute left-4 top-[calc(9%+14px)] flex items-center gap-2 text-white/85 md:left-8">
                 <span className="h-2 w-2 rounded-full bg-lime" style={{ animation: "blink 1.2s steps(2) infinite" }} /> REC · 4K · 23.976
               </div>
-              <div className="label absolute right-4 top-[calc(9%+14px)] hidden text-fg/60 sm:block md:right-8">SR_REEL_2025_FINAL_v7.mov</div>
-              <div className="label absolute bottom-[calc(9%+14px)] left-4 text-fg/60 md:left-8">00:00:00:00</div>
-              <div className="label absolute bottom-[calc(9%+14px)] right-4 text-fg/60 md:right-8">≈ 02:00</div>
+              <div className="label absolute right-4 top-[calc(9%+14px)] hidden text-white/65 sm:block md:right-8">SR_REEL_2025_FINAL_v7.mov</div>
+              <div className="label absolute bottom-[calc(9%+14px)] left-4 text-white/65 md:left-8">00:00:00:00</div>
+              <div className="label absolute bottom-[calc(9%+14px)] right-4 text-white/65 md:right-8">≈ 02:00</div>
               {/* corner brackets */}
               {[
                 "left-4 top-[16%] border-l border-t md:left-8",
@@ -57,7 +57,7 @@ export default function Showreel({ id }: { id: string }) {
                 "left-4 bottom-[16%] border-l border-b md:left-8",
                 "right-4 bottom-[16%] border-r border-b md:right-8",
               ].map((c) => (
-                <span key={c} className={`absolute h-6 w-6 border-lime/70 md:h-10 md:w-10 ${c}`} />
+                <span key={c} className={`absolute h-6 w-6 border-white/60 md:h-10 md:w-10 ${c}`} />
               ))}
               {/* play button */}
               <span className="absolute left-1/2 top-1/2 grid h-36 w-36 -translate-x-1/2 -translate-y-1/2 place-items-center md:h-48 md:w-48">
@@ -67,7 +67,7 @@ export default function Showreel({ id }: { id: string }) {
                     <textPath href="#circ" textLength="512" lengthAdjust="spacing">PLAY SHOWREEL · 2025 · PLAY SHOWREEL · 2025 · </textPath>
                   </text>
                 </svg>
-                <span className="grid h-20 w-20 place-items-center rounded-full bg-lime text-bg shadow-[0_0_80px_10px_rgba(200,255,46,0.45)] transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-110 md:h-24 md:w-24">
+                <span className="grid h-20 w-20 place-items-center rounded-full bg-lime text-bg shadow-[0_20px_60px_-10px_rgba(0,0,0,0.5)] transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-110 md:h-24 md:w-24">
                   <svg width="22" height="22" viewBox="0 0 10 10" className="translate-x-0.5"><path d="M1 0l9 5-9 5z" fill="currentColor" /></svg>
                 </span>
               </span>

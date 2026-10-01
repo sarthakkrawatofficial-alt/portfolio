@@ -26,7 +26,7 @@ export default function Nav({ available }: { available: boolean }) {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-[120] border-b transition-[background-color,border-color,backdrop-filter] duration-300 ${
-          scrolled || open ? "border-line bg-[#070707]/70 backdrop-blur-xl backdrop-saturate-150" : "border-transparent bg-transparent"
+          scrolled || open ? "border-line bg-bg/75 backdrop-blur-xl backdrop-saturate-150" : "border-transparent bg-transparent"
         }`}
       >
         <div className="wrap flex h-16 items-center justify-between md:h-[72px]">
@@ -36,9 +36,9 @@ export default function Nav({ available }: { available: boolean }) {
             </span>
             <span>Sarthak<span className="text-lime">.</span></span>
           </a>
-          <nav className={`hidden items-center gap-1 rounded-full border border-line p-1.5 transition-colors md:flex ${scrolled ? "bg-white/[0.04]" : "bg-[#0d0d0d]/60"}`}>
+          <nav className={`hidden items-center gap-1 rounded-full border border-line p-1.5 transition-colors md:flex ${scrolled ? "bg-fg/[0.04]" : "bg-card/70"}`}>
             {LINKS.map(([l, h]) => (
-              <a key={h} href={h} className="rounded-full px-4 py-2 text-sm text-fg/75 transition-colors hover:bg-white/[0.06] hover:text-fg">
+              <a key={h} href={h} className="rounded-full px-4 py-2 text-sm text-fg/75 transition-colors hover:bg-fg/[0.06] hover:text-fg">
                 {l}
               </a>
             ))}
@@ -55,7 +55,7 @@ export default function Nav({ available }: { available: boolean }) {
                 Work With Me <span aria-hidden>↗</span>
               </a>
             </Magnetic>
-            <button className="grid h-11 w-11 place-items-center rounded-full border border-line bg-[#0d0d0d]/80 md:hidden" onClick={() => setOpen((o) => !o)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
+            <button className="grid h-11 w-11 place-items-center rounded-full border border-line bg-card/80 md:hidden" onClick={() => setOpen((o) => !o)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
               <span className="relative block h-3 w-5">
                 <span className={`absolute left-0 h-[2px] w-5 bg-fg transition-all duration-300 ${open ? "top-1.5 rotate-45" : "top-0"}`} />
                 <span className={`absolute left-0 h-[2px] w-5 bg-fg transition-all duration-300 ${open ? "top-1.5 -rotate-45" : "top-3"}`} />

@@ -2,7 +2,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Edges, Environment, Lightformer, RoundedBox } from "@react-three/drei";
-import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { scrollState } from "@/lib/scroll";
 
@@ -13,7 +12,7 @@ import { scrollState } from "@/lib/scroll";
  * onion-skin trail. Mouse orbits it, scrolling explodes the layers apart.
  */
 
-const LIME = new THREE.Color("#C8FF2E");
+const LIME = new THREE.Color("#5B6630");
 const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
 const PANEL_W = 2.5;
@@ -23,17 +22,17 @@ function Panel({ z, index, children, active = false }: { z: number; index: numbe
   return (
     <group position={[0, 0, z]} userData={{ baseZ: z, index }}>
       <RoundedBox args={[PANEL_W, PANEL_H, 0.035]} radius={0.07} smoothness={3}>
-        <meshStandardMaterial color={active ? "#161a0c" : "#121212"} metalness={0.4} roughness={0.25} transparent opacity={active ? 0.6 : 0.7} />
-        <Edges threshold={30} color={active ? LIME : "#5a5a5a"} />
+        <meshStandardMaterial color={active ? "#f6f3e4" : "#fbf8f2"} metalness={0.05} roughness={0.55} transparent opacity={active ? 0.82 : 0.78} />
+        <Edges threshold={30} color={active ? LIME : "#b8ad9b"} />
       </RoundedBox>
       {/* layer label bar, like a comp layer header */}
       <mesh position={[-PANEL_W / 2 + 0.32, PANEL_H / 2 - 0.13, 0.025]}>
         <planeGeometry args={[0.44, 0.07]} />
-        <meshBasicMaterial color={active ? LIME : "#3a3a3a"} toneMapped={false} />
+        <meshBasicMaterial color={active ? LIME : "#cfc5b4"} toneMapped={false} />
       </mesh>
       <mesh position={[PANEL_W / 2 - 0.14, PANEL_H / 2 - 0.13, 0.025]}>
         <circleGeometry args={[0.035, 16]} />
-        <meshBasicMaterial color={index % 2 ? "#3a3a3a" : LIME} toneMapped={false} />
+        <meshBasicMaterial color={index % 2 ? "#cfc5b4" : LIME} toneMapped={false} />
       </mesh>
       {children}
     </group>
@@ -53,7 +52,7 @@ function PlayGlyph() {
   }, []);
   return (
     <mesh geometry={geo} position={[0, -0.02, 0.07]}>
-      <meshStandardMaterial color={LIME} emissive={LIME} emissiveIntensity={0.9} metalness={0.2} roughness={0.3} toneMapped={false} />
+      <meshStandardMaterial color={LIME} metalness={0.2} roughness={0.35} />
     </mesh>
   );
 }
@@ -133,13 +132,13 @@ function Composition({ mobile }: { mobile: boolean }) {
       <group ref={layers}>
         {/* back: background layer with grid */}
         <Panel z={-1.05} index={0}>
-          <gridHelper args={[2.2, 11, "#2a2a2a", "#1d1d1d"]} rotation={[Math.PI / 2, 0, 0]} position={[0, -0.05, 0.03]} scale={[1, 1, 0.6]} />
+          <gridHelper args={[2.2, 11, "#cdbfa8", "#e2d8c8"]} rotation={[Math.PI / 2, 0, 0]} position={[0, -0.05, 0.03]} scale={[1, 1, 0.6]} />
         </Panel>
         {/* shape layer */}
         <Panel z={-0.35} index={1}>
           <mesh ref={ring} position={[0.55, -0.05, 0.06]}>
             <torusGeometry args={[0.3, 0.05, 16, 64, Math.PI * 1.5]} />
-            <meshStandardMaterial color="#e9e9e9" metalness={1} roughness={0.15} />
+            <meshStandardMaterial color="#2c2823" metalness={0.8} roughness={0.25} />
           </mesh>
         </Panel>
         {/* text layer: animated bars */}
@@ -148,7 +147,7 @@ function Composition({ mobile }: { mobile: boolean }) {
             {[0.18, 0, -0.18].map((y, i) => (
               <mesh key={i} position={[0.45, y, 0]}>
                 <boxGeometry args={[0.9 - i * 0.18, 0.08, 0.02]} />
-                <meshStandardMaterial color={i === 0 ? "#f2f2f2" : "#6a6a6a"} roughness={0.4} />
+                <meshStandardMaterial color={i === 0 ? "#2c2823" : "#b5aa98"} roughness={0.5} />
               </mesh>
             ))}
           </group>
@@ -166,12 +165,12 @@ function Composition({ mobile }: { mobile: boolean }) {
       {keys.map((k, i) => (
         <mesh key={i} position={k} rotation={[0, 0, Math.PI / 4]}>
           <octahedronGeometry args={[0.065, 0]} />
-          <meshStandardMaterial color={i % 2 ? "#f2f2f2" : LIME} emissive={i % 2 ? "#000" : LIME} emissiveIntensity={0.8} metalness={0.3} roughness={0.2} toneMapped={false} />
+          <meshStandardMaterial color={i % 2 ? "#2c2823" : LIME} metalness={0.3} roughness={0.3} />
         </mesh>
       ))}
       <mesh ref={nullObj}>
         <boxGeometry args={[0.13, 0.13, 0.13]} />
-        <meshStandardMaterial color={LIME} emissive={LIME} emissiveIntensity={2} toneMapped={false} />
+        <meshStandardMaterial color={LIME} emissive={LIME} emissiveIntensity={0.25} roughness={0.35} />
       </mesh>
       {Array.from({ length: ghostCount }).map((_, i) => (
         <mesh key={i} ref={(m) => { ghosts.current[i] = m; }} scale={1 - (i + 1) * 0.12}>
@@ -214,10 +213,10 @@ export default function MotionScene({ mobile = false, eventSource }: { mobile?: 
       camera={{ position: [0, 0, 6.2], fov: 35 }}
       gl={{ antialias: true, powerPreference: "high-performance", stencil: false }}
     >
-      <color attach="background" args={["#070707"]} />
-      <ambientLight intensity={0.4} />
+      <color attach="background" args={["#efe8dc"]} />
+      <ambientLight intensity={1.1} />
       <directionalLight position={[3, 4, 5]} intensity={1.6} />
-      <pointLight position={[-3, -2, 2]} intensity={2.5} color="#C8FF2E" />
+      <pointLight position={[-3, -2, 2]} intensity={1.2} color="#fff4e0" />
       <Rig mobile={mobile}>
         <Composition mobile={mobile} />
       </Rig>
@@ -227,11 +226,6 @@ export default function MotionScene({ mobile = false, eventSource }: { mobile?: 
         <Lightformer form="rect" intensity={2} position={[-5, 1, -1]} rotation-y={Math.PI / 2} scale={[8, 1.4, 1]} />
         <Lightformer form="rect" intensity={2} position={[5, -1, -1]} rotation-y={-Math.PI / 2} scale={[8, 1.4, 1]} />
       </Environment>
-      {!mobile && (
-        <EffectComposer multisampling={0} resolutionScale={0.5}>
-          <Bloom mipmapBlur luminanceThreshold={0.9} intensity={0.7} radius={0.55} levels={5} />
-        </EffectComposer>
-      )}
     </Canvas>
   );
 }

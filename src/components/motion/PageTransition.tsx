@@ -32,7 +32,7 @@ export default function PageTransition({ name }: { name: string }) {
   return (
     <div ref={root} className="fixed inset-0 z-[300] flex" aria-hidden>
       {[0, 1, 2, 3].map((i) => (
-        <div key={i} className={`pt-panel h-full flex-1 ${i === 3 ? "bg-lime" : "bg-[#0d0d0d]"}`} />
+        <div key={i} className={`pt-panel h-full flex-1 ${i === 3 ? "bg-lime" : "bg-[#e3d9c8]"}`} />
       ))}
       <div className="absolute inset-0 grid place-items-center overflow-hidden">
         <div className="overflow-hidden">

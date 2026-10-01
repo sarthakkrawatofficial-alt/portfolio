@@ -55,7 +55,7 @@ export default function Hero({ settings, projects }: { settings: Settings; proje
 
         <div className="wrap pointer-events-none relative z-10 flex min-h-[92svh] flex-col justify-end pb-8 pt-28 md:pb-10">
           <div className="hero-fade label mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-muted">
-            <span className="flex items-center gap-2 rounded-full border border-line bg-[#0d0d0d] px-3 py-1.5 text-fg">
+            <span className="flex items-center gap-2 rounded-full border border-line bg-card px-3 py-1.5 text-fg">
               <span className="h-1.5 w-1.5 rounded-full bg-lime" />
               {settings.name}
             </span>
@@ -79,7 +79,7 @@ export default function Hero({ settings, projects }: { settings: Settings; proje
             </p>
             <div className="hero-fade pointer-events-auto flex flex-wrap gap-3">
               <Magnetic>
-                <a href="#showreel" className="group inline-flex items-center gap-3 rounded-full bg-lime py-2 pl-2 pr-6 font-semibold text-bg shadow-[0_0_60px_-10px_rgba(200,255,46,0.7)]">
+                <a href="#showreel" className="group inline-flex items-center gap-3 rounded-full bg-lime py-2 pl-2 pr-6 font-semibold text-bg shadow-[0_18px_40px_-18px_rgba(91,102,48,0.6)]">
                   <span className="grid h-10 w-10 place-items-center rounded-full bg-bg text-lime transition-transform duration-500 group-hover:rotate-[360deg]">
                     <svg width="12" height="12" viewBox="0 0 10 10"><path d="M1 0l9 5-9 5z" fill="currentColor" /></svg>
                   </span>
@@ -87,7 +87,7 @@ export default function Hero({ settings, projects }: { settings: Settings; proje
                 </a>
               </Magnetic>
               <Magnetic>
-                <a href="#contact" className="inline-flex h-14 items-center gap-2 rounded-full border border-line bg-[#111] px-6 font-semibold hover:border-fg/40">
+                <a href="#contact" className="inline-flex h-14 items-center gap-2 rounded-full border border-line bg-card px-6 font-semibold hover:border-fg/40">
                   Work With Me <span aria-hidden>↗</span>
                 </a>
               </Magnetic>
@@ -111,12 +111,12 @@ export default function Hero({ settings, projects }: { settings: Settings; proje
             >
               <VideoThumb id={p.youtubeId} title={p.title} />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
-              <div className="pointer-events-none absolute left-3 top-3 label rounded-full bg-black/70 px-2.5 py-1 text-[10px] text-fg/80">
+              <div className="pointer-events-none absolute left-3 top-3 label rounded-full bg-black/70 px-2.5 py-1 text-[10px] text-white/85">
                 {p.orientation === "portrait" ? "9:16" : "16:9"}
               </div>
               <div className="pointer-events-none absolute inset-x-3 bottom-3 text-left">
-                <div className="label text-[10px] text-lime">{p.client}</div>
-                <div className="mt-1 text-[15px] font-bold leading-tight tracking-tight">{p.title}</div>
+                <div className="label text-[10px] text-accentsoft">{p.client}</div>
+                <div className="mt-1 text-[15px] font-bold leading-tight tracking-tight text-white">{p.title}</div>
               </div>
               <div className="pointer-events-none absolute right-3 top-3 grid h-9 w-9 scale-50 place-items-center rounded-full bg-lime text-bg opacity-0 transition-all duration-500 group-hover:scale-100 group-hover:opacity-100">
                 <svg width="10" height="10" viewBox="0 0 10 10"><path d="M1 0l9 5-9 5z" fill="currentColor" /></svg>
