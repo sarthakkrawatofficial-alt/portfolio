@@ -321,24 +321,11 @@ export const fallbackContent: SiteContent = {
       note: "Using motion to simplify ideas and shape product stories.",
     },
     {
-      period: "Oct 2024 — Jun 2025",
-      role: "Creative Lead",
-      company: "Digilok Media House",
-      note: "Shaped ideas, pacing and delivery across multiple accounts and guided the team through it.",
-    },
-    {
-      period: "Jan 2023 — Oct 2024",
+      period: "Jan 2023 — Jun 2025",
       place: "Prayagraj",
-      role: "Creative Junior",
+      role: "Creative Junior → Creative Lead",
       company: "Digilok Media House",
-      note: "Shoots, edits and fast turnarounds — the jump from execution to creative judgment.",
-    },
-    {
-      period: "Aug 2022 — Jan 2023",
-      place: "Prayagraj",
-      role: "Graphic Designer & Video Editor",
-      company: "Selection Adda",
-      note: "Typography, layouts and thumbnails — where the visual habit started.",
+      note: "Joined as Creative Junior handling shoots, edits and fast turnarounds, then promoted to Creative Lead — shaping ideas, pacing and delivery across multiple accounts and guiding the team.",
     },
   ],
 };
