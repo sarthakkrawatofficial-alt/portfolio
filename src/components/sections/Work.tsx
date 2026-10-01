@@ -48,7 +48,7 @@ export default function Work({ projects }: { projects: Project[] }) {
                 role="tab"
                 aria-selected={active}
                 onClick={() => setFilter(c)}
-                className={`flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-all duration-300 ${active ? "border-lime bg-lime text-bg" : "border-line bg-white/[0.02] text-fg/70 hover:border-fg/30 hover:text-fg"}`}
+                className={`flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-all duration-300 ${active ? "border-lime bg-lime text-bg" : "border-line bg-card text-fg/70 hover:border-fg/30 hover:text-fg"}`}
               >
                 {c}
                 <span className={`label !text-[10px] ${active ? "text-bg/60" : "text-muted"}`}>{String(n).padStart(2, "0")}</span>
@@ -103,14 +103,14 @@ function Card({ p, idx, feature = false, onOpen }: { p: Project; idx: number; fe
         type="button"
         data-cursor="play"
         onClick={() => onOpen({ id: p.youtubeId, title: p.title, orientation: p.orientation })}
-        className={`relative block w-full overflow-hidden rounded-[20px] border border-line bg-card text-left transition-[border-color,box-shadow] duration-500 group-hover:border-lime/60 group-hover:shadow-[0_30px_80px_-30px_rgba(200,255,46,0.45)] ${portrait ? "aspect-[9/16]" : feature ? "aspect-video md:aspect-[21/9]" : "aspect-video"}`}
+        className={`relative block w-full overflow-hidden rounded-[20px] border border-line bg-card text-left transition-[border-color,box-shadow] duration-500 group-hover:border-lime/60 group-hover:shadow-[0_30px_60px_-30px_rgba(70,52,30,0.45)] ${portrait ? "aspect-[9/16]" : feature ? "aspect-video md:aspect-[21/9]" : "aspect-video"}`}
         aria-label={`Play ${p.title}`}
       >
         <VideoThumb id={p.youtubeId} title={p.title} quality={feature ? "maxres" : "hq"} />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
-        <span className="label pointer-events-none absolute left-3 top-3 rounded-full bg-black/70 px-2.5 py-1 text-[10px] text-fg/85 md:left-4 md:top-4">{p.category}</span>
-        <span className="label pointer-events-none absolute right-3 top-3 text-[10px] text-fg/60 md:right-4 md:top-4">{String(idx).padStart(2, "0")}</span>
-        {!portrait && <p className="pointer-events-none absolute inset-x-4 bottom-4 max-w-md translate-y-3 text-sm leading-relaxed text-fg/85 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">{p.description}</p>}
+        <span className="label pointer-events-none absolute left-3 top-3 rounded-full bg-black/70 px-2.5 py-1 text-[10px] text-white/85 md:left-4 md:top-4">{p.category}</span>
+        <span className="label pointer-events-none absolute right-3 top-3 text-[10px] text-white/75 md:right-4 md:top-4">{String(idx).padStart(2, "0")}</span>
+        {!portrait && <p className="pointer-events-none absolute inset-x-4 bottom-4 max-w-md translate-y-3 text-sm leading-relaxed text-white/90 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">{p.description}</p>}
       </button>
       <div className="mt-4 flex items-start justify-between gap-3 px-1">
         <div className="min-w-0">

@@ -50,17 +50,17 @@ export default function Cursor() {
           style={{
             width: size,
             height: size,
-            background: mode === "play" ? "#C8FF2E" : mode === "link" ? "rgba(200,255,46,0.08)" : "transparent",
-            border: `1px solid ${mode === "default" ? "rgba(242,242,242,0.35)" : "#C8FF2E"}`,
+            background: mode === "play" ? "#5B6630" : mode === "drag" ? "rgba(31,28,24,0.55)" : mode === "link" ? "rgba(91,102,48,0.08)" : "transparent",
+            border: `1px solid ${mode === "default" ? "rgba(31,28,24,0.35)" : "#5B6630"}`,
             mixBlendMode: mode === "play" ? "normal" : "normal",
           }}
         >
           {mode === "play" && (
             <span className="label flex items-center gap-1.5 !text-[11px] font-bold text-bg">
-              <svg width="10" height="10" viewBox="0 0 10 10"><path d="M1 0l9 5-9 5z" fill="#070707" /></svg>PLAY
+              <svg width="10" height="10" viewBox="0 0 10 10"><path d="M1 0l9 5-9 5z" fill="currentColor" /></svg>PLAY
             </span>
           )}
-          {mode === "drag" && <span className="label font-bold text-lime">DRAG</span>}
+          {mode === "drag" && <span className="label font-bold text-white">DRAG</span>}
         </div>
       </div>
       <div ref={dot} className="pointer-events-none fixed left-0 top-0 z-[201] opacity-0" aria-hidden>

@@ -13,7 +13,7 @@ export default function VideoThumb({ id, title, className = "", preview = true, 
   };
   const leave = () => { if (t.current) clearTimeout(t.current); setLive(false); setReady(false); };
   return (
-    <div className={`absolute inset-0 overflow-hidden bg-[#111] ${className}`} onPointerEnter={enter} onPointerLeave={leave}>
+    <div className={`absolute inset-0 overflow-hidden bg-[#d9cfbf] ${className}`} onPointerEnter={enter} onPointerLeave={leave}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={ytThumb(id, quality)}

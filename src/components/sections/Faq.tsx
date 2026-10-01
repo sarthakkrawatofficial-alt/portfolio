@@ -18,7 +18,7 @@ export default function Faq({ items, email }: { items: F[]; email: string }) {
           {items.map((f, i) => {
             const on = open === i;
             return (
-              <div key={i} className={`mb-3 rounded-[22px] border transition-colors duration-300 ${on ? "border-lime/40 bg-card" : "border-line bg-white/[0.015] hover:border-fg/20"}`}>
+              <div key={i} className={`mb-3 rounded-[22px] border transition-colors duration-300 ${on ? "border-lime/40 bg-card" : "border-line bg-fg/[0.015] hover:border-fg/20"}`}>
                 <button className="flex w-full items-center justify-between gap-6 p-5 text-left md:p-6" onClick={() => toggle(i)} aria-expanded={on}>
                   <span className="flex items-baseline gap-4">
                     <span className="label text-[10px] text-lime">{String(i + 1).padStart(2, "0")}</span>

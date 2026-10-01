@@ -55,12 +55,12 @@ export default function Process() {
             <div className="absolute inset-x-0 top-0 h-[7%] bg-black" />
             <div className="absolute inset-x-0 bottom-0 h-[7%] bg-black" />
             <div className="absolute bottom-[16%] left-1/2 flex -translate-x-1/2 flex-wrap justify-center gap-1.5 px-4">
-              {["I", "think", "in"].map((w) => <span key={w} className="rounded-lg bg-black/80 px-2 py-1 text-lg font-extrabold uppercase tracking-tight md:text-3xl">{w}</span>)}
+              {["I", "think", "in"].map((w) => <span key={w} className="rounded-lg bg-black/80 px-2 py-1 text-white text-lg font-extrabold uppercase tracking-tight md:text-3xl">{w}</span>)}
               <span className="rounded-lg bg-lime px-2 py-1 text-lg font-extrabold uppercase tracking-tight text-bg md:text-3xl">stories</span>
             </div>
-            <div className="absolute left-[5%] top-[13%] hidden items-center gap-3 rounded-xl border border-fg/15 bg-black/60 py-2 pl-2 pr-4 backdrop-blur md:flex">
+            <div className="absolute left-[5%] top-[13%] hidden items-center gap-3 rounded-xl border border-fg/15 bg-black/60 py-2 pl-2 pr-4 text-white md:flex">
               <span className="h-8 w-1 rounded bg-lime" />
-              <div><div className="text-sm font-bold">Sarthak Rawat</div><div className="label text-[9px] text-fg/60">Visual storyteller</div></div>
+              <div><div className="text-sm font-bold">Sarthak Rawat</div><div className="label text-[9px] text-white/60">Visual storyteller</div></div>
             </div>
             <div className="label absolute right-4 top-[10%] rounded-full bg-lime px-3 py-1.5 text-[10px] font-bold text-bg md:right-6">AFTER · GRADED</div>
           </div>
@@ -73,17 +73,17 @@ export default function Process() {
             <div className="absolute inset-0 grid grid-cols-3 grid-rows-3">
               {Array.from({ length: 9 }).map((_, i) => <span key={i} className="border border-white/10" />)}
             </div>
-            <div className="label absolute left-4 top-[10%] rounded-full bg-black/70 px-3 py-1.5 text-[10px] text-fg/80 md:left-6">BEFORE · RAW LOG</div>
-            <div className="label absolute bottom-6 left-4 text-[10px] text-fg/70 md:left-6">A001_C014 · 00:12:48:03 · UNGRADED</div>
+            <div className="label absolute left-4 top-[10%] rounded-full bg-black/70 px-3 py-1.5 text-[10px] text-white/85 md:left-6">BEFORE · RAW LOG</div>
+            <div className="label absolute bottom-6 left-4 text-[10px] text-white/80 md:left-6">A001_C014 · 00:12:48:03 · UNGRADED</div>
             <div className="absolute bottom-14 left-4 hidden h-16 w-36 items-end gap-[2px] rounded-md bg-black/60 p-1.5 md:left-6 md:flex">
-              {Array.from({ length: 30 }).map((_, i) => <span key={i} className="flex-1 bg-fg/40" style={{ height: `${35 + Math.sin(i / 3) * 12 + ((i * 13) % 9)}%` }} />)}
+              {Array.from({ length: 30 }).map((_, i) => <span key={i} className="flex-1 bg-white/50" style={{ height: `${35 + Math.sin(i / 3) * 12 + ((i * 13) % 9)}%` }} />)}
             </div>
           </div>
 
           {/* handle */}
           <div className="pointer-events-none absolute inset-y-0" style={{ left: "var(--split)" }}>
-            <div className="absolute inset-y-0 -left-px w-0.5 bg-lime shadow-[0_0_20px_2px_rgba(200,255,46,0.6)]" />
-            <div className="absolute left-1/2 top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-lime text-bg shadow-[0_0_40px_rgba(200,255,46,0.6)]">
+            <div className="absolute inset-y-0 -left-px w-0.5 bg-lime shadow-[0_0_20px_2px_rgba(91,102,48,0.6)]" />
+            <div className="absolute left-1/2 top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-lime text-bg shadow-[0_0_40px_rgba(91,102,48,0.6)]">
               <svg width="22" height="12" viewBox="0 0 22 12" aria-hidden><path d="M6 1L1 6l5 5M16 1l5 5-5 5" stroke="currentColor" strokeWidth="2" fill="none" /></svg>
             </div>
           </div>

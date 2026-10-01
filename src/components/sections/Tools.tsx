@@ -26,7 +26,7 @@ export default function Tools({ tools }: { tools: string[] }) {
         <div className="marquee pausable py-2" style={{ ["--dur" as string]: "40s" }}>
           {row.map((t, i) => (
             <div key={i} className="mr-4 flex shrink-0 items-center gap-4 rounded-2xl border border-line bg-card py-3 pl-3 pr-6 transition-colors hover:border-lime/50">
-              <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-[#1d1d1d] to-[#0c0c0c] text-lime shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+              <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-paper to-card2 text-lime shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>{glyph(t)}</svg>
               </span>
               <span className="whitespace-nowrap text-xl font-semibold tracking-tight md:text-2xl">{t}</span>

@@ -20,9 +20,9 @@ export default function Contact({ settings }: { settings: Settings }) {
   return (
     <section ref={root} id="contact" className="relative pt-16 md:pt-24">
       <div className="px-3 md:px-6">
-        <div className="cta-panel relative mx-auto max-w-[1600px] overflow-hidden border border-line bg-[#0b0b0b] px-5 pb-10 pt-20 md:px-14 md:pb-14 md:pt-32" style={{ borderRadius: 36 }}>
-          <div className="pointer-events-none absolute -right-40 -top-40 h-[620px] w-[620px] rounded-full bg-lime/15 blur-[140px]" />
-          <div className="pointer-events-none absolute inset-0 opacity-[0.07] [background-image:linear-gradient(rgba(242,242,242,1)_1px,transparent_1px),linear-gradient(90deg,rgba(242,242,242,1)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:radial-gradient(ellipse_at_70%_20%,#000,transparent_70%)]" />
+        <div className="cta-panel relative mx-auto max-w-[1600px] overflow-hidden border border-line bg-card px-5 pb-10 pt-20 md:px-14 md:pb-14 md:pt-32" style={{ borderRadius: 36 }}>
+          <div className="pointer-events-none absolute -right-40 -top-40 h-[620px] w-[620px] rounded-full bg-lime/10 blur-[140px]" />
+          <div className="pointer-events-none absolute inset-0 opacity-[0.07] [background-image:linear-gradient(rgba(31,28,24,1)_1px,transparent_1px),linear-gradient(90deg,rgba(31,28,24,1)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:radial-gradient(ellipse_at_70%_20%,#000,transparent_70%)]" />
           <div className="relative">
             <div className="label mb-6 flex items-center gap-3 text-muted"><span className="text-lime">09</span><span className="h-px w-8 bg-line" />Let&apos;s talk</div>
             <SplitReveal lines={["Got a story", { text: "worth telling?", className: "text-lime" }]} className="h-display text-[clamp(3.2rem,11vw,11rem)]" />
@@ -39,10 +39,10 @@ export default function Contact({ settings }: { settings: Settings }) {
                 </div>
               </div>
               <Magnetic strength={0.4} className="self-start md:self-auto">
-                <a href={`mailto:${settings.email}?subject=${encodeURIComponent("New project — let's talk")}`} className="relative grid h-44 w-44 place-items-center rounded-full bg-lime text-bg shadow-[0_0_120px_-10px_rgba(200,255,46,0.7)] md:h-56 md:w-56">
+                <a href={`mailto:${settings.email}?subject=${encodeURIComponent("New project — let's talk")}`} className="relative grid h-44 w-44 place-items-center rounded-full bg-lime text-bg shadow-[0_30px_60px_-24px_rgba(60,70,30,0.6)] md:h-56 md:w-56">
                   <svg className="cta-spin absolute inset-2" viewBox="0 0 200 200" aria-hidden>
                     <defs><path id="cta-c" d="M100,100 m-84,0 a84,84 0 1,1 168,0 a84,84 0 1,1 -168,0" /></defs>
-                    <text fill="#070707" fontSize="13" fontWeight="600" fontFamily="var(--font-mono)"><textPath href="#cta-c" textLength="524" lengthAdjust="spacing">START A PROJECT · WORK WITH ME · </textPath></text>
+                    <text fill="#efe8dc" fontSize="13" fontWeight="600" fontFamily="var(--font-mono)"><textPath href="#cta-c" textLength="524" lengthAdjust="spacing">START A PROJECT · WORK WITH ME · </textPath></text>
                   </svg>
                   <span className="text-4xl" aria-hidden>↗</span>
                   <span className="sr-only">Start a project</span>

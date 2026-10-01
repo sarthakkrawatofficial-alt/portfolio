@@ -23,11 +23,11 @@ export default function About({ settings, journey }: { settings: Settings; journ
           <div className="about-photo relative aspect-[4/5] overflow-hidden rounded-[28px] border border-line">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={asset("/img/photo.webp")} alt={settings.name} className="about-img absolute inset-0 h-full w-full object-cover object-[50%_30%]" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
             <div className="absolute inset-x-5 bottom-5 flex items-end justify-between">
               <div>
-                <div className="text-2xl font-bold tracking-tight">{settings.name}</div>
-                <div className="label mt-1 text-lime">{settings.location}</div>
+                <div className="text-2xl font-bold tracking-tight text-white">{settings.name}</div>
+                <div className="label mt-1 text-accentsoft">{settings.location}</div>
               </div>
               <span className="label rounded-full bg-lime px-3 py-1.5 text-[10px] font-bold text-bg">Self-taught</span>
             </div>
@@ -42,7 +42,7 @@ export default function About({ settings, journey }: { settings: Settings; journ
           </Reveal>
           <Reveal as="ul" className="mt-12 border-t border-line" y={24}>
             {journey.map((j, i) => (
-              <li key={i} className="group grid grid-cols-12 items-baseline gap-3 border-b border-line py-5 transition-colors hover:bg-white/[0.02]">
+              <li key={i} className="group grid grid-cols-12 items-baseline gap-3 border-b border-line py-5 transition-colors hover:bg-fg/[0.02]">
                 <span className="label col-span-12 text-muted md:col-span-3">{j.period}</span>
                 <div className="col-span-12 md:col-span-6">
                   <div className="flex items-center gap-2 text-xl font-bold tracking-tight">
