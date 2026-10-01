@@ -8,7 +8,7 @@ import { useVideoModal } from "../VideoModal";
 import VideoThumb from "../VideoThumb";
 import type { Project, Settings } from "@/content/site";
 
-const LensScene = dynamic(() => import("../three/LensScene"), { ssr: false });
+const MotionScene = dynamic(() => import("../three/MotionScene"), { ssr: false });
 
 export default function Hero({ settings, projects }: { settings: Settings; projects: Project[] }) {
   const root = useRef<HTMLElement>(null);
@@ -49,13 +49,13 @@ export default function Hero({ settings, projects }: { settings: Settings; proje
     <section ref={root} id="top" className="relative overflow-hidden">
       <div className="relative min-h-[92svh]">
         <div className="hero-canvas absolute inset-0">
-          {mobile !== null && <LensScene mobile={mobile} eventSource={root} />}
+          {mobile !== null && <MotionScene mobile={mobile} eventSource={root} />}
         </div>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-bg via-bg/60 to-transparent md:h-48 md:via-transparent" />
 
         <div className="wrap pointer-events-none relative z-10 flex min-h-[92svh] flex-col justify-end pb-8 pt-28 md:pb-10">
           <div className="hero-fade label mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-muted">
-            <span className="flex items-center gap-2 rounded-full border border-line bg-black/40 px-3 py-1.5 text-fg backdrop-blur">
+            <span className="flex items-center gap-2 rounded-full border border-line bg-[#0d0d0d] px-3 py-1.5 text-fg">
               <span className="h-1.5 w-1.5 rounded-full bg-lime" />
               {settings.name}
             </span>
@@ -87,7 +87,7 @@ export default function Hero({ settings, projects }: { settings: Settings; proje
                 </a>
               </Magnetic>
               <Magnetic>
-                <a href="#contact" className="inline-flex h-14 items-center gap-2 rounded-full border border-line bg-white/[0.04] px-6 font-semibold backdrop-blur-md hover:border-fg/40">
+                <a href="#contact" className="inline-flex h-14 items-center gap-2 rounded-full border border-line bg-[#111] px-6 font-semibold hover:border-fg/40">
                   Work With Me <span aria-hidden>↗</span>
                 </a>
               </Magnetic>
@@ -111,7 +111,7 @@ export default function Hero({ settings, projects }: { settings: Settings; proje
             >
               <VideoThumb id={p.youtubeId} title={p.title} />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
-              <div className="pointer-events-none absolute left-3 top-3 label rounded-full bg-black/55 px-2.5 py-1 text-[10px] text-fg/80 backdrop-blur">
+              <div className="pointer-events-none absolute left-3 top-3 label rounded-full bg-black/70 px-2.5 py-1 text-[10px] text-fg/80">
                 {p.orientation === "portrait" ? "9:16" : "16:9"}
               </div>
               <div className="pointer-events-none absolute inset-x-3 bottom-3 text-left">

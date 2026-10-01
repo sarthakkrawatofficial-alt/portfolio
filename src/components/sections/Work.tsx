@@ -64,7 +64,7 @@ export default function Work({ projects }: { projects: Project[] }) {
                 <button type="button" data-cursor="play" onClick={() => open({ id: p.youtubeId, title: p.title, orientation: p.orientation })} className="relative block w-full overflow-hidden rounded-[22px] border border-line bg-card text-left transition-[border-color,box-shadow] duration-500 group-hover:border-lime/60 group-hover:shadow-[0_30px_80px_-30px_rgba(200,255,46,0.45)]" style={{ paddingBottom: `${100 / ar}%` }} aria-label={`Play ${p.title}`}>
                   <VideoThumb id={p.youtubeId} title={p.title} />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
-                  <span className="label pointer-events-none absolute left-4 top-4 rounded-full bg-black/55 px-2.5 py-1 text-[10px] text-fg/85 backdrop-blur">{p.category}</span>
+                  <span className="label pointer-events-none absolute left-4 top-4 rounded-full bg-black/70 px-2.5 py-1 text-[10px] text-fg/85">{p.category}</span>
                   <span className="label pointer-events-none absolute right-4 top-4 text-[10px] text-fg/60">{String(idx).padStart(2, "0")}</span>
                   {p.orientation === "landscape" && <p className="pointer-events-none absolute inset-x-4 bottom-4 max-w-md translate-y-3 text-sm leading-snug text-fg/85 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">{p.description}</p>}
                 </button>
