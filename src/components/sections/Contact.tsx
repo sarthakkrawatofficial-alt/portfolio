@@ -42,7 +42,7 @@ export default function Contact({ settings }: { settings: Settings }) {
                 <a href={`mailto:${settings.email}?subject=${encodeURIComponent("New project — let's talk")}`} className="relative grid h-44 w-44 place-items-center rounded-full bg-lime text-bg shadow-[0_30px_60px_-24px_rgba(60,70,30,0.6)] md:h-56 md:w-56">
                   <svg className="cta-spin absolute inset-2" viewBox="0 0 200 200" aria-hidden>
                     <defs><path id="cta-c" d="M100,100 m-84,0 a84,84 0 1,1 168,0 a84,84 0 1,1 -168,0" /></defs>
-                    <text fill="#efe8dc" fontSize="13" fontWeight="600" fontFamily="var(--font-mono)"><textPath href="#cta-c" textLength="524" lengthAdjust="spacing">START A PROJECT · WORK WITH ME · </textPath></text>
+                    <text fill="var(--color-bg)" style={{ fill: "var(--color-bg)" }} fontSize="13" fontWeight="600" fontFamily="var(--font-mono)"><textPath href="#cta-c" textLength="524" lengthAdjust="spacing">START A PROJECT · WORK WITH ME · </textPath></text>
                   </svg>
                   <span className="text-4xl" aria-hidden>↗</span>
                   <span className="sr-only">Start a project</span>

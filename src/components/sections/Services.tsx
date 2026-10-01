@@ -26,13 +26,13 @@ function Icon3D({ shape }: { shape: keyof typeof SHAPES }) {
                 {front && (
                   <defs>
                     <linearGradient id={`g-${shape}`} x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0" stopColor="#b9c47e" />
-                      <stop offset="0.45" stopColor="#7d8a45" />
-                      <stop offset="1" stopColor="#4f5a26" />
+                      <stop offset="0" style={{ stopColor: "color-mix(in srgb, var(--color-lime) 55%, white)" }} />
+                      <stop offset="0.45" style={{ stopColor: "color-mix(in srgb, var(--color-lime) 85%, white)" }} />
+                      <stop offset="1" style={{ stopColor: "color-mix(in srgb, var(--color-lime) 80%, black)" }} />
                     </linearGradient>
                   </defs>
                 )}
-                <path d={SHAPES[shape]} fillRule="evenodd" fill={front ? `url(#g-${shape})` : `rgb(${46 + i * 4}, ${50 + i * 5}, ${24 + i * 2})`} />
+                <path d={SHAPES[shape]} fillRule="evenodd" fill={front ? `url(#g-${shape})` : undefined} style={front ? undefined : { fill: `color-mix(in srgb, var(--color-lime) ${40 + i * 5}%, black)` }} />
               </svg>
             </div>
           );
@@ -97,7 +97,7 @@ function Bars() {
         ))}
       </div>
       <svg className="absolute inset-x-3 bottom-3 top-9 h-[calc(100%-48px)] w-[calc(100%-24px)]" viewBox="0 0 100 50" preserveAspectRatio="none" aria-hidden>
-        <path d="M0 45 C 30 44, 45 40, 60 22 S 85 4, 100 3" fill="none" stroke="#5B6630" strokeWidth="1.2" strokeDasharray="160" strokeDashoffset="160" style={{ animation: "dash 3s ease-out infinite alternate" }} vectorEffect="non-scaling-stroke" />
+        <path d="M0 45 C 30 44, 45 40, 60 22 S 85 4, 100 3" fill="none" stroke="currentColor" className="text-lime" strokeWidth="1.2" strokeDasharray="160" strokeDashoffset="160" style={{ animation: "dash 3s ease-out infinite alternate" }} vectorEffect="non-scaling-stroke" />
       </svg>
     </div>
   );
@@ -150,9 +150,9 @@ function StoryArc() {
   return (
     <div className="flex h-full flex-col justify-between rounded-2xl border border-line bg-paper p-3">
       <svg viewBox="0 0 200 60" className="h-16 w-full" aria-hidden>
-        <path d="M5 52 C 50 50, 60 40, 90 30 S 140 2, 160 8 S 185 40, 195 46" fill="none" stroke="rgba(31,28,24,0.15)" strokeWidth="1.5" />
-        <path d="M5 52 C 50 50, 60 40, 90 30 S 140 2, 160 8 S 185 40, 195 46" fill="none" stroke="#5B6630" strokeWidth="2" strokeDasharray="260" strokeDashoffset="260" style={{ animation: "dash 3.5s ease-in-out infinite alternate" }} />
-        <circle cx="160" cy="8" r="3.5" fill="#5B6630" />
+        <path d="M5 52 C 50 50, 60 40, 90 30 S 140 2, 160 8 S 185 40, 195 46" fill="none" stroke="currentColor" className="text-fg/15" strokeWidth="1.5" />
+        <path d="M5 52 C 50 50, 60 40, 90 30 S 140 2, 160 8 S 185 40, 195 46" fill="none" stroke="currentColor" className="text-lime" strokeWidth="2" strokeDasharray="260" strokeDashoffset="260" style={{ animation: "dash 3.5s ease-in-out infinite alternate" }} />
+        <circle cx="160" cy="8" r="3.5" fill="currentColor" className="text-lime" />
       </svg>
       <div className="mt-2 grid grid-cols-3 gap-1.5">
         {["ACT I · hook", "ACT II · tension", "ACT III · payoff"].map((a, i) => (
@@ -176,7 +176,7 @@ function Flow() {
             <span className={`label shrink-0 rounded-full border px-2.5 py-1.5 text-[9px] md:px-3 md:text-[10px] ${i === 3 ? "border-lime bg-lime text-bg" : "border-line text-fg/70"}`}>{n}</span>
             {i < nodes.length - 1 && (
               <svg className="mx-1 h-2 flex-1" viewBox="0 0 40 2" preserveAspectRatio="none" aria-hidden>
-                <line x1="0" y1="1" x2="40" y2="1" stroke="#5B6630" strokeOpacity="0.6" strokeWidth="2" strokeDasharray="3 3" style={{ animation: "dash 1s linear infinite", strokeDashoffset: 6 }} />
+                <line x1="0" y1="1" x2="40" y2="1" stroke="currentColor" className="text-lime" strokeOpacity="0.6" strokeWidth="2" strokeDasharray="3 3" style={{ animation: "dash 1s linear infinite", strokeDashoffset: 6 }} />
               </svg>
             )}
           </div>

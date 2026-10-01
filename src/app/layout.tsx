@@ -22,7 +22,14 @@ export const viewport: Viewport = { themeColor: "#efe8dc", width: "device-width"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=new URLSearchParams(location.search).get("theme");if(t&&/^(charcoal|cobalt|violet|beige)$/.test(t)){document.documentElement.dataset.theme=t}}catch(e){}`,
+          }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
