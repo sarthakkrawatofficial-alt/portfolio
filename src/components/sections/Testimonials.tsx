@@ -14,7 +14,7 @@ function Quote({ t, big = false }: { t: Testimonial; big?: boolean }) {
       <figcaption className="mt-6 flex items-center gap-3">
         {t.avatar ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={asset(t.avatar)} alt="" className={`h-11 w-11 rounded-full border border-line ${t.isLogo ? "bg-white/90 object-contain p-1.5" : "object-cover grayscale"}`} loading="lazy" />
+          <img src={asset(t.avatar)} alt="" className={`h-11 w-11 rounded-full border border-line ${t.isLogo ? "bg-white/90 object-contain p-1.5" : "object-cover"}`} loading="lazy" />
         ) : (
           <span className="grid h-11 w-11 place-items-center rounded-full bg-lime font-bold text-bg">{t.name[0]}</span>
         )}
@@ -29,14 +29,12 @@ function Quote({ t, big = false }: { t: Testimonial; big?: boolean }) {
 
 export default function Testimonials({ items }: { items: Testimonial[] }) {
   if (!items.length) return null;
-  const [first, ...rest] = items;
   return (
     <section id="testimonials" className="relative py-24 md:py-36">
       <div className="wrap">
         <SectionHead index="07" label="Kind words" lines={["People I've", { text: "cut for.", className: "text-lime" }]} aside={<p>From newsrooms under deadline to healthcare brands and universities — in their words.</p>} />
         <Reveal className="mt-12 columns-1 gap-4 md:mt-16 md:columns-2 md:gap-5 lg:columns-3">
-          <Quote t={first} big />
-          {rest.map((t) => <Quote key={t.name} t={t} />)}
+          {items.map((t) => <Quote key={t.name} t={t} />)}
         </Reveal>
       </div>
     </section>

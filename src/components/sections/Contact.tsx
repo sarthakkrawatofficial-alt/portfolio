@@ -17,7 +17,6 @@ export default function Contact({ settings }: { settings: Settings }) {
     return () => ctx.revert();
   }, []);
   const year = new Date().getFullYear();
-  const wa = settings.phoneHref.replace("tel:", "").replace(/\D/g, "");
   return (
     <section ref={root} id="contact" className="relative pt-16 md:pt-24">
       <div className="px-3 md:px-6">
@@ -35,7 +34,6 @@ export default function Contact({ settings }: { settings: Settings }) {
                   <span className="text-lime transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
                 </a>
                 <div className="mt-6 flex flex-wrap gap-2">
-                  <a href={`https://wa.me/${wa}`} target="_blank" rel="noopener noreferrer" className="rounded-full border border-line px-4 py-2.5 text-sm hover:border-lime hover:text-lime">WhatsApp</a>
                   <a href={settings.phoneHref} className="rounded-full border border-line px-4 py-2.5 text-sm hover:border-lime hover:text-lime">{settings.phone}</a>
                   <a href={settings.instagram} target="_blank" rel="noopener noreferrer" className="rounded-full border border-line px-4 py-2.5 text-sm hover:border-lime hover:text-lime">Instagram {settings.instagramHandle}</a>
                 </div>

@@ -27,7 +27,14 @@ body {
   background: var(--color-bg);
   font-family: var(--font-sans);
   overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 0.002em;
+  font-feature-settings: "ss01", "cv11";
+  text-rendering: optimizeLegibility;
 }
+p { text-wrap: pretty; }
+h1, h2, h3 { text-wrap: balance; }
 
 ::selection { background: var(--color-lime); color: #070707; }
 
@@ -38,20 +45,21 @@ body {
 /* ---------- primitives ---------- */
 .label {
   font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
+  font-size: 11.5px;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .h-display {
-  font-weight: 800;
-  letter-spacing: -0.055em;
-  line-height: 0.86;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
 }
 .h-section {
-  font-weight: 800;
-  letter-spacing: -0.045em;
-  line-height: 0.92;
-  font-size: clamp(2.6rem, 7vw, 6.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  font-size: clamp(2.5rem, 6.2vw, 5.75rem);
 }
 .wrap { width: 100%; max-width: 1440px; margin-inline: auto; padding-inline: 16px; }
 @media (min-width: 768px) { .wrap { padding-inline: 40px; } }

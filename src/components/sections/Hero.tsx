@@ -75,7 +75,7 @@ export default function Hero({ settings, projects }: { settings: Settings; proje
 
           <div className="mt-8 flex flex-col gap-8 md:mt-10 md:flex-row md:items-end md:justify-between">
             <p className="hero-fade max-w-md text-[17px] leading-relaxed text-fg/70 md:text-lg">
-              Self-taught editor and motion designer, currently at {settings.currentCompany}. {settings.yearsExperience} years turning SaaS products, podcasts, tours and real moments into videos people finish — and remember.
+              Self-taught motion designer and video editor, currently at {settings.currentCompany}. {settings.yearsExperience} years of SaaS explainers, product launches, podcasts and short-form content — built around a clear story and purposeful motion.
             </p>
             <div className="hero-fade pointer-events-auto flex flex-wrap gap-3">
               <Magnetic>

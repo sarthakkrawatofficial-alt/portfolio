@@ -64,7 +64,7 @@ export const fallbackContent: SiteContent = {
     name: "Sarthak Rawat",
     role: "Video Editor & Motion Designer",
     location: "Noida, India",
-    email: "sarthakrawat23609@gmail.com",
+    email: "sarthakkrawat.official@gmail.com",
     phone: "+91 95987 23609",
     phoneHref: "tel:+919598723609",
     instagram: "https://instagram.com/sarthakk.create",
@@ -292,7 +292,7 @@ export const fallbackContent: SiteContent = {
     {
       question: "Do you work remotely?",
       answer:
-        "I'm based in Noida, India and work with clients remotely. Files move through shared links, and we stay in sync over email or WhatsApp.",
+        "I'm based in Noida, India and work with clients remotely. Files move through shared links, and we stay in sync over email or calls.",
     },
   ],
   tools: [
@@ -308,9 +308,9 @@ export const fallbackContent: SiteContent = {
   journey: [
     {
       period: "Aug 2026 — Present",
-      role: "Video Editor & Motion Designer",
+      role: "Motion Designer",
       company: "TestMu AI",
-      note: "The current chapter — joined 10 August 2026.",
+      note: "Conceptualising AI-focused content and producing product, explainer and social videos end to end — from script and storyboard to motion and final edit.",
       current: true,
     },
     {

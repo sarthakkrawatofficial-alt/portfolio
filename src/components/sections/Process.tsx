@@ -50,7 +50,7 @@ export default function Process() {
           {/* AFTER (full) */}
           <div className="absolute inset-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={asset("/img/photo.webp")} alt="" draggable={false} className="absolute inset-0 h-full w-full scale-[1.12] object-cover object-[50%_30%] [filter:grayscale(1)_contrast(1.35)_brightness(1.05)]" />
+            <img src={asset("/img/photo.webp")} alt="" draggable={false} className="absolute inset-0 h-full w-full scale-[1.08] object-cover object-[50%_30%] [filter:contrast(1.06)_saturate(0.92)_brightness(1.02)]" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_40%,transparent_30%,rgba(0,0,0,0.65)_100%)]" />
             <div className="absolute inset-x-0 top-0 h-[7%] bg-black" />
             <div className="absolute inset-x-0 bottom-0 h-[7%] bg-black" />
@@ -68,7 +68,7 @@ export default function Process() {
           {/* BEFORE (clipped) */}
           <div className="absolute inset-0" style={{ clipPath: "inset(0 calc(100% - var(--split)) 0 0)" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={asset("/img/photo.webp")} alt="" draggable={false} className="absolute inset-0 h-full w-full object-cover object-[50%_30%] [filter:saturate(0.15)_contrast(0.55)_brightness(1.35)_blur(0.4px)]" />
+            <img src={asset("/img/photo.webp")} alt="" draggable={false} className="absolute inset-0 h-full w-full object-cover object-[50%_30%] [filter:saturate(0.35)_contrast(0.62)_brightness(1.25)]" />
             {/* raw overlays: thirds grid, timecode, scopes */}
             <div className="absolute inset-0 grid grid-cols-3 grid-rows-3">
               {Array.from({ length: 9 }).map((_, i) => <span key={i} className="border border-white/10" />)}
@@ -94,7 +94,7 @@ export default function Process() {
           {STEPS.map((s) => (
             <div key={s.n} className="step-card card relative p-6 md:mt-8 md:p-8">
               <div className="flex items-center justify-between">
-                <span className="text-6xl font-extrabold tracking-[-0.06em] text-lime md:text-7xl">{s.n}</span>
+                <span className="text-6xl font-extrabold tracking-[-0.035em] text-lime md:text-7xl">{s.n}</span>
                 <span className="label text-muted">Step</span>
               </div>
               <h3 className="mt-8 text-2xl font-bold tracking-tight">{s.t}</h3>
