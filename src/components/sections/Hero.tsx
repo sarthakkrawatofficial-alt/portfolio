@@ -8,7 +8,7 @@ import { useVideoModal } from "../VideoModal";
 import VideoThumb from "../VideoThumb";
 import type { Project, Settings } from "@/content/site";
 
-const MotionScene = dynamic(() => import("../three/MotionScene"), { ssr: false });
+const CharacterScene = dynamic(() => import("../three/CharacterScene"), { ssr: false });
 
 export default function Hero({ settings, projects }: { settings: Settings; projects: Project[] }) {
   const root = useRef<HTMLElement>(null);
@@ -49,7 +49,7 @@ export default function Hero({ settings, projects }: { settings: Settings; proje
     <section ref={root} id="top" className="relative overflow-hidden">
       <div className="relative min-h-[92svh]">
         <div className="hero-canvas absolute inset-0">
-          {mobile !== null && <MotionScene mobile={mobile} eventSource={root} />}
+          {mobile !== null && <CharacterScene mobile={mobile} eventSource={root} />}
         </div>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-bg via-bg/60 to-transparent md:h-48 md:via-transparent" />
 

@@ -50,8 +50,8 @@ export default function Cursor() {
           style={{
             width: size,
             height: size,
-            background: mode === "play" ? "#5B6630" : mode === "drag" ? "rgba(31,28,24,0.55)" : mode === "link" ? "rgba(91,102,48,0.08)" : "transparent",
-            border: `1px solid ${mode === "default" ? "rgba(31,28,24,0.35)" : "#5B6630"}`,
+            background: mode === "play" ? "var(--color-lime)" : mode === "drag" ? "rgba(31,28,24,0.55)" : mode === "link" ? "color-mix(in srgb, var(--color-lime) 10%, transparent)" : "transparent",
+            border: `1px solid ${mode === "default" ? "color-mix(in srgb, var(--color-fg) 35%, transparent)" : "var(--color-lime)"}`,
             mixBlendMode: mode === "play" ? "normal" : "normal",
           }}
         >
