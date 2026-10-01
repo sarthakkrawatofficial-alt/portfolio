@@ -210,7 +210,10 @@ function Card({ className = "", shape, title, body, tag, children, fixed = false
     ref.current!.style.transform = "";
   };
   return (
-    <div ref={ref} onPointerMove={move} onPointerLeave={leave} className={`card group relative flex min-h-[380px] flex-col overflow-hidden p-6 transition-transform duration-300 ease-out md:p-7 [&:hover_.icon3d]:[animation-play-state:paused] ${className}`}>
+    // Outer div is animated by the scroll reveal; the inner card only gets the hover tilt,
+    // so the two transforms never fight over the same element.
+    <div className={`flex ${className}`}>
+    <div ref={ref} onPointerMove={move} onPointerLeave={leave} className="card group relative flex min-h-[380px] w-full flex-col overflow-hidden p-6 transition-transform duration-300 ease-out md:p-7 [&:hover_.icon3d]:[animation-play-state:paused]">
       <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: "radial-gradient(500px circle at var(--mx,50%) var(--my,50%), rgba(200,255,46,0.08), transparent 45%)" }} />
       <div className="relative flex items-start justify-between">
         <Icon3D shape={shape} />
@@ -219,6 +222,7 @@ function Card({ className = "", shape, title, body, tag, children, fixed = false
       <h3 className="relative mt-6 text-2xl font-bold tracking-tight md:text-[28px]">{title}</h3>
       <p className="relative mb-6 mt-2 max-w-md text-[15px] leading-relaxed text-fg/60 md:min-h-[3.3em]">{body}</p>
       <div className={`relative mt-auto flex flex-col ${fixed ? "h-[210px]" : ""}`}>{children}</div>
+    </div>
     </div>
   );
 }

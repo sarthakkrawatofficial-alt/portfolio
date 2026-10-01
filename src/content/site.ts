@@ -323,9 +323,9 @@ export const fallbackContent: SiteContent = {
     {
       period: "Jan 2023 — Jun 2025",
       place: "Prayagraj",
-      role: "Creative Junior → Creative Lead",
+      role: "Creative Lead",
       company: "Digilok Media House",
-      note: "Joined as Creative Junior handling shoots, edits and fast turnarounds, then promoted to Creative Lead — shaping ideas, pacing and delivery across multiple accounts and guiding the team.",
+      note: "Started as a Creative Junior on shoots, edits and fast-turnaround content, and was promoted to Creative Lead in Oct 2024 — owning ideas, pacing and delivery across client accounts and guiding the team.",
     },
   ],
 };
