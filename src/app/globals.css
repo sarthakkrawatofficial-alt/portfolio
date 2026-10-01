@@ -1,28 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* warm light palette — "lime" is the accent token (muted olive) */
-  --color-bg: #efe8dc;
-  --color-fg: #1f1c18;
-  --color-lime: #5b6630;
-  --color-accentsoft: #d9ddb2;
-  --color-muted: #7a7064;
-  --color-line: rgba(31, 28, 24, 0.12);
-  --color-card: #f7f2e9;
-  --color-card2: #e9e1d3;
-  --color-paper: #fbf8f2;
-  --font-sans: "Inter Tight Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-
-/* ---------- theme presets (html[data-theme]); default = beige ---------- */
-:root {
-  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 24px 48px -36px rgba(70, 52, 30, 0.35);
-  --grain-blend: multiply;
-}
-html[data-theme="charcoal"] {
+  /* default palette: charcoal + warm sand — "lime" is the accent token */
   --color-bg: #121212;
   --color-fg: #eeeae3;
   --color-lime: #e6d8bd;
@@ -32,14 +11,29 @@ html[data-theme="charcoal"] {
   --color-card: #1a1a1a;
   --color-card2: #262626;
   --color-paper: #1f1f1f;
+  --font-sans: "Inter Tight Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* ---------- theme presets (html[data-theme]); default = charcoal ---------- */
+:root {
   --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 30px 60px -40px rgba(0, 0, 0, 0.8);
   --grain-blend: overlay;
-  --char-fur: #2a2a2d;
-  --char-shirt: #141414;
-  --char-logo: #eeeae3;
-  --char-shorts: #ece7dd;
-  --char-phones: #f4f1ea;
-  --char-sole: #e6d8bd;
+}
+html[data-theme="beige"] {
+  --color-bg: #efe8dc;
+  --color-fg: #1f1c18;
+  --color-lime: #5b6630;
+  --color-accentsoft: #d9ddb2;
+  --color-muted: #7a7064;
+  --color-line: rgba(31, 28, 24, 0.12);
+  --color-card: #f7f2e9;
+  --color-card2: #e9e1d3;
+  --color-paper: #fbf8f2;
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 24px 48px -36px rgba(70, 52, 30, 0.35);
+  --grain-blend: multiply;
 }
 html[data-theme="cobalt"] {
   --color-bg: #f3efe7;
@@ -51,12 +45,8 @@ html[data-theme="cobalt"] {
   --color-card: #faf8f3;
   --color-card2: #e8e3d8;
   --color-paper: #fdfcf9;
-  --char-fur: #f7f3ec;
-  --char-shirt: #2b45d9;
-  --char-logo: #f7f3ec;
-  --char-shorts: #141414;
-  --char-phones: #141414;
-  --char-sole: #2b45d9;
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 24px 48px -36px rgba(40, 40, 60, 0.3);
+  --grain-blend: multiply;
 }
 html[data-theme="violet"] {
   --color-bg: #ecebf0;
@@ -68,12 +58,8 @@ html[data-theme="violet"] {
   --color-card: #f6f5f9;
   --color-card2: #dfdde7;
   --color-paper: #fbfbfd;
-  --char-fur: #17161c;
-  --char-shirt: #5a49d6;
-  --char-logo: #ecebf0;
-  --char-shorts: #f6f5f9;
-  --char-phones: #fbfbfd;
-  --char-sole: #5a49d6;
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 24px 48px -36px rgba(40, 30, 80, 0.3);
+  --grain-blend: multiply;
 }
 
 html {

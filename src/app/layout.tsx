@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   icons: { icon: asset("/icon.svg") },
 };
 
-export const viewport: Viewport = { themeColor: "#efe8dc", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#121212", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=new URLSearchParams(location.search).get("theme");if(t&&/^(charcoal|cobalt|violet|beige)$/.test(t)){document.documentElement.dataset.theme=t}}catch(e){}`,
+            __html: `try{var t=new URLSearchParams(location.search).get("theme");if(t&&/^(cobalt|violet|beige)$/.test(t)){document.documentElement.dataset.theme=t}}catch(e){}`,
           }}
         />
       </head>
