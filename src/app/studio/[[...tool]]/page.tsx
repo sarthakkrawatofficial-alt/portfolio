@@ -2,6 +2,7 @@ import { isSanityConfigured } from "@/sanity/env";
 import Studio from "./Studio";
 
 export const dynamic = "force-static";
+export const generateStaticParams = () => [{ tool: [] as string[] }];
 export { metadata, viewport } from "next-sanity/studio";
 
 export default function StudioPage() {

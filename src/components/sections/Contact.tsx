@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+import { asset } from "@/lib/asset";
 import { gsap } from "@/lib/gsap";
 import { useIsoLayoutEffect } from "@/lib/useIsoLayout";
 import type { Settings } from "@/content/site";
@@ -61,7 +62,7 @@ export default function Contact({ settings }: { settings: Settings }) {
             <a href="#work" className="hover:text-lime">Work</a>
             <a href="#services" className="hover:text-lime">Services</a>
             <a href="#process" className="hover:text-lime">Process</a>
-            <a href="/resources.html" data-transition className="hover:text-lime">Resources</a>
+            <a href={asset("/resources.html")} data-transition className="hover:text-lime">Resources</a>
             <a href={settings.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-lime">Instagram</a>
             <a href="#top" className="hover:text-lime">Back to top ↑</a>
           </nav>

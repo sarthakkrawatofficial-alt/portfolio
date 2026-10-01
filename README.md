@@ -28,7 +28,15 @@ To edit everything from the CMS:
 
 Any collection left empty in Sanity falls back to the built-in content.
 
-## Deploy (Vercel free tier)
+## Deploy — GitHub Pages (auto, on every push to `main`)
+`.github/workflows/deploy-pages.yml` builds a static export and publishes it to
+`https://sarthakkrawatofficial-alt.github.io/portfolio/`.
+One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+If you connect Sanity, add `NEXT_PUBLIC_SANITY_PROJECT_ID` (and optionally `NEXT_PUBLIC_SANITY_DATASET`)
+under **Settings → Secrets and variables → Actions → Variables**; content changes need a rebuild
+(re-run the workflow, or point a Sanity webhook at `repository_dispatch` with type `sanity-content-updated`).
+
+## Deploy — Vercel (alternative)
 Import the repo in Vercel (framework preset: Next.js), add the `NEXT_PUBLIC_SANITY_*` env vars, deploy.
 Pages revalidate every 60 seconds, so CMS edits go live without redeploying.
 

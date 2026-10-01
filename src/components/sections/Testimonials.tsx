@@ -1,4 +1,5 @@
 import type { Testimonial } from "@/content/site";
+import { asset } from "@/lib/asset";
 import SectionHead from "./SectionHead";
 import Reveal from "../motion/Reveal";
 
@@ -13,7 +14,7 @@ function Quote({ t, big = false }: { t: Testimonial; big?: boolean }) {
       <figcaption className="mt-6 flex items-center gap-3">
         {t.avatar ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={t.avatar} alt="" className={`h-11 w-11 rounded-full border border-line ${t.isLogo ? "bg-white/90 object-contain p-1.5" : "object-cover grayscale"}`} loading="lazy" />
+          <img src={asset(t.avatar)} alt="" className={`h-11 w-11 rounded-full border border-line ${t.isLogo ? "bg-white/90 object-contain p-1.5" : "object-cover grayscale"}`} loading="lazy" />
         ) : (
           <span className="grid h-11 w-11 place-items-center rounded-full bg-lime font-bold text-bg">{t.name[0]}</span>
         )}

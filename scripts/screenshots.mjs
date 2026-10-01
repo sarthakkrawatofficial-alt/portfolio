@@ -19,7 +19,7 @@ for (const [name, vp, mobile] of [["desktop", { width: 1440, height: 900 }, fals
     if (route.request().resourceType() === "image") return route.fulfill({ contentType: "image/svg+xml", body: svg });
     return route.fulfill({ contentType: "text/html", body: "<body style='background:#111'></body>" });
   });
-  await page.goto("http://localhost:3100/", { waitUntil: "networkidle" });
+  await page.goto(process.env.URL || "http://localhost:3100/", { waitUntil: "networkidle" });
   await page.waitForTimeout(5000);
   for (const s of sections) {
     await page.evaluate((id) => {
