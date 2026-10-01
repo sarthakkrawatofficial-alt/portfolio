@@ -5,7 +5,7 @@ Built with **Next.js 16 (App Router) + Tailwind CSS v4 + Sanity CMS**, with
 **React Three Fiber / drei / postprocessing** for 3D and **GSAP ScrollTrigger + Lenis** for motion.
 
 ## Sections
-Hero (3D glass camera lens + video thumbnail marquee) → stats & clients → Showreel →
+Hero (3D exploded motion-graphics composition — comp layers, motion path, keyframes — + video thumbnail marquee) → stats & clients → Showreel →
 Selected Work (filterable) → What I Do (bento with animated mini-visuals and CSS-3D icons) →
 Process (scroll/drag before–after) → Toolkit marquee → About & journey → Testimonials → FAQ → CTA + footer.
 
