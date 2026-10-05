@@ -1,48 +1,23 @@
-# Sarthak Rawat — Portfolio v2
+# Bhavy Nigam — Portfolio
 
-Personal portfolio of Sarthak Rawat, a video editor and motion designer.
-Built with **Next.js 16 (App Router) + Tailwind CSS v4 + Sanity CMS**, with
-**React Three Fiber / drei / postprocessing** for 3D and **GSAP ScrollTrigger + Lenis** for motion.
+A fast, static portfolio site (plain HTML, CSS and JS: no build step, no dependencies).
 
-## Sections
-Hero (3D exploded motion-graphics composition — comp layers, motion path, keyframes — + video thumbnail marquee) → stats & clients → Showreel →
-Selected Work (filterable) → What I Do (bento with animated mini-visuals and CSS-3D icons) →
-Process (scroll/drag before–after) → Toolkit marquee → About & journey → Testimonials → FAQ → CTA + footer.
+## Add your YouTube videos
+Open `js/content.js` and paste links into the `VIDEOS` list:
 
-## Develop
-```bash
-npm install
-npm run dev        # http://localhost:3000  — Studio at /studio
-npm run build && npm start
+```js
+{ title: "Showreel 2026", category: "Showreel", url: "https://youtu.be/XXXXXXXXXXX", featured: true },
 ```
 
-## Content
-All content lives in `src/content/site.ts` and is used automatically until Sanity is connected.
-To edit everything from the CMS:
+- Any YouTube link (or the bare 11-character ID) works, including Shorts.
+- Add `vertical: true` for 9:16 reels, `featured: true` for a full-width card.
+- Add or remove lines freely. Empty `url` shows a "coming soon" card.
+- Contact details and the "available" badge are at the top of the same file.
+- Photos: put images in an `images/` folder and list them in `PHOTOS`. The section appears automatically.
 
-1. Create a free project at https://www.sanity.io/manage and copy the Project ID.
-2. Copy `.env.example` to `.env.local` and fill in `NEXT_PUBLIC_SANITY_PROJECT_ID`.
-3. In sanity.io/manage → API → CORS origins, add `http://localhost:3000` and your Vercel URL (allow credentials).
-4. Optional: create an Editor token, set `SANITY_WRITE_TOKEN`, and run `npm run seed` to import all current content.
-5. Open `/studio`.
+## Preview locally
+Open `index.html` in a browser, or run `python3 -m http.server` and visit http://localhost:8000.
 
-Any collection left empty in Sanity falls back to the built-in content.
-
-## Deploy — GitHub Pages (auto, on every push to `main`)
-`.github/workflows/deploy-pages.yml` builds a static export and publishes it to
-`https://sarthakkrawatofficial-alt.github.io/portfolio/`.
-One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-If you connect Sanity, add `NEXT_PUBLIC_SANITY_PROJECT_ID` (and optionally `NEXT_PUBLIC_SANITY_DATASET`)
-under **Settings → Secrets and variables → Actions → Variables**; content changes need a rebuild
-(re-run the workflow, or point a Sanity webhook at `repository_dispatch` with type `sanity-content-updated`).
-
-## Deploy — Vercel (alternative)
-Import the repo in Vercel (framework preset: Next.js), add the `NEXT_PUBLIC_SANITY_*` env vars, deploy.
-Pages revalidate every 60 seconds, so CMS edits go live without redeploying.
-
-## Screenshots
-`node scripts/screenshots.mjs <outDir> [section,section]` against a running server captures
-desktop + mobile shots of every section (see `docs/screenshots/`).
-
-`legacy/` keeps the previous single-file site for reference; `public/resources.html` and
-`public/motion_design_mastery_guide.html` are carried over unchanged.
+## Deploy for free
+**GitHub Pages:** push to `main`, then Settings → Pages → Source: *GitHub Actions*. The included workflow publishes the site.
+**Vercel:** import the repo, framework preset *Other*, no build command, output directory `.`.
