@@ -42,7 +42,8 @@ export default function Process() {
   };
 
   return (
-    <section ref={root} id="process" className="relative py-24 md:py-36">
+    <section ref={root} id="process" className="tex relative py-24 md:py-36">
+      <div aria-hidden className="tex-layer tex-lines" />
       <div className="wrap">
         <SectionHead index="04" label="Process" lines={["From raw", { text: "to remembered.", className: "text-lime" }]} aside={<p>Three steps, every time. Scroll — or drag the handle — to see what happens between the raw file and the final cut.</p>} />
 

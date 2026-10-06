@@ -23,7 +23,9 @@ export default function Showreel({ id }: { id: string }) {
   }, []);
 
   return (
-    <section ref={root} id="showreel" className="relative py-24 md:py-36">
+    <section ref={root} id="showreel" className="tex relative py-24 md:py-36">
+      <div aria-hidden className="tex-layer tex-glow" />
+      <div aria-hidden className="tex-layer tex-grain" />
       <div className="wrap">
         <SectionHead
           index="01"
