@@ -1,7 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  /* default palette: charcoal + warm sand — "lime" is the accent token */
+  /* default palette: warm ink + off-white + ember red-orange — "lime" is the accent token */
+  --color-bg: #0e0d0c;
+  --color-fg: #f2ede5;
+  --color-lime: #ee5636;
+  --color-accentsoft: #f4a08b;
+  --color-muted: #8d877f;
+  --color-line: rgba(242, 237, 229, 0.09);
+  --color-card: #161413;
+  --color-card2: #201e1c;
+  --color-paper: #1a1817;
+  --font-sans: "Inter Tight Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* ---------- theme presets (html[data-theme]); default = ink + red-orange ---------- */
+:root {
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 30px 60px -40px rgba(0, 0, 0, 0.8);
+  --grain-blend: overlay;
+}
+html[data-theme="charcoal"] {
   --color-bg: #121212;
   --color-fg: #eeeae3;
   --color-lime: #e6d8bd;
@@ -11,16 +32,6 @@
   --color-card: #1a1a1a;
   --color-card2: #262626;
   --color-paper: #1f1f1f;
-  --font-sans: "Inter Tight Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-
-/* ---------- theme presets (html[data-theme]); default = charcoal ---------- */
-:root {
-  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 30px 60px -40px rgba(0, 0, 0, 0.8);
-  --grain-blend: overlay;
 }
 html[data-theme="beige"] {
   --color-bg: #efe8dc;
