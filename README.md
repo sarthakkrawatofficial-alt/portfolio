@@ -5,7 +5,7 @@ Built with **Next.js 16 (App Router) + Tailwind CSS v4 + Sanity CMS**, with
 **React Three Fiber / drei / postprocessing** for 3D and **GSAP ScrollTrigger + Lenis** for motion.
 
 ## Sections
-Hero (2D SVG panda mascot that waves and sits on scroll + video thumbnail marquee) → stats & clients → Showreel →
+Hero (2D panda mascot that waves, changes poses and sits on scroll + video thumbnail marquee) → stats & clients → Showreel →
 Selected Work (filterable) → What I Do (bento with animated mini-visuals and CSS-3D icons) →
 Process (scroll/drag before–after) → Toolkit marquee → About & journey → Testimonials → FAQ → CTA + footer.
 
@@ -48,7 +48,10 @@ desktop + mobile shots of every section (see `docs/screenshots/`).
 `public/motion_design_mastery_guide.html` are carried over unchanged.
 
 
+
 ## Mascot
-`src/components/PandaMascot.tsx` is a layered SVG animated with GSAP: pops in and waves on load,
-sits down when you scroll past the hero, stands back up when you return, and tilts toward the cursor.
-(`blender/panda.py` is an earlier procedural 3D version, kept for reference.)
+`src/components/PandaSprite.tsx` swaps between pose cut-outs in `public/img/panda/` (stand, wave,
+point, cross, sit) with squash-and-stretch transitions: pops in and waves on load ("Hey there"
+bubble), cycles idle poses, waves on click, sits once the page is scrolled and stands back up at the top.
+To change the art, replace the `.webp` files (transparent background, same scale, feet on the bottom
+edge) and update the size / head-centre numbers in `POSES`.
