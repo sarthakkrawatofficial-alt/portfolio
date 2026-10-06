@@ -229,7 +229,8 @@ function Card({ className = "", shape, title, body, tag, children, fixed = false
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-24 md:py-36">
+    <section id="services" className="tex relative py-24 md:py-36">
+      <div aria-hidden className="tex-layer tex-grid" />
       <div className="pointer-events-none absolute left-1/2 top-40 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-lime/[0.05] blur-[120px]" />
       <div className="wrap relative">
         <SectionHead index="03" label="What I do" lines={["One editor.", { text: "Every format.", className: "text-fg/35" }]} aside={<p>Edit, motion and story handled by the same pair of hands — so the cut and the graphics are designed together, not stitched on later.</p>} />

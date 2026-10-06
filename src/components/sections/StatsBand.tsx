@@ -5,7 +5,8 @@ import type { Stat } from "@/content/site";
 export default function StatsBand({ stats, clients }: { stats: Stat[]; clients: string[] }) {
   const list = [...clients, ...clients];
   return (
-    <section className="relative border-y border-line">
+    <section className="tex relative border-y border-line">
+      <div aria-hidden className="tex-layer tex-dots" />
       <div className="wrap grid grid-cols-2 md:grid-cols-4">
         {stats.map((s, i) => (
           <div key={i} className={`py-8 md:py-12 ${i % 2 ? "pl-5 md:pl-8" : "md:pl-8"} ${i ? "md:border-l md:border-line" : "md:pl-0"} ${i % 2 ? "border-l border-line md:border-l" : ""} ${i > 1 ? "border-t border-line md:border-t-0" : ""}`}>

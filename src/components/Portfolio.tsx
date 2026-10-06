@@ -16,6 +16,7 @@ import About from "./sections/About";
 import Testimonials from "./sections/Testimonials";
 import Faq from "./sections/Faq";
 import Contact from "./sections/Contact";
+import VoltStrip from "./sections/VoltStrip";
 
 export default function Portfolio({ content: c }: { content: SiteContent }) {
   return (
@@ -33,6 +34,7 @@ export default function Portfolio({ content: c }: { content: SiteContent }) {
         <Process />
         <Tools tools={c.tools} />
         <About settings={c.settings} journey={c.journey} />
+        <VoltStrip />
         <Testimonials items={c.testimonials} />
         <Faq items={c.faqs} email={c.settings.email} />
         <Contact settings={c.settings} />

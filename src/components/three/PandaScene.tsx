@@ -120,7 +120,7 @@ export default function PandaScene({ mobile = false, eventSource }: { mobile?: b
       <directionalLight position={[3, 5, 4]} intensity={2.4} />
       <directionalLight position={[-4, 2, 2]} intensity={0.9} color="#ffe9e2" />
       {/* warm accent rim from behind */}
-      <directionalLight position={[-2, 3, -4]} intensity={2.2} color="#ee5636" />
+      <directionalLight position={[-2, 3, -4]} intensity={2.2} color="#d6f53b" />
       <Rig mobile={mobile}>
         <Suspense fallback={null}>
           <Panda />
