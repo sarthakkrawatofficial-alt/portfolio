@@ -1,27 +1,16 @@
 "use client";
-import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import Magnetic from "../motion/Magnetic";
+import PandaMascot from "../PandaMascot";
 import { gsap } from "@/lib/gsap";
 import { useIsoLayoutEffect } from "@/lib/useIsoLayout";
 import { useVideoModal } from "../VideoModal";
 import VideoThumb from "../VideoThumb";
 import type { Project, Settings } from "@/content/site";
 
-const PandaScene = dynamic(() => import("../three/PandaScene"), { ssr: false });
-
 export default function Hero({ settings, projects }: { settings: Settings; projects: Project[] }) {
   const root = useRef<HTMLElement>(null);
-  const [mobile, setMobile] = useState<boolean | null>(null);
   const open = useVideoModal();
-
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    const set = () => setMobile(mq.matches);
-    set();
-    mq.addEventListener("change", set);
-    return () => mq.removeEventListener("change", set);
-  }, []);
 
   useIsoLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -48,12 +37,13 @@ export default function Hero({ settings, projects }: { settings: Settings; proje
   return (
     <section ref={root} id="top" className="relative overflow-hidden">
       <div className="relative min-h-[92svh]">
-        <div className="hero-canvas absolute inset-0">
-          {mobile !== null && <PandaScene mobile={mobile} eventSource={root} />}
+        <div className="hero-canvas pointer-events-none absolute inset-0">
+          <div aria-hidden className="absolute left-1/2 top-[6svh] h-[36svh] w-[90vw] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--color-lime)_22%,transparent),transparent)] md:left-auto md:right-[2%] md:top-[8svh] md:h-[78svh] md:w-[44vw] md:translate-x-0" />
+          <PandaMascot trigger={root} className="absolute left-1/2 top-[9svh] h-[30svh] w-auto -translate-x-1/2 md:left-auto md:right-[9%] md:top-[14svh] md:h-[66svh] md:translate-x-0" />
         </div>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-bg via-bg/60 to-transparent md:h-48 md:via-transparent" />
 
-        <div className="wrap pointer-events-none relative z-10 flex min-h-[92svh] flex-col justify-end pb-8 pt-28 md:pb-10">
+        <div className="wrap pointer-events-none relative z-10 flex min-h-[92svh] flex-col justify-end pb-8 pt-[41svh] md:pb-10 md:pt-28">
           <div className="hero-fade label mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-muted">
             <span className="flex items-center gap-2 rounded-full border border-line bg-card px-3 py-1.5 text-fg">
               <span className="h-1.5 w-1.5 rounded-full bg-lime" />

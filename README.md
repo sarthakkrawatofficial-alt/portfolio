@@ -5,7 +5,7 @@ Built with **Next.js 16 (App Router) + Tailwind CSS v4 + Sanity CMS**, with
 **React Three Fiber / drei / postprocessing** for 3D and **GSAP ScrollTrigger + Lenis** for motion.
 
 ## Sections
-Hero (3D panda mascot + video thumbnail marquee) → stats & clients → Showreel →
+Hero (2D SVG panda mascot that waves and sits on scroll + video thumbnail marquee) → stats & clients → Showreel →
 Selected Work (filterable) → What I Do (bento with animated mini-visuals and CSS-3D icons) →
 Process (scroll/drag before–after) → Toolkit marquee → About & journey → Testimonials → FAQ → CTA + footer.
 
@@ -47,11 +47,8 @@ desktop + mobile shots of every section (see `docs/screenshots/`).
 `legacy/` keeps the previous single-file site for reference; `public/resources.html` and
 `public/motion_design_mastery_guide.html` are carried over unchanged.
 
-## 3D mascot
-`public/models/panda.glb` is generated procedurally with Blender's Python API:
-```bash
-pip install bpy==4.2.0            # Python 3.11
-python blender/panda.py panda-raw.glb [preview.png]
-npx @gltf-transform/cli optimize panda-raw.glb public/models/panda.glb --compress meshopt --flatten false --join false --simplify false
-```
-Head parts are parented to the `HeadRig` node, which the site animates (nod + look at cursor).
+
+## Mascot
+`src/components/PandaMascot.tsx` is a layered SVG animated with GSAP: pops in and waves on load,
+sits down when you scroll past the hero, stands back up when you return, and tilts toward the cursor.
+(`blender/panda.py` is an earlier procedural 3D version, kept for reference.)
