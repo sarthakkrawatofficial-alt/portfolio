@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react";
 import Magnetic from "../motion/Magnetic";
-import PandaMascot from "../PandaMascot";
+import PandaSprite from "../PandaSprite";
 import { gsap } from "@/lib/gsap";
 import { useIsoLayoutEffect } from "@/lib/useIsoLayout";
 import { useVideoModal } from "../VideoModal";
@@ -39,7 +39,7 @@ export default function Hero({ settings, projects }: { settings: Settings; proje
       <div className="relative min-h-[92svh]">
         <div className="hero-canvas pointer-events-none absolute inset-0">
           <div aria-hidden className="absolute left-1/2 top-[6svh] h-[36svh] w-[90vw] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--color-lime)_22%,transparent),transparent)] md:left-auto md:right-[2%] md:top-[8svh] md:h-[78svh] md:w-[44vw] md:translate-x-0" />
-          <PandaMascot trigger={root} className="absolute left-1/2 top-[9svh] h-[30svh] w-auto -translate-x-1/2 md:left-auto md:right-[9%] md:top-[14svh] md:h-[66svh] md:translate-x-0" />
+          <PandaSprite className="pointer-events-auto absolute left-1/2 top-[9svh] h-[30svh] -translate-x-1/2 cursor-pointer md:left-auto md:right-[10%] md:top-[15svh] md:h-[64svh] md:translate-x-0" />
         </div>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-bg via-bg/60 to-transparent md:h-48 md:via-transparent" />
 
