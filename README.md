@@ -5,7 +5,7 @@ Built with **Next.js 16 (App Router) + Tailwind CSS v4 + Sanity CMS**, with
 **React Three Fiber / drei / postprocessing** for 3D and **GSAP ScrollTrigger + Lenis** for motion.
 
 ## Sections
-Hero (2D panda mascot that waves, changes poses and sits on scroll + video thumbnail marquee) → stats & clients → Showreel →
+Hero (2D panda mascot that waves, changes poses and sits on scroll + video thumbnail marquee) → stats & clients → Showreel (self-playing ~50s cut) →
 Selected Work (filterable) → What I Do (bento with animated mini-visuals and CSS-3D icons) →
 Process (scroll/drag before–after) → Toolkit marquee → About & journey → Testimonials → FAQ → CTA + footer.
 
@@ -55,3 +55,10 @@ point, cross, sit) with squash-and-stretch transitions: pops in and waves on loa
 bubble), cycles idle poses, waves on click, sits once the page is scrolled and stands back up at the top.
 To change the art, replace the `.webp` files (transparent background, same scale, feet on the bottom
 edge) and update the size / head-centre numbers in `POSES`.
+
+## Showreel
+`src/components/sections/Showreel.tsx` plays a ~50-second cut on one GSAP timeline: film-leader slate →
+name → word flashes → one chapter per kind of work (SaaS & Product, Short-form, Trailers & Docs), each
+opening on an accent card → clients → numbers → end card. Shots are your YouTube videos, embedded muted
+(the viewer can turn sound on). Edit the chapters, shots and each shot's `start` second in `reelChapters`
+in `src/content/site.ts`. The "Watch the full 2-min cut" button still opens `showreelId`.

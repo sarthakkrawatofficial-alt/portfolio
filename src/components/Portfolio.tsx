@@ -28,7 +28,7 @@ export default function Portfolio({ content: c }: { content: SiteContent }) {
       <main className="grain">
         <Hero settings={c.settings} projects={c.projects} />
         <StatsBand stats={c.stats.map((s) => (/year/i.test(s.label) ? { ...s, value: c.settings.yearsExperience } : s))} clients={c.clients} />
-        <Showreel id={c.settings.showreelId} />
+        <Showreel settings={c.settings} projects={c.projects} stats={c.stats} clients={c.clients} />
         <Work projects={c.projects} />
         <Services />
         <Process />

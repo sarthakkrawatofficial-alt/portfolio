@@ -330,7 +330,54 @@ export const fallbackContent: SiteContent = {
   ],
 };
 
-export const ytThumb = (id: string, q: "hq" | "maxres" = "hq") =>
+// The self-playing showreel in the Showreel section, cut chapter by chapter.
+// A shot either points at a project above (`project: id`) or carries its own video.
+// `start` = second of the video the shot begins at — tune these to land on your best moments.
+// "single" chapters cut one 16:9 shot after another; "trio" chapters play 9:16 shorts three at a time.
+export type ReelShot = {
+  project?: string;
+  youtubeId?: string;
+  client?: string;
+  title?: string;
+  role?: string;
+  orientation?: Orientation;
+  start?: number;
+};
+export type ReelChapter = { title: string; layout: "single" | "trio"; shots: ReelShot[] };
+
+export const reelChapters: ReelChapter[] = [
+  {
+    title: "SaaS & Product",
+    layout: "single",
+    shots: [
+      { project: "claude-cowork", start: 12 },
+      { project: "ai-product-readiness", start: 8 },
+      { project: "workstatus-explainer", start: 10 },
+    ],
+  },
+  {
+    title: "Short-form",
+    layout: "trio",
+    shots: [
+      { youtubeId: "npLqy79MJFg", client: "TestMu AI", title: "In-house short", role: "Edit · Motion", orientation: "portrait", start: 0 },
+      { youtubeId: "MZwfcgwrXBs", client: "TestMu AI", title: "In-house short", role: "Edit · Motion", orientation: "portrait", start: 0 },
+      { youtubeId: "CIthfrO_W90", client: "TestMu AI", title: "In-house short", role: "Edit · Motion", orientation: "portrait", start: 0 },
+      { project: "llmops-explained", start: 2 },
+      { project: "engagement-signal", start: 2 },
+      { project: "sartaaj-tour", start: 2 },
+    ],
+  },
+  {
+    title: "Trailers & Docs",
+    layout: "single",
+    shots: [
+      { project: "foundr-trailer", start: 5 },
+      { project: "criccult-doc", start: 20 },
+    ],
+  },
+];
+
+export const ytThumb =(id: string, q: "hq" | "maxres" = "hq") =>
   `https://img.youtube.com/vi/${id}/${q === "hq" ? "hqdefault" : "maxresdefault"}.jpg`;
 
 export const ytEmbed = (id: string, opts: { muted?: boolean; controls?: boolean; loop?: boolean } = {}) => {
