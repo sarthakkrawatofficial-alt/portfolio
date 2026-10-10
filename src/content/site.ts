@@ -94,14 +94,14 @@ export const fallbackContent: SiteContent = {
     {
       id: "claude-cowork",
       title: "Claude Cowork",
-      client: "Anthropic (Claude)",
+      client: "Interview assignment · TestMu AI",
       platform: "YouTube",
       role: "Motion design · UI animation",
       category: "SaaS & Product",
       youtubeId: "tK0afJ0TOBw",
       orientation: "landscape",
       description:
-        "Product showcase for a collaborative AI workspace — features and workflows walked through with clean UI animation.",
+        "A 23-second concept film for Claude Cowork, made as my interview assignment for TestMu AI. Not commissioned by Anthropic.",
     },
     {
       id: "ai-product-readiness",
@@ -233,18 +233,9 @@ export const fallbackContent: SiteContent = {
       name: "Abhinav Pandey",
       company: "Lallantop",
       quote:
-        "During our Mahakumbh 2026 coverage, Sarthak brought the reliability every newsroom needs under pressure. He kept the content pipeline moving and made sure our on-ground storytelling stayed sharp and timely.",
+        "During our Mahakumbh 2025 coverage, Sarthak brought the reliability every newsroom needs under pressure. He kept the content pipeline moving and made sure our on-ground storytelling stayed sharp and timely.",
       highlight: "the reliability every newsroom needs under pressure",
       avatar: "/img/testimonials/abhinav-pandey.webp",
-    },
-    {
-      name: "Vinove Software & Services",
-      company: "Former employer",
-      quote:
-        "Sarthak brought clarity and structure to our motion projects in a way that improved how our content was perceived. His work was sharp, on-brand, and aligned with our communication goals. Someone we could trust for end-to-end delivery.",
-      highlight: "Someone we could trust for end-to-end delivery.",
-      avatar: "/img/testimonials/vinove-logo.png",
-      isLogo: true,
     },
     {
       name: "Hemant Gupta",
