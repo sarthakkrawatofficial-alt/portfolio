@@ -32,10 +32,8 @@ export default function Work({ projects }: { projects: Project[] }) {
     <section id="work" className="relative py-24 md:py-36">
       <div className="wrap">
         <SectionHead
-          index="02"
-          label="Selected work"
-          lines={["Selected", { text: "work.", className: "text-lime" }]}
-          aside={<p>Product launches, explainers, trailers and reels — each one cut for the platform it lives on. Hover to preview, click to watch.</p>}
+          lines={["Selected work"]}
+          aside={<p>Ten pieces, split by format. Hover a card for a silent preview, click to watch it with sound.</p>}
         />
 
         <div className="mt-10 flex flex-wrap gap-2 md:mt-14" role="tablist" aria-label="Filter projects">

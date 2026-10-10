@@ -2,14 +2,15 @@
 import { useEffect, useState } from "react";
 import Magnetic from "./motion/Magnetic";
 import { scrollState } from "@/lib/scroll";
+import { asset } from "@/lib/asset";
 
 const LINKS = [
   ["Work", "#work"],
+  ["Case studies", "/case-studies/"],
   ["Services", "#services"],
-  ["Process", "#process"],
   ["About", "#about"],
-  ["FAQ", "#faq"],
 ] as const;
+const href = (h: string) => (h.startsWith("/") ? asset(h) : h);
 
 export default function Nav({ available }: { available: boolean }) {
   const [scrolled, setScrolled] = useState(false);
@@ -38,18 +39,12 @@ export default function Nav({ available }: { available: boolean }) {
           </a>
           <nav className={`hidden items-center gap-1 rounded-full border border-line p-1.5 transition-colors md:flex ${scrolled ? "bg-fg/[0.04]" : "bg-card/70"}`}>
             {LINKS.map(([l, h]) => (
-              <a key={h} href={h} className="rounded-full px-4 py-2 text-sm text-fg/75 transition-colors hover:bg-fg/[0.06] hover:text-fg">
+              <a key={h} href={href(h)} className="rounded-full px-4 py-2 text-sm text-fg/75 transition-colors hover:bg-fg/[0.06] hover:text-fg">
                 {l}
               </a>
             ))}
           </nav>
           <div className="flex items-center gap-3">
-            {available && (
-              <span className="label hidden items-center gap-2 text-muted lg:flex">
-                <span className="relative flex h-2 w-2"><span className="absolute inset-0 rounded-full bg-lime" style={{ animation: "pulse-ring 1.6s ease-out infinite" }} /><span className="relative h-2 w-2 rounded-full bg-lime" /></span>
-                Booking now
-              </span>
-            )}
             <Magnetic className="hidden md:inline-block">
               <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-lime px-5 py-2.5 text-sm font-semibold text-bg">
                 Work With Me <span aria-hidden>↗</span>
@@ -66,9 +61,9 @@ export default function Nav({ available }: { available: boolean }) {
       </header>
       <div className={`fixed inset-0 z-[110] flex flex-col justify-end bg-bg px-4 pb-10 transition-[clip-path] duration-700 ease-[cubic-bezier(.16,1,.3,1)] md:hidden ${open ? "[clip-path:inset(0_0_0_0)]" : "pointer-events-none [clip-path:inset(0_0_100%_0)]"}`}>
         <div className="flex flex-col gap-1">
-          {[...LINKS, ["Contact", "#contact"] as const].map(([l, h], i) => (
-            <a key={h} href={h} onClick={() => setOpen(false)} className="flex items-baseline justify-between border-b border-line py-3 text-5xl font-extrabold tracking-tight">
-              {l}<span className="label text-lime">0{i + 1}</span>
+          {[...LINKS, ["Contact", "#contact"] as const].map(([l, h]) => (
+            <a key={h} href={href(h)} onClick={() => setOpen(false)} className="flex items-baseline justify-between border-b border-line py-3 text-5xl font-extrabold tracking-tight">
+              {l}
             </a>
           ))}
         </div>
