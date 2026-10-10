@@ -196,7 +196,7 @@ const G = {
 };
 
 (async () => {
-  LOWER = await (await fetch("lowerthirds.json")).json();
+  LOWER = await (await fetch(q.get("lt") || "lowerthirds.json")).json();
   await document.fonts.load("700 100px 'Inter Tight'"); await document.fonts.load("400 20px 'JB Mono'");
   const [tl, dur] = G[q.get("el")]();
   window.dur = dur;
