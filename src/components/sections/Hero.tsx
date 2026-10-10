@@ -7,6 +7,7 @@ import { useIsoLayoutEffect } from "@/lib/useIsoLayout";
 import { useVideoModal } from "../VideoModal";
 import VideoThumb from "../VideoThumb";
 import type { Project, Settings } from "@/content/site";
+import { asset } from "@/lib/asset";
 
 export default function Hero({ settings, projects }: { settings: Settings; projects: Project[] }) {
   const root = useRef<HTMLElement>(null);
@@ -33,28 +34,39 @@ export default function Hero({ settings, projects }: { settings: Settings; proje
   }, []);
 
   const reel = [...projects, ...projects];
+  const playReel = () => open({ id: settings.showreelId, title: "Showreel 2026" });
 
   return (
     <section ref={root} id="top" className="relative overflow-hidden">
       <div className="relative min-h-[92svh]">
-        <div className="hero-canvas pointer-events-none absolute inset-0">
-          <div aria-hidden className="absolute left-1/2 top-[6svh] h-[36svh] w-[90vw] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--color-lime)_22%,transparent),transparent)] md:left-auto md:right-[2%] md:top-[8svh] md:h-[78svh] md:w-[44vw] md:translate-x-0" />
-          <PandaSprite className="pointer-events-auto absolute left-1/2 top-[9svh] h-[30svh] -translate-x-1/2 cursor-pointer md:left-auto md:right-[10%] md:top-[15svh] md:h-[64svh] md:translate-x-0" />
-        </div>
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-bg via-bg/60 to-transparent md:h-48 md:via-transparent" />
-
-        <div className="wrap pointer-events-none relative z-10 flex min-h-[92svh] flex-col justify-end pb-8 pt-[41svh] md:pb-10 md:pt-28">
-          <div className="hero-fade label mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-muted">
-            <span className="flex items-center gap-2 rounded-full border border-line bg-card px-3 py-1.5 text-fg">
-              <span className="h-1.5 w-1.5 rounded-full bg-lime" />
-              {settings.name}
+        <div className="hero-canvas absolute inset-x-4 top-[88px] md:inset-x-auto md:right-10 md:top-[17svh] md:w-[47vw] md:max-w-[840px]">
+          <div aria-hidden className="pointer-events-none absolute -inset-[12%] rounded-full bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--color-lime)_16%,transparent),transparent)]" />
+          {/* the showreel, playing silently; click for the full cut with sound */}
+          <button
+            type="button"
+            id="showreel"
+            data-cursor="play"
+            onClick={playReel}
+            aria-label="Play Showreel 2026 with sound"
+            className="group pointer-events-auto relative block aspect-video w-full overflow-hidden rounded-[22px] border border-line bg-black shadow-[0_40px_90px_-40px_rgba(0,0,0,0.9)] md:rounded-[28px]"
+          >
+            <video className="absolute inset-0 h-full w-full object-cover" src={asset("/video/reel-loop.mp4")} poster={asset("/video/reel-loop.jpg")} autoPlay muted loop playsInline preload="metadata" />
+            <span className="absolute bottom-3 left-3 flex items-center gap-2.5 rounded-full bg-bg/85 py-1.5 pl-1.5 pr-4 text-sm font-semibold text-fg backdrop-blur transition-colors duration-300 group-hover:bg-lime group-hover:text-bg md:bottom-4 md:left-4">
+              <span className="grid h-8 w-8 place-items-center rounded-full bg-lime text-bg transition-colors duration-300 group-hover:bg-bg group-hover:text-lime">
+                <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden><path d="M1 0l9 5-9 5z" fill="currentColor" /></svg>
+              </span>
+              Showreel 2026 · 0:48
             </span>
-            <span>{settings.role}</span>
-            <span className="hidden sm:inline">/ Now at {settings.currentCompany}</span>
-            <span className="hidden md:inline">/ {settings.location}</span>
+          </button>
+          <PandaSprite className="pointer-events-auto absolute -top-[21%] right-[4%] hidden h-[30%] cursor-pointer md:block" />
+        </div>
+
+        <div className="wrap pointer-events-none relative z-10 flex min-h-[92svh] flex-col justify-end pb-8 pt-[calc(88px+56.25vw+28px)] md:pb-10 md:pt-28">
+          <div className="hero-fade label mb-5 text-muted">
+            {settings.name} · {settings.role} · {settings.location}
           </div>
 
-          <h1 className="h-display text-[clamp(3.6rem,12vw,12.5rem)]" aria-label="I edit stories that stick.">
+          <h1 className="h-display text-[clamp(3.4rem,10.4vw,10.5rem)]" aria-label="I edit stories that stick.">
             <span className="split-line" aria-hidden><span className="hero-word inline-block">I&nbsp;edit</span></span>
             <span className="split-line" aria-hidden><span className="hero-word inline-block">stories</span></span>
             <span className="split-line" aria-hidden>
@@ -65,20 +77,20 @@ export default function Hero({ settings, projects }: { settings: Settings; proje
 
           <div className="mt-8 flex flex-col gap-8 md:mt-10 md:flex-row md:items-end md:justify-between">
             <p className="hero-fade max-w-md text-[17px] leading-relaxed text-fg/70 md:text-lg">
-              Self-taught motion designer and video editor, currently at {settings.currentCompany}. {settings.yearsExperience} years of SaaS explainers, product launches, podcasts and short-form content — built around a clear story and purposeful motion.
+              Motion designer and video editor at {settings.currentCompany}. I started in 2023 at a media house in Prayagraj, shooting and cutting on deadline. Now I make software easy to understand in under a minute.
             </p>
             <div className="hero-fade pointer-events-auto flex flex-wrap gap-3">
               <Magnetic>
-                <a href="#showreel" className="group inline-flex items-center gap-3 rounded-full bg-lime py-2 pl-2 pr-6 font-semibold text-bg shadow-[0_18px_40px_-18px_rgba(91,102,48,0.6)]">
-                  <span className="grid h-10 w-10 place-items-center rounded-full bg-bg text-lime transition-transform duration-500 group-hover:rotate-[360deg]">
-                    <svg width="12" height="12" viewBox="0 0 10 10"><path d="M1 0l9 5-9 5z" fill="currentColor" /></svg>
+                <button type="button" onClick={playReel} className="group inline-flex items-center gap-3 rounded-full bg-lime py-2 pl-2 pr-6 font-semibold text-bg">
+                  <span className="grid h-10 w-10 place-items-center rounded-full bg-bg text-lime">
+                    <svg width="12" height="12" viewBox="0 0 10 10" aria-hidden><path d="M1 0l9 5-9 5z" fill="currentColor" /></svg>
                   </span>
-                  Watch Showreel
-                </a>
+                  Watch the reel
+                </button>
               </Magnetic>
               <Magnetic>
                 <a href="#contact" className="inline-flex h-14 items-center gap-2 rounded-full border border-line bg-card px-6 font-semibold hover:border-fg/40">
-                  Work With Me <span aria-hidden>↗</span>
+                  Hire me <span aria-hidden>↗</span>
                 </a>
               </Magnetic>
             </div>

@@ -30,11 +30,11 @@ function Quote({ t, big = false }: { t: Testimonial; big?: boolean }) {
 export default function Testimonials({ items }: { items: Testimonial[] }) {
   if (!items.length) return null;
   return (
-    <section id="testimonials" className="tex relative py-24 md:py-36">
+    <section id="testimonials" className="tex relative py-20 md:py-28">
       <div aria-hidden className="tex-layer tex-glow" />
       <div aria-hidden className="tex-layer tex-grain" />
       <div className="wrap">
-        <SectionHead index="07" label="Kind words" lines={["People I've", { text: "cut for.", className: "text-lime" }]} aside={<p>From newsrooms under deadline to healthcare brands and universities — in their words.</p>} />
+        <SectionHead lines={["What clients and teammates say"]} />
         <Reveal className="mt-12 columns-1 gap-4 md:mt-16 md:columns-2 md:gap-5 lg:columns-3">
           {items.map((t) => <Quote key={t.name} t={t} />)}
         </Reveal>

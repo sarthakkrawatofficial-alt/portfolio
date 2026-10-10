@@ -5,12 +5,6 @@ import { gsap } from "@/lib/gsap";
 import { useIsoLayoutEffect } from "@/lib/useIsoLayout";
 import SectionHead from "./SectionHead";
 
-const STEPS = [
-  { n: "01", t: "Listen & map the story", d: "Before the timeline opens: who is watching, what they should feel, and the one thing they should remember. That becomes the spine of the edit." },
-  { n: "02", t: "Cut first, then move", d: "A rough cut that works with zero effects. Only then come motion, captions, sound design and grade — each one earning its place." },
-  { n: "03", t: "Polish & ship everywhere", d: "Timestamped review rounds, final mix and grade, then exports re-framed and re-paced for every platform the video is headed to." },
-];
-
 export default function Process() {
   const root = useRef<HTMLElement>(null);
   const frame = useRef<HTMLDivElement>(null);
@@ -24,8 +18,6 @@ export default function Process() {
         scrollTrigger: { trigger: frame.current, start: "top 85%", end: "center 30%", scrub: 0.6 },
         onUpdate: () => set(o.v),
       });
-      gsap.from(".step-card", { y: 50, opacity: 0, duration: 1, ease: "expo.out", stagger: 0.12, scrollTrigger: { trigger: ".step-grid", start: "top 85%" } });
-      gsap.fromTo(".step-line", { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: { trigger: ".step-grid", start: "top 80%", end: "bottom 60%", scrub: true } });
     }, root);
     return () => ctx.revert();
   }, []);
@@ -42,10 +34,10 @@ export default function Process() {
   };
 
   return (
-    <section ref={root} id="process" className="tex relative py-24 md:py-36">
+    <section ref={root} id="process" className="tex relative py-20 md:py-28">
       <div aria-hidden className="tex-layer tex-lines" />
       <div className="wrap">
-        <SectionHead index="04" label="Process" lines={["From raw", { text: "to remembered.", className: "text-lime" }]} aside={<p>Three steps, every time. Scroll — or drag the handle — to see what happens between the raw file and the final cut.</p>} />
+        <SectionHead lines={["Before and after the grade"]} aside={<p>Same frame, raw log on the left and the finished look on the right. Drag the handle.</p>} />
 
         <div ref={frame} onPointerDown={drag} data-cursor="drag" className="relative mt-12 aspect-[4/5] w-full touch-pan-y select-none overflow-hidden rounded-[28px] border border-line bg-black sm:aspect-[16/8] md:mt-16" style={{ ["--split" as string]: "90%" }}>
           {/* AFTER (full) */}
@@ -61,7 +53,7 @@ export default function Process() {
             </div>
             <div className="absolute left-[5%] top-[13%] hidden items-center gap-3 rounded-xl border border-fg/15 bg-black/60 py-2 pl-2 pr-4 text-white md:flex">
               <span className="h-8 w-1 rounded bg-lime" />
-              <div><div className="text-sm font-bold">Sarthak Rawat</div><div className="label text-[9px] text-white/60">Visual storyteller</div></div>
+              <div><div className="text-sm font-bold">Sarthak Rawat</div><div className="label text-[9px] text-white/60">Motion designer</div></div>
             </div>
             <div className="label absolute right-4 top-[10%] rounded-full bg-lime px-3 py-1.5 text-[10px] font-bold text-bg md:right-6">AFTER · GRADED</div>
           </div>
@@ -90,19 +82,6 @@ export default function Process() {
           </div>
         </div>
 
-        <div className="step-grid relative mt-10 grid gap-4 md:mt-14 md:grid-cols-3 md:gap-5">
-          <div className="absolute left-0 right-0 top-0 hidden h-px bg-line md:block"><div className="step-line h-full origin-left bg-lime" /></div>
-          {STEPS.map((s) => (
-            <div key={s.n} className="step-card card relative p-6 md:mt-8 md:p-8">
-              <div className="flex items-center justify-between">
-                <span className="text-6xl font-extrabold tracking-[-0.035em] text-lime md:text-7xl">{s.n}</span>
-                <span className="label text-muted">Step</span>
-              </div>
-              <h3 className="mt-8 text-2xl font-bold tracking-tight">{s.t}</h3>
-              <p className="mt-3 leading-relaxed text-fg/60">{s.d}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );

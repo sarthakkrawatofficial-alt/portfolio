@@ -34,12 +34,13 @@ export default function About({ settings, journey }: { settings: Settings; journ
           </div>
         </div>
         <div className="md:col-span-7 md:pl-6">
-          <div className="label mb-5 flex items-center gap-3 text-muted"><span className="text-lime">06</span><span className="h-px w-8 bg-line" />About</div>
-          <SplitReveal lines={["I think in stories,", { text: "not effects.", className: "text-lime" }]} className="h-section" />
+          <div className="label mb-4 text-muted">About</div>
+          <SplitReveal lines={["From a Prayagraj media house", "to SaaS motion design"]} className="h-section !text-[clamp(2rem,4.4vw,4rem)]" />
           <Reveal className="mt-8 grid gap-5 text-[17px] leading-relaxed text-fg/65 md:grid-cols-2">
-            <p>It started with typography, layouts and thumbnails. Somewhere along the way the frames started moving — and I never looked back. {settings.yearsExperience} years in, I'm at {settings.currentCompany}, working across motion graphics, product storytelling, documentaries and talking-head content.</p>
-            <p>Good visuals grab attention; good storytelling keeps it. Every project starts with the audience, the message and the purpose. The tools keep changing — the need for a well-told story doesn&apos;t.</p>
+            <p>I&apos;m self-taught. I started with thumbnails and layouts, and in January 2023 joined Digilok Media House in Prayagraj as a junior, shooting and cutting whatever had to go out that day. By October 2024 I was leading the creative team.</p>
+            <p>In 2025 I moved to Noida to do motion design for Vinove&apos;s software products: Workstatus, ValueCoders, PixelCrayons and Invoicera. Since August 2026 I&apos;ve been at {settings.currentCompany}, taking AI-testing videos from script to final export.</p>
           </Reveal>
+          <p className="mt-6 max-w-2xl text-xl font-semibold leading-snug tracking-tight text-fg/85">Two rules I edit by: the viewer gets the point in the first few seconds, and nothing on screen moves without a reason.</p>
           <Reveal as="ul" className="mt-12 border-t border-line" y={24}>
             {journey.map((j, i) => (
               <li key={i} className="group grid grid-cols-12 items-baseline gap-3 border-b border-line py-5 transition-colors hover:bg-fg/[0.02]">
