@@ -1,0 +1,272 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Sarthak Rawat — Showreel 2025</title>
+<style>
+  @font-face { font-family: "Inter Tight"; src: url(inter.woff2) format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "JB Mono"; src: url(mono.woff2) format("woff2"); font-weight: 100 800; }
+  :root { --bg: #0a0a0a; --fg: #f5f5f0; --lime: #d6f53b; --muted: #8a8a85; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1920px; height: 1080px; background: #000; overflow: hidden; }
+  #stage { position: relative; width: 1920px; height: 1080px; background: var(--bg); overflow: hidden; color: var(--fg); font-family: "Inter Tight", sans-serif; }
+  .abs { position: absolute; }
+  .full { position: absolute; inset: 0; }
+  .hide { visibility: hidden; opacity: 0; }
+  .mono { font-family: "JB Mono", monospace; text-transform: uppercase; letter-spacing: .14em; font-size: 17px; }
+  .display { font-weight: 780; letter-spacing: -0.045em; line-height: .9; }
+  .mask { overflow: hidden; display: block; padding-bottom: .06em; }
+  .mask > span { display: block; }
+  .shot { overflow: hidden; }
+  .shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .framed { left: 269px; top: 120px; width: 1382px; height: 778px; border-radius: 18px; box-shadow: 0 0 0 1px rgba(255,255,255,.14), 0 50px 120px -40px rgba(0,0,0,.9); }
+  .vert { width: 480px; height: 853px; top: 84px; border-radius: 22px; box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 40px 90px -30px rgba(0,0,0,.8); }
+  .vcenter { left: 656px; top: 0; width: 608px; height: 1080px; }
+  .card { background: var(--lime); color: #0a0a0a; padding: 96px 120px; display: flex; flex-direction: column; justify-content: space-between; }
+  .bar { left: 0; right: 0; height: 138px; background: #000; }
+  .stroke { color: transparent; -webkit-text-stroke: 2px rgba(245,245,240,.10); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <!-- section backgrounds -->
+  <div id="sfBg" class="full hide" style="background:#0a0a0a">
+    <div id="marquee" class="abs display stroke" style="top:300px; left:0; font-size:420px; white-space:nowrap">SHORT-FORM — SHORT-FORM — SHORT-FORM — SHORT-FORM —</div>
+  </div>
+  <div id="blockBg" class="full hide"></div>
+
+  <div id="media"></div>
+
+  <!-- short-form type -->
+  <div id="sfLabels"></div>
+  <div id="stopL" class="abs display hide" style="right:1320px; top:330px; font-size:160px; text-align:right">
+    <span class="mask"><span id="w-stop">Stop</span></span><span class="mask"><span id="w-the">the</span></span>
+  </div>
+  <div id="stopR" class="abs display hide" style="left:1320px; top:470px; font-size:160px; color:var(--lime)"><span class="mask"><span id="w-scroll">scroll.</span></span></div>
+  <div id="stopCap" class="abs mono hide" style="left:1322px; top:660px; color:rgba(245,245,240,.6)">Cheese Factory · Short-form</div>
+  <div id="blockWords" class="abs display" style="left:120px; top:440px; font-size:150px; width:520px"></div>
+  <div id="blockCap" class="abs mono hide" style="left:124px; top:400px">Frappik · Product reels</div>
+
+  <!-- cinematic letterbox -->
+  <div id="barT" class="abs bar" style="top:0; height:0"></div>
+  <div id="barB" class="abs bar" style="bottom:0; height:0"></div>
+
+  <!-- numbers -->
+  <div id="statShade" class="full hide" style="background:linear-gradient(90deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.1) 100%)"></div>
+  <div id="stats"></div>
+
+  <!-- intro -->
+  <div id="intro" class="full">
+    <div id="ln" class="abs" style="left:360px; top:539px; width:1200px; height:2px; background:var(--lime); transform:scaleX(0)"></div>
+    <div id="show" class="abs display" style="left:0; right:0; top:120px; font-size:400px; text-align:center"><span class="mask"><span>SHOW</span></span></div>
+    <div id="reel" class="abs display" style="left:0; right:0; top:560px; font-size:400px; text-align:center"><span class="mask"><span>REEL</span></span></div>
+    <div id="nameBox" class="abs" style="left:150px; top:250px">
+      <div class="display" style="font-size:230px"><span class="mask"><span class="nm">Sarthak</span></span><span class="mask"><span class="nm" style="color:rgba(245,245,240,.32)">Rawat</span></span></div>
+      <div id="nameRule" style="width:440px; height:4px; background:var(--lime); margin-top:34px; transform-origin:left; transform:scaleX(0)"></div>
+      <div id="nameSub" class="mono hide" style="margin-top:26px; font-size:22px; color:rgba(245,245,240,.75)">Video editor &amp; motion designer · Noida, India</div>
+    </div>
+    <div id="words"></div>
+  </div>
+
+  <!-- chapter cards -->
+  <div id="cards"></div>
+
+  <!-- end card -->
+  <div id="end" class="full hide" style="background:#0a0a0a; padding:0 150px; display:flex; flex-direction:column; justify-content:center">
+    <div class="display" style="font-size:170px"><span class="mask"><span class="el">Let's make something</span></span><span class="mask"><span class="el" style="color:var(--lime)">people finish.</span></span></div>
+    <div class="mono es" style="margin-top:56px; font-size:28px">sarthakkrawat.official@gmail.com</div>
+    <div class="mono es" style="margin-top:12px; font-size:22px; color:rgba(245,245,240,.5)">@sarthakk.create · sarthakkrawatofficial-alt.github.io/portfolio</div>
+  </div>
+
+  <!-- HUD -->
+  <div id="hud" class="full hide" style="pointer-events:none">
+    <div class="abs mono" style="left:48px; top:40px; display:flex; gap:12px; align-items:center"><span style="width:10px;height:10px;border-radius:50%;background:var(--lime)"></span>SR — Showreel 2025</div>
+    <div id="hudCh" class="abs mono" style="right:48px; top:40px; text-align:right"></div>
+    <div id="hudProj" class="abs mono" style="left:48px; bottom:40px; color:rgba(245,245,240,.75)"></div>
+    <div id="hudTc" class="abs mono" style="right:48px; bottom:40px; color:rgba(245,245,240,.75)"></div>
+  </div>
+  <div id="introHud" class="full">
+    <div class="abs mono ih" style="left:48px; top:40px">SR — Showreel 2025</div>
+    <div class="abs mono ih" style="right:48px; top:40px; text-align:right">Video editor &amp; motion designer</div>
+    <div class="abs mono ih" style="left:48px; bottom:40px; color:rgba(245,245,240,.5)">Edit · Motion · Story · Sound</div>
+  </div>
+</div>
+
+<script src="gsap.min.js"></script>
+<script>
+const $ = (s) => document.querySelector(s);
+const el = (tag, cls, html, parent, style) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html) e.innerHTML = html; if (style) e.setAttribute("style", style); parent.appendChild(e); return e; };
+
+let plan, tl, shots = [];
+const B = (k) => plan.D + k * plan.P;
+
+const CHAPTERS = [
+  { k: 0, no: "01", title: ["Motion", "design"], sub: "Explainers · UI · Data · Maps", hud: "01 — Motion design" },
+  { k: 26, no: "02", title: ["Short-", "form"], sub: "Reels · Shorts · Product", hud: "02 — Short-form" },
+  { k: 40, no: "03", title: ["Cine-", "matic"], sub: "Real estate · Drone · Interiors", hud: "03 — Cinematic" },
+];
+const PROJECT = { d: "EstateWithShivam · Dubai Maritime City", t: "Cheese Factory · Frappik", c: "Cheese Factory · Short-form", f: "Frappik · Product reels", j: "Jaypee Greens · Real-estate film", q: "Selected work" };
+
+async function init() {
+  plan = await (await fetch("plan.json")).json();
+  await document.fonts.load("700 100px 'Inter Tight'"); await document.fonts.load("400 20px 'JB Mono'");
+  build();
+  window.ready = true;
+}
+
+function build() {
+  const media = $("#media");
+  tl = gsap.timeline({ paused: true, defaults: { ease: "expo.out" } });
+
+  /* ---------- 1. intro (0 → drop) ---------- */
+  tl.to("#ln", { scaleX: 1, duration: 1.1, ease: "expo.inOut" }, 0.25);
+  tl.from(".ih", { clipPath: "inset(0 100% 0 0)", duration: 0.7, stagger: 0.12, ease: "power3.out" }, 0.4);
+  tl.from("#show .mask > span", { yPercent: 105, duration: 0.8 }, B(-14));
+  tl.from("#reel .mask > span", { yPercent: -105, duration: 0.8 }, B(-13));
+  tl.to("#show", { x: -2300, duration: 0.55, ease: "power3.in" }, B(-10) - 0.45);
+  tl.to("#reel", { x: 2300, duration: 0.55, ease: "power3.in" }, B(-10) - 0.45);
+  tl.to("#ln", { scaleX: 0, transformOrigin: "right", duration: 0.5, ease: "power3.in" }, B(-10) - 0.4);
+  tl.from(".nm", { yPercent: 105, duration: 0.9, stagger: 0.14 }, B(-10) + 0.02);
+  tl.to("#nameRule", { scaleX: 1, duration: 1, ease: "expo.inOut" }, B(-10) + 0.25);
+  tl.to("#nameSub", { autoAlpha: 1, duration: 0.6 }, B(-8));
+  tl.from("#nameSub", { y: 16, duration: 0.6 }, B(-8));
+  tl.to(".nm", { yPercent: -105, duration: 0.35, ease: "power3.in", stagger: 0.05 }, B(-4) - 0.42);
+  tl.to("#nameRule, #nameSub", { autoAlpha: 0, duration: 0.2 }, B(-4) - 0.25);
+  const words = $("#words");
+  ["Edit.", "Motion.", "Story.", "Sound."].forEach((w, i) => {
+    const lime = i === 2;
+    const box = el("div", "full hide", `<div class="display" style="font-size:330px">${w}</div>`, words,
+      `display:grid; place-items:center; ${lime ? "background:var(--lime); color:#0a0a0a" : ""}`);
+    tl.set(box, { autoAlpha: 1 }, B(-4 + i));
+    tl.fromTo(box.firstChild, { scale: 1.1 }, { scale: 1, duration: plan.P, ease: "power2.out" }, B(-4 + i));
+    tl.set(box, { autoAlpha: 0 }, B(-3 + i) + (i === 3 ? 0.3 : 0));
+  });
+  tl.set("#intro, #introHud", { autoAlpha: 0 }, plan.D + 0.3);
+  tl.set("#hud", { autoAlpha: 1 }, plan.D);
+
+  /* ---------- chapter cards ---------- */
+  CHAPTERS.forEach((c) => {
+    const card = el("div", "full card hide", `
+      <div class="mono" style="font-size:22px; letter-spacing:.2em">Chapter ${c.no} &nbsp;/&nbsp; 03</div>
+      <div class="display" style="font-size:250px"><span class="mask"><span class="ct">${c.title[0]}</span></span><span class="mask"><span class="ct">${c.title[1]}</span></span></div>
+      <div class="mono" style="font-size:22px; align-self:flex-end">${c.sub}</div>`, $("#cards"));
+    const t0 = B(c.k), t1 = B(c.k + 2);
+    tl.set(card, { autoAlpha: 1 }, t0);
+    tl.fromTo(card, { yPercent: 100 }, { yPercent: 0, duration: 0.3, ease: "power4.out" }, t0);
+    tl.from(card.querySelectorAll(".ct"), { yPercent: 105, duration: 0.6, stagger: 0.07 }, t0 + 0.08);
+    tl.to(card, { yPercent: -100, duration: 0.2, ease: "power3.in" }, t1 - 0.2);
+    tl.set(card, { autoAlpha: 0 }, t1);
+  });
+
+  /* ---------- shots ---------- */
+  const slotsX = [180, 720, 1260];
+  plan.shots.forEach((s, idx) => {
+    let wrap;
+    const start = s.start, end = s.start + s.dur;
+    if (s.kind === "land") {
+      wrap = el("div", "abs shot hide " + (s.framed ? "framed" : "full"), "", media);
+    } else if (s.slot !== undefined) {
+      wrap = el("div", "abs shot vert hide", "", media, `left:${slotsX[s.slot]}px`);
+    } else {
+      wrap = el("div", "abs shot vcenter hide", "", media, s.id.startsWith("f") ? "box-shadow:0 40px 100px -30px rgba(0,0,0,.55)" : "");
+    }
+    const img = el("img", "", "", wrap);
+    shots.push({ ...s, wrap, img, last: 0 });
+
+    const firstOfChapter = CHAPTERS.some((c) => s.k0 === c.k + 2);
+    tl.set(wrap, { autoAlpha: 1 }, firstOfChapter ? start - 0.22 : start);
+    const beforeCard = CHAPTERS.some((c) => s.k0 + s.beats === c.k);
+    tl.set(wrap, { autoAlpha: 0 }, beforeCard ? end + 0.3 : end);
+    const group = s.id[0];
+    if (group === "d" || group === "j") {
+      // slow push-in on every shot, a whip on every third
+      tl.fromTo(img, { scale: 1.08 }, { scale: 1, duration: s.dur, ease: "none" }, start);
+      if (s.framed) tl.fromTo(wrap, { scale: 0.86, y: 30 }, { scale: 1, y: 0, duration: 0.5 }, start);
+      else if (idx % 3 === 1) tl.fromTo(wrap, { xPercent: 14 }, { xPercent: 0, duration: 0.28, ease: "power3.out" }, start);
+    }
+    if (group === "q") tl.fromTo(img, { scale: 1.15 }, { scale: 1.02, duration: s.dur, ease: "power2.out" }, start);
+    if (group === "t") {
+      tl.fromTo(wrap, { y: 160, clipPath: "inset(100% 0% 0% 0% round 22px)" }, { y: 0, clipPath: "inset(0% 0% 0% 0% round 22px)", duration: 0.7 }, start + s.slot * 0.12);
+      const lab = el("div", "abs mono hide", s.src.startsWith("frappik") ? "Frappik" : "Cheese Factory", $("#sfLabels"), `left:${slotsX[s.slot]}px; top:962px; color:rgba(245,245,240,.6)`);
+      tl.to(lab, { autoAlpha: 1, duration: 0.4 }, start + 0.3 + s.slot * 0.12);
+      tl.set(lab, { autoAlpha: 0 }, end);
+    }
+    if (group === "c") tl.fromTo(wrap, { scale: 1.25 }, { scale: 1, duration: 0.55 }, start);
+    if (group === "f") {
+      tl.set("#blockBg", { backgroundColor: s.bg, autoAlpha: 1 }, start);
+      tl.fromTo(wrap, { y: 40 }, { y: 0, duration: 0.3 }, start);
+      const i = +s.id.slice(1) - 1;
+      const dark = i === 0;
+      const w = el("div", "abs hide", `<span class="mask"><span>${["Colour.", "Flavour.", "Rhythm.", "Brand."][i]}</span></span>`, $("#blockWords"), `left:0; top:0; color:${dark ? "#0a0a0a" : "#fff"}`);
+      tl.set(w, { autoAlpha: 1 }, start);
+      tl.from(w.querySelector(".mask > span"), { yPercent: 105, duration: 0.35 }, start);
+      tl.set(w, { autoAlpha: 0 }, end);
+      tl.set("#blockCap", { color: dark ? "#0a0a0a" : "#fff" }, start);
+    }
+  });
+
+  /* ---------- short-form layers ---------- */
+  tl.set("#sfBg", { autoAlpha: 1 }, B(28));
+  tl.fromTo("#marquee", { x: 0 }, { x: -1600, duration: B(36) - B(28), ease: "none" }, B(28));
+  tl.set("#sfBg", { autoAlpha: 0 }, B(36));
+  [["#w-stop", 32], ["#w-the", 33], ["#w-scroll", 34]].forEach(([s, k]) => tl.from(s, { yPercent: 105, duration: 0.4 }, B(k)));
+  tl.set("#stopL, #stopR", { autoAlpha: 1 }, B(32));
+  tl.to("#stopCap", { autoAlpha: 1, duration: 0.3 }, B(34) + 0.1);
+  tl.set("#stopL, #stopR, #stopCap", { autoAlpha: 0 }, B(36));
+  tl.set("#blockCap", { autoAlpha: 1 }, B(36));
+  tl.set("#blockCap, #blockBg", { autoAlpha: 0 }, B(40) + 0.3);
+
+  /* ---------- cinematic letterbox ---------- */
+  tl.to("#barT, #barB", { height: 138, duration: 0.5, ease: "expo.out" }, B(42));
+  tl.set("#barT, #barB", { height: 0 }, B(58));
+
+  /* ---------- numbers over the quick-fire ---------- */
+  tl.set("#statShade", { autoAlpha: 1 }, B(58));
+  tl.set("#statShade", { autoAlpha: 0 }, B(64));
+  [["250+", "Projects shipped", 58], ["20+", "Brands & businesses", 60], ["3 yrs", "Cutting & animating", 62]].forEach(([n, l, k]) => {
+    const s = el("div", "abs hide", `<div class="display" style="font-size:330px">${n}</div><div class="mono" style="font-size:24px; margin-top:24px; color:var(--lime)">${l}</div>`, $("#stats"), "left:140px; top:290px");
+    tl.set(s, { autoAlpha: 1 }, B(k));
+    tl.fromTo(s.firstChild, { yPercent: 30, scale: 1.12 }, { yPercent: 0, scale: 1, duration: 0.45, transformOrigin: "left bottom" }, B(k));
+    tl.from(s.lastChild, { autoAlpha: 0, x: -20, duration: 0.4 }, B(k) + 0.12);
+    tl.set(s, { autoAlpha: 0 }, B(k + 2));
+  });
+
+  /* ---------- end card ---------- */
+  tl.set("#hud", { autoAlpha: 0 }, B(64));
+  tl.set("#end", { autoAlpha: 1 }, B(64));
+  tl.from("#end .el", { yPercent: 105, duration: 1, stagger: 0.18 }, B(64));
+  tl.from("#end .es", { autoAlpha: 0, y: 16, duration: 0.8, stagger: 0.12 }, B(66));
+  tl.to("#stage", { opacity: 0, duration: B(76) - B(73), ease: "power1.in" }, B(73));
+  tl.set({}, {}, plan.duration);
+}
+
+function hud(t) {
+  let ch = "";
+  for (const c of CHAPTERS) if (t >= B(c.k)) ch = c.hud;
+  if (t >= B(58)) ch = "Numbers";
+  $("#hudCh").textContent = ch;
+  const cur = shots.find((s) => t >= s.start && t < s.start + s.dur);
+  $("#hudProj").textContent = cur ? PROJECT[cur.id[0]] : "";
+  const f = Math.floor(t * plan.fps + 1e-6), p = (n) => String(n).padStart(2, "0");
+  $("#hudTc").textContent = `${p(Math.floor(f / plan.fps / 60))}:${p(Math.floor(f / plan.fps) % 60)}:${p(f % plan.fps)}`;
+}
+
+window.renderAt = async (t) => {
+  tl.seek(t, false);
+  hud(t);
+  const loads = [];
+  for (const s of shots) {
+    if (t < s.start - 0.3 || t > s.start + s.dur + 0.04) continue;
+    const i = Math.min(s.n, Math.max(1, 1 + Math.floor((t - s.start) * plan.fps + 1e-4)));
+    if (i !== s.last) {
+      s.last = i;
+      s.img.src = `f/${s.id}/${String(i).padStart(4, "0")}.jpg`;
+      loads.push(s.img.decode().catch(() => {}));
+    }
+  }
+  await Promise.all(loads);
+};
+init();
+</script>
+</body>
+</html>
