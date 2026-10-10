@@ -1,0 +1,36 @@
+#,chapter,in (s),out (s),in (tc @30fps),out (tc),beats,type,clip / graphic,what to pick,overlay MOV,edit move,sfx
+1,Intro,0.00,0.60,00:00:00:00,00:00:00:18,0,gfx,Black · lime hairline draws,Track starts at 0:09.04,01_title.mov,,Soft riser starts
+2,Intro,0.60,3.74,00:00:00:18,00:00:03:22,6,gfx,SHOW / REEL — footage inside the letters,"Under the matte: 4 one-beat clips from 1.65 s (Claude Cowork, Nike, RCB, Sartaaj)",01_title.mov + 01b_title_matte.mov,Track-matte the clips to 01b,Tick on each letter landing
+3,Intro,3.74,6.87,00:00:03:22,00:00:06:26,6,gfx,Sarthak Rawat,"Name, lime rule, role line",02_name.mov,,Low whoosh on exit
+4,Intro,6.87,8.96,00:00:06:26,00:00:08:29,4,gfx,Edit. Motion. Story. Sound.,One word per beat; “Story.” on lime,03_words.mov,Hard cuts on the beat,Riser peaks into the drop
+5,01 SaaS & Product,8.96,10.00,00:00:08:29,00:00:10:00,2,gfx,Chapter 01 · UI grid,"Panel opens from a centre seam, 12-column grid draws",04_chapter_01.mov,Drop lands on the seam,Sub hit + glassy click
+6,01 SaaS & Product,10.00,11.05,00:00:10:00,00:00:11:01,2,clip,Claude Cowork,Hero UI moment — the interface building itself,LT_01,Punch-in 100→108% over the shot,
+7,01 SaaS & Product,11.05,11.57,00:00:11:01,00:00:11:17,1,clip,Claude Cowork,Fast UI transition or zoom,,Speed ramp 100→250% into the cut,Swish
+8,01 SaaS & Product,11.57,12.62,00:00:11:17,00:00:12:19,2,clip,Workstatus · product demo,"Dashboard reveal, data animating in",LT_02,Match-cut on a card or cursor position,
+9,01 SaaS & Product,12.62,13.66,00:00:12:19,00:00:13:20,2,clip,Boost Productivity with Workstatus,Kinetic-type or feature-callout moment,LT_03,,
+10,01 SaaS & Product,13.66,14.71,00:00:13:20,00:00:14:21,2,clip,AI Product Readiness,"A diagram or data build, mid-motion",LT_04 · 05_wipe.mov at the cut,"Whip pan out (12 frames, motion blur)",Whoosh
+11,01 SaaS & Product,14.71,15.23,00:00:14:21,00:00:15:07,1,clip,Claude Cowork,Logo / payoff frame,,,
+12,02 Short-form,15.23,16.27,00:00:15:07,00:00:16:08,2,gfx,Chapter 02 · phone bars,"Three phone-shaped bars rise in a stagger, exit upward",04_chapter_02.mov,,Three quick pops
+13,02 Short-form,16.27,18.36,00:00:16:08,00:00:18:11,4,clip,TestMu AI shorts ×3,"Three verticals side by side on black, one per beat, then hold",LT_08,Each vertical slides up 80px as it enters,Pop per phone
+14,02 Short-form,18.36,19.41,00:00:18:11,00:00:19:12,2,clip,LLMOps Explained,"Vertical, centred, blurred copy behind",LT_05,Punch-in 100→112%,
+15,02 Short-form,19.41,20.45,00:00:19:12,00:00:20:14,2,clip,Engagement Signal Detection,Strongest hook frame,LT_06,,
+16,02 Short-form,20.45,21.50,00:00:20:14,00:00:21:15,2,clip,ValueCoders reel,Pain-point → solution flip,LT_07 · 05_wipe.mov at the cut,Speed ramp out,Swish
+17,02 Short-form,21.50,22.02,00:00:21:15,00:00:22:01,1,clip,Nivve,Brand colour moment,LT_09,Hard cut,
+18,02 Short-form,22.02,22.54,00:00:22:01,00:00:22:16,1,clip,Wellora,Brand colour moment,LT_10,Hard cut,
+19,03 Brand & Ads,22.54,23.59,00:00:22:16,00:00:23:18,2,gfx,Chapter 03 · iris,A lime circle blooms from centre and collapses to a point,04_chapter_03.mov,,Boom-less bloom (filtered noise swell)
+20,03 Brand & Ads,23.59,24.63,00:00:23:18,00:00:24:19,2,clip,PixelCrayons brand film,"Widest, most cinematic frame",LT_11,Slow push-in,
+21,03 Brand & Ads,24.63,25.68,00:00:24:19,00:00:25:20,2,clip,Nike motion poster · Concept,"The poster resolving, type locking in",LT_12,Cut on the type lock,Tick
+22,03 Brand & Ads,25.68,26.72,00:00:25:20,00:00:26:22,2,clip,AI-generated video project,The most surprising generated shot,LT_13 · 05_wipe.mov at the cut,Speed ramp 70→100%,
+23,03 Brand & Ads,26.72,27.25,00:00:26:22,00:00:27:07,1,clip,PixelCrayons ad cut,Punchy product / offer frame,,Hard cut,
+24,03 Brand & Ads,27.25,27.77,00:00:27:07,00:00:27:23,1,clip,Nike motion poster,Second frame,,Hard cut,
+25,04 Story & Cinema,27.77,28.81,00:00:27:23,00:00:28:24,2,gfx,Chapter 04 · cinema bars,"Black bars close to full frame, white title, bars open to 2.39:1 and stay",04_chapter_04.mov,,Low drone swell
+26,04 Story & Cinema,28.81,29.86,00:00:28:24,00:00:29:26,2,clip,Foundr podcast trailer,Host close-up on a strong line,"LT_14 · 06_letterbox_hold.mov (holds 10 beats, opens)",Let one word of dialogue through (−12 dB),
+27,04 Story & Cinema,29.86,30.90,00:00:29:26,00:00:30:27,2,clip,RCB documentary,Stadium or crowd wide,LT_15,Slow-mo 50% if the source allows,Crowd swell under music
+28,04 Story & Cinema,30.90,31.95,00:00:30:27,00:00:31:28,2,clip,Satinder Sartaaj India Tour,"Stage moment, warm light",LT_17,,
+29,04 Story & Cinema,31.95,32.99,00:00:31:28,00:00:33:00,2,clip,Readers Book Club,Most atmospheric frame,LT_16 · 05_wipe.mov at the cut,,
+30,04 Story & Cinema,32.99,34.04,00:00:33:00,00:00:34:01,2,clip,RCB documentary,Emotional peak,Letterbox opens at the cut,,
+31,Numbers,34.04,35.08,00:00:34:01,00:00:35:02,2,clip,250+ projects,"Under it: Claude Cowork, Workstatus (1 beat each)",07_numbers_250.mov,Hard cuts under the counter,Ticks while it rolls
+32,Numbers,35.08,36.13,00:00:35:02,00:00:36:04,2,clip,20+ brands,"Under it: Nike, PixelCrayons",07_numbers_20.mov,Hard cuts,Ticks
+33,Numbers,36.13,37.17,00:00:36:04,00:00:37:05,2,clip,3 yrs,"Under it: RCB, Sartaaj",07_numbers_3yrs.mov,Hard cuts,Ticks
+34,Finale,37.17,42.40,00:00:37:05,00:00:42:12,10,clip,"Best-of, one beat each",TestMu · Foundr · AI film · Wellora · Claude Cowork · LLMOps · Nivve · Readers Book Club · Engagement · RCB,09_hud.mov stays on,Every cut on the beat; last 2 shots speed-ramp to 300%,Riser into the breakdown
+35,End,42.40,48.67,00:00:42:12,00:00:48:20,12,gfx,Contact end card,Lands on the breakdown; music fades over the last 3 s,08_end_card.mov,,Soft chime on the email line

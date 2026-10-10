@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Showreel graphics package</title>
+<style>
+  @font-face { font-family: "Inter Tight"; src: url(inter.woff2) format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "JB Mono"; src: url(mono.woff2) format("woff2"); font-weight: 100 800; }
+  :root { --fg: #f5f5f0; --lime: #d6f53b; --ink: #0a0a0a; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1920px; height: 1080px; background: transparent; overflow: hidden; }
+  #stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; color: var(--fg); font-family: "Inter Tight", sans-serif; }
+  #bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .abs { position: absolute; } .full { position: absolute; inset: 0; }
+  .mono { font-family: "JB Mono", monospace; text-transform: uppercase; letter-spacing: .14em; }
+  .display { font-weight: 780; letter-spacing: -0.045em; line-height: .9; }
+  .mask { overflow: hidden; display: block; padding-bottom: .06em; }
+  .mask > span { display: block; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script src="gsap.min.js"></script>
+<script>
+/* One graphic per page load: graphics.html?el=<name>[&i=<n>][&bg=<image>]
+   window.dur = length in seconds; window.renderAt(t) seeks it. Transparent unless the graphic is a full frame. */
+const P = 0.52245;                         // one beat of the track
+const q = new URLSearchParams(location.search);
+const stage = document.getElementById("stage");
+const html = (s) => { stage.insertAdjacentHTML("beforeend", s); return stage.lastElementChild; };
+if (q.get("bg")) html(`<img id="bg" src="${q.get("bg")}">`);
+
+const CHAPTERS = [["SaaS &", "Product", "Explainers · UI · Product demos"], ["Short-", "form", "Reels · Shorts · Social"],
+                  ["Brand", "& Ads", "Campaigns · Posters · AI video"], ["Story &", "Cinema", "Trailers · Docs · Promos"]];
+const NUMBERS = [["250+", "Projects shipped"], ["20+", "Brands & businesses"], ["3 yrs", "Cutting & animating"]];
+let LOWER = [];
+
+const G = {
+  title() {   // SHOW / REEL over a lime hairline — 3.5s. &matte=1 drops the hairline (white letters = track matte for footage)
+    const ln = html(`<div class="abs" style="left:360px; top:539px; width:1200px; height:2px; background:var(--lime); transform:scaleX(0)"></div>`);
+    const a = html(`<div class="abs display" style="left:0; right:0; top:120px; font-size:400px; text-align:center"><span class="mask"><span>SHOW</span></span></div>`);
+    const b = html(`<div class="abs display" style="left:0; right:0; top:560px; font-size:400px; text-align:center"><span class="mask"><span>REEL</span></span></div>`);
+    if (q.get("matte")) ln.style.display = "none";
+    if (q.get("fill")) for (const el of [a, b].map((x) => x.querySelector(".mask > span"))) Object.assign(el.style, { backgroundImage: `url(${q.get("fill")})`, backgroundSize: "cover", backgroundPosition: "center", WebkitBackgroundClip: "text", color: "transparent" });
+    const tl = gsap.timeline({ paused: true, defaults: { ease: "expo.out" } });
+    // placed at 0:00 — letters land on beats −14 and −13, split off just before the name (beat −10)
+    const k = (n) => 8.96 + n * P;
+    tl.to(ln, { scaleX: 1, duration: 1.0, ease: "expo.inOut" }, 0.25)
+      .from(a.querySelector("span span"), { yPercent: 105, duration: 0.8 }, k(-14))
+      .from(b.querySelector("span span"), { yPercent: -105, duration: 0.8 }, k(-13))
+      .to(a, { x: -2300, duration: 0.55, ease: "power3.in" }, k(-10) - 0.45)
+      .to(b, { x: 2300, duration: 0.55, ease: "power3.in" }, k(-10) - 0.45)
+      .to(ln, { scaleX: 0, transformOrigin: "right", duration: 0.5, ease: "power3.in" }, k(-10) - 0.4);
+    return [tl, k(-10) + 0.12];
+  },
+  name() {    // Sarthak / Rawat, lime rule, role line — 3.4s
+    const box = html(`<div class="abs" style="left:150px; top:250px">
+      <div class="display" style="font-size:230px"><span class="mask"><span class="nm">Sarthak</span></span><span class="mask"><span class="nm" style="color:rgba(245,245,240,.36)">Rawat</span></span></div>
+      <div class="rule" style="width:440px; height:4px; background:var(--lime); margin-top:34px; transform-origin:left; transform:scaleX(0)"></div>
+      <div class="sub mono" style="margin-top:26px; font-size:22px; color:rgba(245,245,240,.8); opacity:0">Video editor &amp; motion designer · Noida, India</div></div>`);
+    const tl = gsap.timeline({ paused: true, defaults: { ease: "expo.out" } });
+    tl.from(box.querySelectorAll(".nm"), { yPercent: 105, duration: 0.9, stagger: 0.14 }, 0.05)
+      .to(box.querySelector(".rule"), { scaleX: 1, duration: 1, ease: "expo.inOut" }, 0.3)
+      .to(box.querySelector(".sub"), { opacity: 1, y: 0, duration: 0.6 }, 0.6)
+      .from(box.querySelector(".sub"), { y: 16, duration: 0.6 }, 0.6)
+      .to(box.querySelectorAll(".nm"), { yPercent: -105, duration: 0.35, ease: "power3.in", stagger: 0.05 }, 6 * P - 0.42)
+      .to(box.querySelectorAll(".rule, .sub"), { opacity: 0, duration: 0.2 }, 6 * P - 0.27);
+    return [tl, 6 * P];
+  },
+  words() {   // Edit. Motion. Story. Sound. — one beat each, "Story." on a lime frame
+    const tl = gsap.timeline({ paused: true });
+    ["Edit.", "Motion.", "Story.", "Sound."].forEach((w, i) => {
+      const box = html(`<div class="full" style="display:grid; place-items:center; visibility:hidden; ${i === 2 ? "background:var(--lime); color:var(--ink)" : ""}"><div class="display" style="font-size:330px">${w}</div></div>`);
+      tl.set(box, { visibility: "visible" }, i * P).fromTo(box.firstChild, { scale: 1.1 }, { scale: 1, duration: P, ease: "power2.out" }, i * P).set(box, { visibility: "hidden" }, (i + 1) * P);
+    });
+    return [tl, 4 * P];
+  },
+  chapter() { // 2 beats + exit. Each chapter has its own move: 0 UI grid · 1 phone bars · 2 iris · 3 cinema bars
+    const i = +q.get("i") || 0, [l1, l2, sub] = CHAPTERS[i];
+    const dark = i === 3, fg = dark ? "var(--fg)" : "var(--ink)";
+    const body = `<div class="abs mono" style="left:120px; top:96px; font-size:22px; letter-spacing:.2em; color:${fg}"><span class="mask"><span class="ct">Chapter 0${i + 1} &nbsp;/&nbsp; 04</span></span></div>
+      <div class="abs display" style="left:${dark ? 0 : 120}px; ${dark ? "right:0; text-align:center;" : ""} top:${dark ? 330 : 470}px; font-size:250px; color:${fg}"><span class="mask"><span class="ct">${l1}</span></span><span class="mask"><span class="ct">${l2}</span></span></div>
+      <div class="abs mono" style="right:120px; bottom:96px; font-size:22px; color:${fg}"><span class="mask"><span class="ct">${sub}</span></span></div>`;
+    const tl = gsap.timeline({ paused: true, defaults: { ease: "expo.out" } });
+    const out = 2 * P;
+    if (i === 0) {        // UI: panel opens from a centre seam, a 12-column grid draws, title types up; exits as a left wipe
+      const card = html(`<div class="full" style="background:var(--lime); clip-path:inset(0% 50% 0% 50%)"></div>`);
+      const grid = html(`<div class="full" style="display:grid; grid-template-columns:repeat(12,1fr)">${"<i style='border-left:1px solid rgba(10,10,10,.14); transform-origin:top; transform:scaleY(0)'></i>".repeat(12)}</div>`);
+      const txt = html(`<div class="full">${body}</div>`);
+      gsap.set([grid, txt], { clipPath: "inset(0% 0% 0% 0%)" });
+      tl.to(card, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.32, ease: "power4.out" }, 0)
+        .to(grid.children, { scaleY: 1, duration: 0.5, stagger: 0.02, ease: "power3.out" }, 0.05)
+        .from(txt.querySelectorAll(".ct"), { yPercent: 105, duration: 0.55, stagger: 0.06 }, 0.1)
+        .to([card, grid, txt], { clipPath: "inset(0% 0% 0% 100%)", duration: 0.22, ease: "power3.in" }, out);
+    } else if (i === 1) { // three phone-shaped bars rise in a stagger, exit upward
+      const bars = [0, 1, 2].map((k) => html(`<div class="abs" style="left:${k * 640}px; top:0; width:640px; height:1080px; background:var(--lime); ${k ? "border-left:1px solid rgba(10,10,10,.15)" : ""}"></div>`));
+      const txt = html(`<div class="full">${body}</div>`);
+      tl.fromTo(bars, { yPercent: 100 }, { yPercent: 0, duration: 0.36, stagger: 0.05, ease: "power4.out" }, 0)
+        .from(txt.querySelectorAll(".ct"), { yPercent: 105, duration: 0.55, stagger: 0.06 }, 0.16)
+        .to(txt, { yPercent: -30, opacity: 0, duration: 0.18, ease: "power3.in" }, out)
+        .to(bars, { yPercent: -100, duration: 0.24, stagger: 0.03, ease: "power3.in" }, out);
+    } else if (i === 2) { // iris: a lime circle blooms from centre and collapses back to a point
+      const circ = html(`<div class="abs" style="left:960px; top:540px; width:2300px; height:2300px; margin:-1150px 0 0 -1150px; border-radius:50%; background:var(--lime); transform:scale(0)"></div>`);
+      const txt = html(`<div class="full">${body}</div>`);
+      tl.to(circ, { scale: 1, duration: 0.42, ease: "expo.out" }, 0)
+        .from(txt.querySelectorAll(".ct"), { yPercent: 105, duration: 0.55, stagger: 0.06 }, 0.12)
+        .to(txt, { opacity: 0, duration: 0.12 }, out)
+        .to(circ, { scale: 0, duration: 0.24, ease: "power3.in" }, out);
+    } else {              // cinema: black bars close to full frame, white title, then open to 2.39:1 and stay
+      const t = html(`<div class="abs" style="left:0; right:0; top:0; height:540px; background:#000; transform-origin:top; transform:scaleY(0)"></div>`);
+      const bm = html(`<div class="abs" style="left:0; right:0; bottom:0; height:540px; background:#000; transform-origin:bottom; transform:scaleY(0)"></div>`);
+      const rule = html(`<div class="abs" style="left:760px; width:400px; top:820px; height:3px; background:var(--lime); transform:scaleX(0)"></div>`);
+      const txt = html(`<div class="full">${body}</div>`);
+      tl.to([t, bm], { scaleY: 1, duration: 0.3, ease: "power4.out" }, 0)
+        .from(txt.querySelectorAll(".ct"), { yPercent: 105, duration: 0.6, stagger: 0.06 }, 0.12)
+        .to(rule, { scaleX: 1, duration: 0.6, ease: "expo.inOut" }, 0.2)
+        .to([txt, rule], { opacity: 0, duration: 0.14 }, out)
+        .to([t, bm], { scaleY: 138 / 540, duration: 0.3, ease: "power3.inOut" }, out);
+    }
+    return [tl, 2 * P + 0.3];
+  },
+  wipe() {    // accent transition: lime panel sweeps through — cut under it at 0.25s
+    const a = html(`<div class="full" style="background:var(--lime)"></div>`);
+    const b = html(`<div class="full" style="background:var(--ink)"></div>`);
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo(a, { xPercent: 100 }, { xPercent: -100, duration: 0.5, ease: "power4.inOut" }, 0)
+      .fromTo(b, { xPercent: 100 }, { xPercent: -100, duration: 0.5, ease: "power4.inOut" }, 0.04);
+    return [tl, 0.56];
+  },
+  letterbox() { // 2.39:1 bars ease in, hold, ease out — trim the hold to the cinematic section
+    const t = html(`<div class="abs" style="left:0; right:0; top:0; height:0; background:#000"></div>`);
+    const b = html(`<div class="abs" style="left:0; right:0; bottom:0; height:0; background:#000"></div>`);
+    const tl = gsap.timeline({ paused: true });
+    if (q.get("i") === "1") { gsap.set([t, b], { height: 138 }); tl.to([t, b], { height: 0, duration: 0.35, ease: "power3.in" }, 10 * P - 0.35); return [tl, 10 * P]; }
+    tl.to([t, b], { height: 138, duration: 0.5, ease: "expo.out" }, 0).to([t, b], { height: 0, duration: 0.35, ease: "power3.in" }, 4.65);
+    return [tl, 5.0];
+  },
+  lower() {   // lower-third: lime tick, project, client · role — 2 beats (1.04s)
+    const [proj, meta] = LOWER[+q.get("i") || 0];
+    const box = html(`<div class="abs" style="left:72px; bottom:88px; display:flex; gap:22px; align-items:stretch; padding:22px 30px 22px 22px; background:rgba(10,10,10,.8); border-radius:12px; clip-path:inset(0 100% 0 0 round 12px)">
+      <div class="tick" style="width:5px; background:var(--lime); border-radius:3px; transform-origin:top"></div>
+      <div><div class="mask"><span class="p" style="font-weight:720; font-size:40px; letter-spacing:-.02em; line-height:1.1">${proj}</span></div>
+      <div class="mask"><span class="m mono" style="font-size:17px; color:rgba(245,245,240,.7); margin-top:8px">${meta}</span></div></div></div>`);
+    const tl = gsap.timeline({ paused: true, defaults: { ease: "expo.out" } });
+    tl.to(box, { clipPath: "inset(0 0% 0 0 round 12px)", duration: 0.35 }, 0)
+      .from(box.querySelector(".tick"), { scaleY: 0, duration: 0.3 }, 0.05)
+      .from(box.querySelector(".p"), { yPercent: 105, duration: 0.4 }, 0.06)
+      .from(box.querySelector(".m"), { yPercent: 105, duration: 0.4 }, 0.12)
+      .to(box, { clipPath: "inset(0 0 0 100% round 12px)", duration: 0.2, ease: "power3.in" }, 0.84);
+    return [tl, 1.04];
+  },
+  numbers() { // stat rolls up to its value over the footage, left shade for contrast — 2 beats
+    const [n, l] = NUMBERS[+q.get("i") || 0];
+    const target = parseInt(n), suffix = n.slice(String(target).length);
+    const shade = html(`<div class="full" style="background:linear-gradient(90deg,rgba(0,0,0,.75) 0%,rgba(0,0,0,.3) 55%,rgba(0,0,0,0) 100%)"></div>`);
+    const s = html(`<div class="abs" style="left:140px; top:290px"><div class="display" style="font-size:330px; font-variant-numeric:tabular-nums; transform-origin:left bottom"><span class="v">0</span>${suffix}</div><div class="mono" style="font-size:24px; margin-top:24px; color:var(--lime)">${l}</div></div>`);
+    const v = s.querySelector(".v"), o = { v: 0 };
+    const tl = gsap.timeline({ paused: true, defaults: { ease: "expo.out" } });
+    tl.from(shade, { opacity: 0, duration: 0.15 }, 0)
+      .fromTo(s.firstChild, { yPercent: 30, scale: 1.12 }, { yPercent: 0, scale: 1, duration: 0.45 }, 0)
+      .to(o, { v: target, duration: 0.6, ease: "power3.out", onUpdate: () => (v.textContent = Math.round(o.v)) }, 0)
+      .from(s.lastChild, { opacity: 0, x: -20, duration: 0.4 }, 0.12);
+    return [tl, 2 * P];
+  },
+  hud() {     // full-length editorial overlay: corner brackets, reel tag, chapter, timecode, a lime tick on every beat
+    const D = 8.96, B = (k) => D + k * P, END = B(64), TOTAL = B(76);
+    const ch = [[0, "01 — SaaS & Product"], [12, "02 — Short-form"], [26, "03 — Brand & Ads"], [36, "04 — Story & Cinema"], [48, "By the numbers"], [54, "Selected work"]];
+    const box = html(`<div class="full" style="opacity:0">
+      ${[["left:40px;top:40px", "border-left:2px solid;border-top:2px solid"], ["right:40px;top:40px", "border-right:2px solid;border-top:2px solid"], ["left:40px;bottom:40px", "border-left:2px solid;border-bottom:2px solid"], ["right:40px;bottom:40px", "border-right:2px solid;border-bottom:2px solid"]].map(([p, b]) => `<i class="abs" style="${p};width:34px;height:34px;${b};border-color:rgba(245,245,240,.55)"></i>`).join("")}
+      <div class="abs mono" style="left:96px; top:46px; font-size:16px; display:flex; gap:12px; align-items:center; text-shadow:0 1px 8px rgba(0,0,0,.5)"><span class="dot" style="width:9px;height:9px;border-radius:50%;background:var(--lime)"></span>SR — Showreel 2025</div>
+      <div class="abs mono ch" style="right:96px; top:46px; font-size:16px; text-shadow:0 1px 8px rgba(0,0,0,.5)"></div>
+      <div class="abs mono tc" style="right:96px; bottom:46px; font-size:16px; color:rgba(245,245,240,.8); font-variant-numeric:tabular-nums; text-shadow:0 1px 8px rgba(0,0,0,.5)"></div></div>`);
+    const tl = gsap.timeline({ paused: true });
+    tl.to(box, { opacity: 1, duration: 0.2 }, D + 2 * P).to(box, { opacity: 0, duration: 0.15 }, END);
+    for (let k = 0; k < 64; k++) tl.fromTo(box.querySelector(".dot"), { opacity: 1, scale: 1.5 }, { opacity: 0.35, scale: 1, duration: P * 0.9, ease: "power2.out" }, B(k));
+    const chEl = box.querySelector(".ch"), tcEl = box.querySelector(".tc");
+    const pad = (n) => String(n).padStart(2, "0");
+    window.hudText = (t) => {
+      let c = ""; for (const [k, label] of ch) if (t >= B(k)) c = label;
+      chEl.textContent = c;
+      const f = Math.floor(t * 30 + 1e-6); tcEl.textContent = `00:${pad(Math.floor(f / 1800))}:${pad(Math.floor(f / 30) % 60)}:${pad(f % 30)}`;
+    };
+    return [tl, TOTAL];
+  },
+  end() {     // contact end card — full frame, 6.3s with a fade to black
+    const box = html(`<div class="full" style="background:var(--ink); padding:0 150px; display:flex; flex-direction:column; justify-content:center">
+      <div class="display" style="font-size:170px"><span class="mask"><span class="el">Let's make something</span></span><span class="mask"><span class="el" style="color:var(--lime)">people finish.</span></span></div>
+      <div class="mono es" style="margin-top:56px; font-size:28px">sarthakkrawat.official@gmail.com</div>
+      <div class="mono es" style="margin-top:12px; font-size:22px; color:rgba(245,245,240,.5)">@sarthakk.create · sarthakkrawatofficial-alt.github.io/portfolio</div></div>`);
+    const tl = gsap.timeline({ paused: true, defaults: { ease: "expo.out" } });
+    tl.from(box.querySelectorAll(".el"), { yPercent: 105, duration: 1, stagger: 0.18 }, 0)
+      .from(box.querySelectorAll(".es"), { opacity: 0, y: 16, duration: 0.8, stagger: 0.12 }, 2 * P)
+      .to(box, { opacity: 0, duration: 1.6, ease: "power1.in" }, 4.7);
+    return [tl, 6.3];
+  },
+};
+
+(async () => {
+  LOWER = await (await fetch("lowerthirds.json")).json();
+  await document.fonts.load("700 100px 'Inter Tight'"); await document.fonts.load("400 20px 'JB Mono'");
+  const [tl, dur] = G[q.get("el")]();
+  window.dur = dur;
+  window.renderAt = (t) => { tl.seek(t, false); if (window.hudText) window.hudText(t); };
+  if (q.get("bg")) await document.getElementById("bg").decode().catch(() => {});
+  window.ready = true;
+})();
+</script>
+</body>
+</html>

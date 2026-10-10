@@ -19,3 +19,9 @@ node render.mjs out.mp4            # or: node render.mjs stillsDir "10,20,30" fo
 
 To re-cut: change the source in-points or beat positions in `plan.py` (one beat = 0.52245 s, beat 0 = the
 drop), and the type/animation in `reel.html`.
+
+## Graphics package (alpha MOVs for editing with your own footage)
+`graphics.html` holds every overlay (title + track matte, name, word flashes, four chapter transitions, wipe,
+letterbox, lower-thirds from `lowerthirds.json`, rolling numbers, end card, full-length HUD).
+`render_pkg.mjs <outDir> [prores|qtrle|png]` renders each one as a 1920×1080 30 fps MOV with alpha.
+`cutlist.csv` is the shot-by-shot edit and `graphics_placement.csv` the in-point of every MOV.

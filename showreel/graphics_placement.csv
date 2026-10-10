@@ -1,0 +1,36 @@
+timeline in (s),timeline in (tc @30fps),file,note
+0.000,00:00:00:00,09_hud.mov,"Top track, full length (visible from the first chapter card to the end card)"
+0.000,00:00:00:00,01_title.mov,Track above the clips
+0.000,00:00:00:00,01b_title_matte.mov,Set as track matte (alpha) for 4 one-beat clips starting 1.65 s
+3.736,00:00:03:22,02_name.mov,
+6.870,00:00:06:26,03_words.mov,Full frame
+8.960,00:00:08:29,04_chapter_01_ui-grid.mov,Drop
+10.005,00:00:10:00,LT_01_Claude-Cowork.mov,On the cut of Claude Cowork
+11.572,00:00:11:17,LT_02_Workstatus.mov,On the cut of Workstatus
+12.617,00:00:12:19,LT_03_Boost-Productivity.mov,On the cut of Boost Productivity
+13.412,00:00:13:12,05_wipe.mov,Cut sits under the wipe
+13.662,00:00:13:20,LT_04_AI-Product-Readiness.mov,On the cut of AI Product Readiness
+15.229,00:00:15:07,04_chapter_02_phone-bars.mov,
+16.274,00:00:16:08,LT_08_TestMu-AI.mov,On the cut of TestMu AI
+18.364,00:00:18:11,LT_05_LLMOps-Explained.mov,On the cut of LLMOps Explained
+19.409,00:00:19:12,LT_06_Engagement-Signal-Detection.mov,On the cut of Engagement Signal Detection
+20.204,00:00:20:06,05_wipe.mov,
+20.454,00:00:20:14,LT_07_ValueCoders-Reel.mov,On the cut of ValueCoders Reel
+21.499,00:00:21:15,LT_09_Nivve.mov,On the cut of Nivve — one-beat shot: trim the MOV to 0.52 s
+22.021,00:00:22:01,LT_10_Wellora.mov,On the cut of Wellora — one-beat shot: trim the MOV to 0.52 s
+22.544,00:00:22:16,04_chapter_03_iris.mov,
+23.589,00:00:23:18,LT_11_PixelCrayons.mov,On the cut of PixelCrayons
+24.633,00:00:24:19,LT_12_Nike.mov,On the cut of Nike
+25.428,00:00:25:13,05_wipe.mov,
+25.678,00:00:25:20,LT_13_AI-Generated-Film.mov,On the cut of AI-Generated Film
+27.768,00:00:27:23,04_chapter_04_cinema-bars.mov,Ends with 2.39:1 bars
+28.813,00:00:28:24,06_letterbox_hold.mov,"Continues the bars for 10 beats, then opens"
+28.813,00:00:28:24,LT_14_Foundr-Podcast.mov,On the cut of Foundr Podcast
+29.858,00:00:29:26,LT_15_RCB.mov,On the cut of RCB
+30.903,00:00:30:27,LT_17_Satinder-Sartaaj.mov,On the cut of Satinder Sartaaj
+31.698,00:00:31:21,05_wipe.mov,
+31.948,00:00:31:28,LT_16_Readers-Book-Club.mov,On the cut of Readers Book Club
+34.038,00:00:34:01,07_numbers_250.mov,
+35.082,00:00:35:02,07_numbers_20.mov,
+36.127,00:00:36:04,07_numbers_3yrs.mov,
+42.397,00:00:42:12,08_end_card.mov,Lands on the breakdown
