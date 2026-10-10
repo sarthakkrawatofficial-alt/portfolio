@@ -8,13 +8,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://sarthakkrawatofficial-alt.github.io/portfolio/"),
   title: "Sarthak Rawat — Video Editor & Motion Designer",
   description:
-    "Sarthak Rawat is a video editor and motion designer in Noida, India, cutting SaaS explainers, reels, trailers and documentary-style films that people remember.",
+    "Sarthak Rawat is a video editor and motion designer in Noida, India, making SaaS animation, explainers, reels and trailers. Currently at TestMu AI.",
   openGraph: {
     title: "Sarthak Rawat — Video Editor & Motion Designer",
-    description: "Edits and motion design for brands with something worth saying.",
+    description: "Motion designer and video editor at TestMu AI. SaaS animation, explainers, reels and trailers. Showreel 2026 inside.",
     type: "website",
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Sarthak Rawat — Showreel 2026" }],
   },
-  twitter: { card: "summary_large_image", title: "Sarthak Rawat — Video Editor & Motion Designer" },
+  twitter: { card: "summary_large_image", title: "Sarthak Rawat — Video Editor & Motion Designer", images: ["/og.jpg"] },
   icons: { icon: asset("/icon.svg") },
 };
 
