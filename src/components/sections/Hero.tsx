@@ -58,7 +58,6 @@ export default function Hero({ settings, projects }: { settings: Settings; proje
               Showreel 2026 · 0:48
             </span>
           </button>
-          <PandaSprite className="pointer-events-auto absolute -top-[21%] right-[4%] hidden h-[30%] cursor-pointer md:block" />
         </div>
 
         <div className="wrap pointer-events-none relative z-10 flex min-h-[92svh] flex-col justify-end pb-8 pt-[calc(88px+56.25vw+28px)] md:pb-10 md:pt-28">
@@ -66,7 +65,11 @@ export default function Hero({ settings, projects }: { settings: Settings; proje
             {settings.name} · {settings.role} · {settings.location}
           </div>
 
-          <h1 className="h-display text-[clamp(3.4rem,10.4vw,10.5rem)]" aria-label="I edit stories that stick.">
+          <h1 className="h-display relative text-[clamp(3.4rem,10.4vw,10.5rem)]" aria-label="I edit stories that stick.">
+            {/* the panda stands in the gap after "I edit" */}
+            <span aria-hidden className="hero-fade absolute left-[2.72em] top-[-0.1em] block h-[1.02em]">
+              <PandaSprite className="pointer-events-auto relative h-full cursor-pointer" />
+            </span>
             <span className="split-line" aria-hidden><span className="hero-word inline-block">I&nbsp;edit</span></span>
             <span className="split-line" aria-hidden><span className="hero-word inline-block">stories</span></span>
             <span className="split-line" aria-hidden>
