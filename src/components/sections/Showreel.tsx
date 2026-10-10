@@ -37,7 +37,7 @@ export default function Showreel({ id }: { id: string }) {
       <div className="mx-auto mt-12 w-full max-w-[1600px] px-3 md:mt-16 md:px-6">
         <div ref={frame} className="relative aspect-[4/5] w-full overflow-hidden border border-line bg-black sm:aspect-video" style={{ borderRadius: 28 }}>
           {playing ? (
-            <iframe className="absolute inset-0 h-full w-full" src={ytEmbed(id)} title="Sarthak Rawat — Showreel" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
+            <iframe className="absolute inset-0 h-full w-full" src={ytEmbed(id)} title="Sarthak Rawat — Showreel 2026" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
           ) : (
             <button type="button" data-cursor="play" onClick={() => setPlaying(true)} className="group absolute inset-0 h-full w-full" aria-label="Play showreel">
               {/* eslint-disable-next-line @next/next/no-img-element */}
