@@ -29,9 +29,9 @@ export default function Showreel({ id }: { id: string }) {
       <div className="wrap">
         <SectionHead
           index="01"
-          label="Showreel 2025"
-          lines={["Two minutes.", { text: "No explanations.", className: "text-fg/35" }]}
-          aside={<p>A fast cut through SaaS launches, podcasts, tours and short-form — the clearest way to see how I pace a story.</p>}
+          label="Showreel 2026"
+          lines={["48 seconds.", { text: "No explanations.", className: "text-fg/35" }]}
+          aside={<p>A fast cut through SaaS animation, explainers, podcasts and short-form — the clearest way to see how I pace a story.</p>}
         />
       </div>
       <div className="mx-auto mt-12 w-full max-w-[1600px] px-3 md:mt-16 md:px-6">
@@ -47,11 +47,11 @@ export default function Showreel({ id }: { id: string }) {
               <div className="absolute inset-x-0 top-0 h-[9%] bg-black/90" />
               <div className="absolute inset-x-0 bottom-0 h-[9%] bg-black/90" />
               <div className="label absolute left-4 top-[calc(9%+14px)] flex items-center gap-2 text-white/85 md:left-8">
-                <span className="h-2 w-2 rounded-full bg-lime" style={{ animation: "blink 1.2s steps(2) infinite" }} /> REC · 4K · 23.976
+                <span className="h-2 w-2 rounded-full bg-lime" style={{ animation: "blink 1.2s steps(2) infinite" }} /> REC · 1440p · 30
               </div>
-              <div className="label absolute right-4 top-[calc(9%+14px)] hidden text-white/65 sm:block md:right-8">SR_REEL_2025_FINAL_v7.mov</div>
+              <div className="label absolute right-4 top-[calc(9%+14px)] hidden text-white/65 sm:block md:right-8">SR_REEL_2026_FINAL.mov</div>
               <div className="label absolute bottom-[calc(9%+14px)] left-4 text-white/65 md:left-8">00:00:00:00</div>
-              <div className="label absolute bottom-[calc(9%+14px)] right-4 text-white/65 md:right-8">≈ 02:00</div>
+              <div className="label absolute bottom-[calc(9%+14px)] right-4 text-white/65 md:right-8">00:48</div>
               {/* corner brackets */}
               {[
                 "left-4 top-[16%] border-l border-t md:left-8",
@@ -66,7 +66,7 @@ export default function Showreel({ id }: { id: string }) {
                 <svg className="reel-ring absolute inset-0 h-full w-full" viewBox="0 0 200 200" aria-hidden>
                   <defs><path id="circ" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0" /></defs>
                   <text fill="#F2F2F2" fontSize="13" fontFamily="var(--font-mono)">
-                    <textPath href="#circ" textLength="512" lengthAdjust="spacing">PLAY SHOWREEL · 2025 · PLAY SHOWREEL · 2025 · </textPath>
+                    <textPath href="#circ" textLength="512" lengthAdjust="spacing">PLAY SHOWREEL · 2026 · PLAY SHOWREEL · 2026 · </textPath>
                   </text>
                 </svg>
                 <span className="grid h-20 w-20 place-items-center rounded-full bg-lime text-bg shadow-[0_20px_60px_-10px_rgba(0,0,0,0.5)] transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-110 md:h-24 md:w-24">
