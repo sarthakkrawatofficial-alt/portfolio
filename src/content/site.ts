@@ -249,7 +249,7 @@ export const fallbackContent: SiteContent = {
       name: "Akash Mishra",
       company: "Digilok Media House",
       quote:
-        "Working with Sarthak at Digilok was seamless. He adapted quickly across shoots and editing, delivering content that stayed consistent and high-quality. Fast, dependable, and focused, he handled every project with strong ownership.",
+        "He adapted quickly across shoots and editing, delivering content that stayed consistent and high-quality. Fast, dependable, and focused, he handled every project with strong ownership.",
       highlight: "Fast, dependable, and focused",
       avatar: "/img/testimonials/akash-mishra.png",
     },
