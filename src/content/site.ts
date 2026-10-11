@@ -104,6 +104,18 @@ export const fallbackContent: SiteContent = {
         "A 23-second concept film for Claude Cowork, made as my interview assignment for TestMu AI. Not commissioned by Anthropic.",
     },
     {
+      id: "jolt-product-film",
+      title: "JOLT Product Film",
+      client: "Concept project",
+      platform: "YouTube",
+      role: "Motion design · Art direction",
+      category: "SaaS & Product",
+      youtubeId: "3pp-wYGW83s",
+      orientation: "landscape",
+      description:
+        "A product film for JOLT, a fictional AI video-repurposing tool, built with Claude and After Effects. Self-initiated concept, not a client commission.",
+    },
+    {
       id: "ai-product-readiness",
       title: "AI Product Readiness",
       client: "ValueCoders",
