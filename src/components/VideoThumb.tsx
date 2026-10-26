@@ -1,9 +1,12 @@
 "use client";
 import { useRef, useState } from "react";
-import { ytEmbed, ytThumb } from "@/content/site";
+import { THUMB_FALLBACK, ytEmbed, ytThumb } from "@/content/site";
 
-/** Thumbnail that swaps to a muted, looping YouTube preview on hover. */
-export default function VideoThumb({ id, title, className = "", preview = true, quality = "hq" }: { id: string; title: string; className?: string; preview?: boolean; quality?: "hq" | "maxres" }) {
+/** Thumbnail that swaps to a muted, looping YouTube preview on hover.
+ *  Loads the sharpest thumbnail YouTube has: maxres, then sd, then hq. */
+export default function VideoThumb({ id, title, className = "", preview = true }: { id: string; title: string; className?: string; preview?: boolean }) {
+  const [step, setStep] = useState(0);
+  const next = () => setStep((s) => Math.min(s + 1, THUMB_FALLBACK.length - 1));
   const [live, setLive] = useState(false);
   const [ready, setReady] = useState(false);
   const t = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -16,8 +19,10 @@ export default function VideoThumb({ id, title, className = "", preview = true, 
     <div className={`absolute inset-0 overflow-hidden bg-card2 ${className}`} onPointerEnter={enter} onPointerLeave={leave}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={ytThumb(id, quality)}
-        onError={(e) => { if (quality === "maxres") (e.currentTarget as HTMLImageElement).src = ytThumb(id); }}
+        src={ytThumb(id, THUMB_FALLBACK[step])}
+        onError={next}
+        // a missing size comes back as YouTube's 120x90 grey placeholder, not an error
+        onLoad={(e) => { if ((e.currentTarget as HTMLImageElement).naturalWidth <= 120) next(); }}
         alt={title}
         loading="lazy"
         className="absolute inset-0 h-full w-full object-cover saturate-[0.6] transition-[transform,filter] duration-[1.2s] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.06] group-hover:saturate-100"
