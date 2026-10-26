@@ -104,7 +104,7 @@ function Card({ p, idx, feature = false, onOpen }: { p: Project; idx: number; fe
         className={`relative block w-full overflow-hidden rounded-[20px] border border-line bg-card text-left transition-[border-color,box-shadow] duration-500 group-hover:border-lime/60 group-hover:shadow-[0_30px_60px_-30px_rgba(70,52,30,0.45)] ${portrait ? "aspect-[9/16]" : feature ? "aspect-video md:aspect-[21/9]" : "aspect-video"}`}
         aria-label={`Play ${p.title}`}
       >
-        <VideoThumb id={p.youtubeId} title={p.title} quality={feature ? "maxres" : "hq"} />
+        <VideoThumb id={p.youtubeId} title={p.title} />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
         <span className="label pointer-events-none absolute left-3 top-3 rounded-full bg-black/70 px-2.5 py-1 text-[10px] text-white/85 md:left-4 md:top-4">{p.category}</span>
         <span className="label pointer-events-none absolute right-3 top-3 text-[10px] text-white/75 md:right-4 md:top-4">{String(idx).padStart(2, "0")}</span>
