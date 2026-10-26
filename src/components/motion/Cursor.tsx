@@ -60,7 +60,7 @@ export default function Cursor() {
               <svg width="10" height="10" viewBox="0 0 10 10"><path d="M1 0l9 5-9 5z" fill="currentColor" /></svg>PLAY
             </span>
           )}
-          {mode === "drag" && <span className="label font-bold text-white">DRAG</span>}
+          {mode === "drag" && <span className="label font-bold text-white">Drag</span>}
         </div>
       </div>
       <div ref={dot} className="pointer-events-none fixed left-0 top-0 z-[201] opacity-0" aria-hidden>
