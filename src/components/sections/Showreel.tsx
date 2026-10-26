@@ -49,9 +49,9 @@ export default function Showreel({ id }: { id: string }) {
               <div className="label absolute left-4 top-[calc(9%+14px)] flex items-center gap-2 text-white/85 md:left-8">
                 <span className="h-2 w-2 rounded-full bg-lime" style={{ animation: "blink 1.2s steps(2) infinite" }} /> REC · 1440p · 30
               </div>
-              <div className="label absolute right-4 top-[calc(9%+14px)] hidden text-white/65 sm:block md:right-8">SR_REEL_2026_FINAL.mov</div>
-              <div className="label absolute bottom-[calc(9%+14px)] left-4 text-white/65 md:left-8">00:00:00:00</div>
-              <div className="label absolute bottom-[calc(9%+14px)] right-4 text-white/65 md:right-8">00:48</div>
+              <div className="label-mono absolute right-4 top-[calc(9%+14px)] hidden text-white/65 sm:block md:right-8">SR_REEL_2026_FINAL.mov</div>
+              <div className="label-mono absolute bottom-[calc(9%+14px)] left-4 text-white/65 md:left-8">00:00:00:00</div>
+              <div className="label-mono absolute bottom-[calc(9%+14px)] right-4 text-white/65 md:right-8">00:48</div>
               {/* corner brackets */}
               {[
                 "left-4 top-[16%] border-l border-t md:left-8",

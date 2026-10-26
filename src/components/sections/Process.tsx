@@ -55,7 +55,7 @@ export default function Process() {
               <span className="h-8 w-1 rounded bg-lime" />
               <div><div className="text-sm font-bold">Sarthak Rawat</div><div className="label text-[9px] text-white/60">Motion designer</div></div>
             </div>
-            <div className="label absolute right-4 top-[10%] rounded-full bg-lime px-3 py-1.5 text-[10px] font-bold text-bg md:right-6">AFTER · GRADED</div>
+            <div className="label absolute right-4 top-[10%] rounded-full bg-lime px-3 py-1.5 text-[10px] font-bold text-bg md:right-6">Graded</div>
           </div>
 
           {/* BEFORE (clipped) */}
@@ -66,8 +66,8 @@ export default function Process() {
             <div className="absolute inset-0 grid grid-cols-3 grid-rows-3">
               {Array.from({ length: 9 }).map((_, i) => <span key={i} className="border border-white/10" />)}
             </div>
-            <div className="label absolute left-4 top-[10%] rounded-full bg-black/70 px-3 py-1.5 text-[10px] text-white/85 md:left-6">BEFORE · RAW LOG</div>
-            <div className="label absolute bottom-6 left-4 text-[10px] text-white/80 md:left-6">A001_C014 · 00:12:48:03 · UNGRADED</div>
+            <div className="label absolute left-4 top-[10%] rounded-full bg-black/70 px-3 py-1.5 text-[10px] text-white/85 md:left-6">Raw log</div>
+            <div className="label-mono absolute bottom-6 left-4 text-[10px] text-white/80 md:left-6">A001_C014 · 00:12:48:03 · UNGRADED</div>
             <div className="absolute bottom-14 left-4 hidden h-16 w-36 items-end gap-[2px] rounded-md bg-black/60 p-1.5 md:left-6 md:flex">
               {Array.from({ length: 30 }).map((_, i) => <span key={i} className="flex-1 bg-white/50" style={{ height: `${35 + Math.sin(i / 3) * 12 + ((i * 13) % 9)}%` }} />)}
             </div>
