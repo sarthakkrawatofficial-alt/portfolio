@@ -117,39 +117,36 @@ export const fallbackContent: SiteContent = {
     },
     {
       id: "pinterest-lens",
-      title: "Pinterest · Lens",
+      title: "Pinterest Lens",
       client: "Concept project",
       platform: "YouTube",
       role: "Motion design · Sound design",
       category: "SaaS & Product",
       youtubeId: "vojEi7IQWCE",
       orientation: "landscape",
-      description:
-        "A photographic product film on real footage: Lens locks onto a mug, finds it, saves it, and the same object carries every cut. Unofficial concept, not affiliated with Pinterest.",
+      description: "Concept film for Pinterest Lens, shot on real footage.",
     },
     {
       id: "notion-one-block",
-      title: "Notion · One Block",
+      title: "Notion One Block",
       client: "Concept project",
       platform: "YouTube",
       role: "Motion design · UI animation",
       category: "SaaS & Product",
       youtubeId: "8pqqvCbDdrI",
       orientation: "landscape",
-      description:
-        "One block becomes a table, a board, a calendar and a page in 14 seconds, with a single camera and no hard cuts. Unofficial concept, not affiliated with Notion.",
+      description: "Concept film where one block becomes a table, board, calendar and page.",
     },
     {
       id: "messegy-explainer",
-      title: "Messegy Product Explainer",
+      title: "Messegy Explainer",
       client: "Messegy",
       platform: "YouTube",
       role: "Motion design · Sound design",
       category: "SaaS & Product",
       youtubeId: "3D5cCOxKcOE",
       orientation: "landscape",
-      description:
-        "Explainer for an official WhatsApp Business API platform, showing how one shared inbox handles WhatsApp, Instagram and email.",
+      description: "Product explainer for a WhatsApp Business platform.",
     },
     {
       id: "ai-product-readiness",
@@ -216,8 +213,7 @@ export const fallbackContent: SiteContent = {
       category: "Short-form",
       youtubeId: "wxmD9ct2kOU",
       orientation: "portrait",
-      description:
-        "Food-delivery app concept where search, cart, tracking and delivery morph into each other with zero hard cuts.",
+      description: "Food delivery app concept where every screen morphs into the next.",
     },
     {
       id: "messegy-short",
@@ -228,7 +224,7 @@ export const fallbackContent: SiteContent = {
       category: "Short-form",
       youtubeId: "yLnRFpjOMbM",
       orientation: "portrait",
-      description: "A short ad that opens on a pain small businesses know, then shows WhatsApp automation fixing it in one chat.",
+      description: "Short ad for WhatsApp automation.",
     },
     {
       id: "creative-showcase",
@@ -392,8 +388,11 @@ export const fallbackContent: SiteContent = {
   ],
 };
 
-export const ytThumb = (id: string, q: "hq" | "maxres" = "hq") =>
-  `https://img.youtube.com/vi/${id}/${q === "hq" ? "hqdefault" : "maxresdefault"}.jpg`;
+// maxres = 1280x720, sd = 640x480, hq = 480x360. Not every video has maxres/sd.
+export type ThumbQuality = "maxres" | "sd" | "hq";
+export const THUMB_FALLBACK: ThumbQuality[] = ["maxres", "sd", "hq"];
+export const ytThumb = (id: string, q: ThumbQuality = "hq") =>
+  `https://img.youtube.com/vi/${id}/${q}default.jpg`;
 
 export const ytEmbed = (id: string, opts: { muted?: boolean; controls?: boolean; loop?: boolean } = {}) => {
   const p = new URLSearchParams({
