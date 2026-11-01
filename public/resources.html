@@ -6,7 +6,7 @@
 <title>Resources - Sarthak Rawat</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Geist:wght@400;500&family=Geist+Mono&display=swap" rel="stylesheet" />
 <style>
   :root {
     --bg: #0a0a0a;
@@ -250,12 +250,33 @@
     }
   }
 </style>
+<style id="v3">
+  /* v3 look: cream, espresso, saffron; same system as the portfolio */
+  :root { --bg:#EFE4CF; --bg2:#F7F0E3; --bg3:#E3D3B5; --white:#22160E; --muted:#7A6450; --accent:#8F520B; --border:rgba(34,22,14,.12);
+    --font-display:'Bricolage Grotesque',sans-serif; --font-body:'Geist',sans-serif; }
+  body { background:#EFE4CF; color:#22160E; font-family:var(--font-body); }
+  .hero h1, .section-title { font-family:var(--font-display); font-weight:700; letter-spacing:-0.045em; line-height:.95; }
+  .brand { font-family:var(--font-display); font-weight:700; letter-spacing:-0.03em; font-size:21px; }
+  .brand span { color:#E8A13A; }
+  .eyebrow, .section-label, .resource-type, .back-link, .cta, [class*="label"], [class*="eyebrow"], [class*="kicker"], [class*="tag"] { text-transform:none !important; letter-spacing:0 !important; font-size:14px !important; }
+  [class*="card"], .resource-group, .resource-list a { background:#F7F0E3 !important; }
+  .cta { border-radius:999px; padding:14px 22px; font-weight:500; }
+  .cta.primary { background:#E8A13A; border-color:#E8A13A; color:#22160E; }
+  .cta:hover { border-color:#22160E; color:#22160E; }
+  .cta.primary:hover { background:#22160E; color:#EFE4CF; }
+  a:hover .resource-name { color:#8F520B; }
+  /* arrival wipe */
+  .v3-wipe { position:fixed; inset:0; z-index:999; background:#22160E; transform:translateY(0); transition:transform .6s cubic-bezier(.76,0,.24,1) .05s; pointer-events:none; }
+  .v3-wipe::before { content:""; position:absolute; left:0; right:0; bottom:0; height:5px; background:#E8A13A; }
+  .v3-wipe.off { transform:translateY(-100%); }
+  @media (prefers-reduced-motion: reduce) { .v3-wipe { transition:none; } }
+</style>
 </head>
 <body>
   <div class="page">
     <div class="topbar">
-      <a href="./" class="brand">SR<span>.</span></a>
-      <a href="./" class="back-link">Back To Portfolio</a>
+      <a href="./" class="brand" data-transition>Sarthak<span>.</span></a>
+      <a href="./" class="back-link" data-transition>Back to portfolio</a>
     </div>
 
     <header class="hero">
@@ -297,11 +318,27 @@
         If you want, I can next wire these cards to your real asset folders, handbook PDFs, Notion pages, or Google Drive links.
       </p>
       <div class="cta-row">
-        <a href="./#contact" class="cta primary">Start A Project</a>
-        <a href="./" class="cta">Return Home</a>
+        <a href="./#contact" class="cta primary">Start a project</a>
+        <a href="./" class="cta">Return home</a>
       </div>
       <div class="note">Tip: point each card to the exact hosted URL or downloadable file you want people to access.</div>
     </section>
   </div>
+<div class="v3-wipe" id="v3wipe" aria-hidden="true"></div>
+<script>
+  (function () {
+    var w = document.getElementById("v3wipe");
+    requestAnimationFrame(function () { requestAnimationFrame(function () { w.classList.add("off"); }); });
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest("a[data-transition], a.cta");
+      if (!a || e.metaKey || e.ctrlKey || a.target === "_blank") return;
+      e.preventDefault();
+      w.style.transition = "none"; w.classList.remove("off"); w.style.transform = "translateY(100%)";
+      void w.offsetHeight; w.style.transition = ""; w.style.transform = "translateY(0)";
+      setTimeout(function () { location.href = a.href; }, 650);
+    });
+    window.addEventListener("pageshow", function (e) { if (e.persisted) w.classList.add("off"); });
+  })();
+</script>
 </body>
 </html>
