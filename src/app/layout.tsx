@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { asset } from "@/lib/asset";
-import "@fontsource-variable/inter-tight";
-import "@fontsource-variable/jetbrains-mono";
+import "@fontsource-variable/bricolage-grotesque";
+import "@fontsource-variable/geist";
+import "@fontsource-variable/geist-mono";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   icons: { icon: asset("/icon.svg") },
 };
 
-export const viewport: Viewport = { themeColor: "#0a0a0a", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#EFE4CF", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -27,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=new URLSearchParams(location.search).get("theme");if(t&&/^(ember|charcoal|cobalt|violet|beige)$/.test(t)){document.documentElement.dataset.theme=t}}catch(e){}`,
+            __html: `document.documentElement.classList.add("js");try{if(localStorage.getItem("sr-intro-v3")==="1")document.documentElement.classList.add("seen")}catch(e){}`,
           }}
         />
       </head>

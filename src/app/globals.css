@@ -1,86 +1,36 @@
 @import "tailwindcss";
 
 @theme {
-  /* default palette: deep black + clean white + electric volt — "lime" is the accent token */
-  --color-bg: #0a0a0a;
-  --color-fg: #f5f5f0;
-  --color-lime: #d6f53b;
-  --color-accentsoft: #e4fa86;
-  --color-muted: #8a8a85;
-  --color-line: rgba(245, 245, 240, 0.09);
-  --color-card: #131313;
-  --color-card2: #1d1d1c;
-  --color-paper: #171717;
-  --font-sans: "Inter Tight Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  /* v3 palette: cream, espresso, saffron */
+  --color-cream: #EFE4CF;
+  --color-cream-lt: #F7F0E3;
+  --color-cream-dp: #E3D3B5;
+  --color-espresso: #22160E;
+  --color-cocoa: #7A6450;
+  --color-saffron: #E8A13A;
+  --color-saffron-dp: #8F520B;
+  --color-rule: #D8C7A8;
+  /* old token names, mapped onto the new palette until every page is rebuilt */
+  --color-bg: #EFE4CF;
+  --color-fg: #22160E;
+  --color-lime: #E8A13A;
+  --color-accentsoft: #F2C77F;
+  --color-muted: #7A6450;
+  --color-line: rgba(34, 22, 14, 0.12);
+  --color-card: #F7F0E3;
+  --color-card2: #E3D3B5;
+  --color-paper: #F7F0E3;
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
+  --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-wipe: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-
-/* ---------- theme presets (html[data-theme]); default = black + volt ---------- */
 :root {
-  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 30px 60px -40px rgba(0, 0, 0, 0.8);
-  --grain-blend: overlay;
-}
-html[data-theme="ember"] {
-  --color-bg: #0e0d0c;
-  --color-fg: #f2ede5;
-  --color-lime: #ee5636;
-  --color-accentsoft: #f4a08b;
-  --color-muted: #8d877f;
-  --color-line: rgba(242, 237, 229, 0.09);
-  --color-card: #161413;
-  --color-card2: #201e1c;
-  --color-paper: #1a1817;
-}
-html[data-theme="charcoal"] {
-  --color-bg: #121212;
-  --color-fg: #eeeae3;
-  --color-lime: #e6d8bd;
-  --color-accentsoft: #e6d8bd;
-  --color-muted: #8f8a82;
-  --color-line: rgba(238, 234, 227, 0.1);
-  --color-card: #1a1a1a;
-  --color-card2: #262626;
-  --color-paper: #1f1f1f;
-}
-html[data-theme="beige"] {
-  --color-bg: #efe8dc;
-  --color-fg: #1f1c18;
-  --color-lime: #5b6630;
-  --color-accentsoft: #d9ddb2;
-  --color-muted: #7a7064;
-  --color-line: rgba(31, 28, 24, 0.12);
-  --color-card: #f7f2e9;
-  --color-card2: #e9e1d3;
-  --color-paper: #fbf8f2;
-  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 24px 48px -36px rgba(70, 52, 30, 0.35);
-  --grain-blend: multiply;
-}
-html[data-theme="cobalt"] {
-  --color-bg: #f3efe7;
-  --color-fg: #141414;
-  --color-lime: #2b45d9;
-  --color-accentsoft: #c9d2ff;
-  --color-muted: #75716a;
-  --color-line: rgba(20, 20, 20, 0.11);
-  --color-card: #faf8f3;
-  --color-card2: #e8e3d8;
-  --color-paper: #fdfcf9;
-  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 24px 48px -36px rgba(40, 40, 60, 0.3);
-  --grain-blend: multiply;
-}
-html[data-theme="violet"] {
-  --color-bg: #ecebf0;
-  --color-fg: #17161c;
-  --color-lime: #5a49d6;
-  --color-accentsoft: #dcd6ff;
-  --color-muted: #75738a;
-  --color-line: rgba(23, 22, 28, 0.11);
-  --color-card: #f6f5f9;
-  --color-card2: #dfdde7;
-  --color-paper: #fbfbfd;
-  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 24px 48px -36px rgba(40, 30, 80, 0.3);
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 24px 48px -36px rgba(70, 45, 20, 0.35);
   --grain-blend: multiply;
 }
 
@@ -101,7 +51,6 @@ body {
   font-size: 16px;
   line-height: 1.6;
   letter-spacing: 0.002em;
-  font-feature-settings: "ss01", "cv11";
   text-rendering: optimizeLegibility;
 }
 p { text-wrap: pretty; }
@@ -130,11 +79,13 @@ h1, h2, h3 { text-wrap: balance; }
   text-transform: uppercase;
 }
 .h-display {
-  font-weight: 750;
+  font-family: var(--font-display);
+  font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 0.95;
 }
 .h-section {
+  font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.02;
@@ -247,3 +198,19 @@ h1, h2, h3 { text-wrap: balance; }
   mask-image: radial-gradient(ellipse 60% 70% at 50% 50%, #000, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 50%, #000, transparent 80%);
 }
+
+/* ---------- v3 ---------- */
+.mask { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+.mask > * { display: inline-block; will-change: transform; }
+.tnum { font-variant-numeric: tabular-nums; }
+.preloader { display: none; }
+.js .preloader { display: block; }
+/* hero parts start hidden only when JS will animate them in */
+.js .intro-hide { visibility: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  .js .intro-hide { visibility: visible; }
+}
+@keyframes scrollcue { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
+body { background: var(--color-cream); color: var(--color-espresso); }
+/* nothing animating in from off-screen may widen the page on phones */
+html, body { overflow-x: clip; }
