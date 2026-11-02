@@ -17,7 +17,13 @@ export const metadata: Metadata = {
     images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Sarthak Rawat — Showreel 2026" }],
   },
   twitter: { card: "summary_large_image", title: "Sarthak Rawat — Video Editor & Motion Designer", images: ["/og.jpg"] },
-  icons: { icon: asset("/icon.svg") },
+  icons: {
+    icon: [
+      { url: asset("/icon.svg?v=3"), type: "image/svg+xml" },
+      { url: asset("/icon-32.png?v=3"), sizes: "32x32", type: "image/png" },
+    ],
+    apple: asset("/apple-touch-icon.png?v=3"),
+  },
 };
 
 export const viewport: Viewport = { themeColor: "#EFE4CF", width: "device-width", initialScale: 1 };
